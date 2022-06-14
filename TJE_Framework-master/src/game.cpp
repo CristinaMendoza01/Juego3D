@@ -7,6 +7,8 @@
 #include "input.h"
 #include "animation.h"
 #include "entity.h"
+#include "audio.h"
+
 #include <bass.h>
 #include <cmath>
 
@@ -44,6 +46,7 @@ float no_render_dist = 1000.0f; // Para el frustum
 bool cameraLocked = true;
 
 std::vector<Entity*> entities;
+
 
 HSAMPLE loadAudio(const char* fileName) {
 	//El handler para un sample
@@ -117,6 +120,7 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 		std::cout << "ERROR initializing audio" << std::endl;
 	}
 	
+	//Audio::PlayAudio("data/audio/mistery.wav");
 	PlayAudio("data/audio/mistery.wav");
 
 	//hide the cursor

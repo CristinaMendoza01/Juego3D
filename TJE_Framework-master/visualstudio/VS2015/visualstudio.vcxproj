@@ -130,6 +130,7 @@
     <ClCompile Include="..\..\src\audio.cpp" />
     <ClCompile Include="..\..\src\camera.cpp" />
     <ClCompile Include="..\..\src\entity.cpp" />
+    <ClCompile Include="..\..\src\extra\cJSON.cpp" />
     <ClCompile Include="..\..\src\extra\coldet\box.cpp" />
     <ClCompile Include="..\..\src\extra\coldet\box_bld.cpp" />
     <ClCompile Include="..\..\src\extra\coldet\coldet.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="..\..\src\audio.h" />
     <ClInclude Include="..\..\src\camera.h" />
     <ClInclude Include="..\..\src\entity.h" />
+    <ClInclude Include="..\..\src\extra\cJSON.h" />
     <ClInclude Include="..\..\src\extra\coldet\box.h" />
     <ClInclude Include="..\..\src\extra\coldet\coldet.h" />
     <ClInclude Include="..\..\src\extra\coldet\coldetimpl.h" />

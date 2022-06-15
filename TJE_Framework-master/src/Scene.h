@@ -6,11 +6,24 @@ class Scene
 public:
 	static Scene* instance;
 
-	Entity* entity;
+	Vector3 background_color;
+	Vector3 ambient_light;
+	Camera main_camera;
 
-	Entity getEntity();
-	void setEntity(Entity e);
+	Scene();
 
-	void renderScene();
+	void clear();
+
+	void addEntity(Entity* entity);
+
+	bool loadMap(const char* filename);
+
+	Entity* createEntity(std::string type);
+
+	std::string filename;
+	std::vector<Entity*> entities;
+
+
+
 };
 

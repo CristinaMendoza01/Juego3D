@@ -1,5 +1,7 @@
 #include "entity.h"
 #include "shader.h"
+#include "utils.h"
+#include "extra/cJSON.h"
 
 void RenderMesh(Matrix44& model, Mesh* a_mesh, Texture* tex, Shader* a_shader, Camera* cam) {
 
@@ -19,4 +21,42 @@ void RenderMesh(Matrix44& model, Mesh* a_mesh, Texture* tex, Shader* a_shader, C
 
 	//disable shader
 	a_shader->disable();
+}
+
+LightEntity::LightEntity()
+{
+	entity_type = eEntityType::LIGHT;
+	color.set(1, 1, 1);
+	intensity = 10;
+	max_distance = 100;
+	cone_angle = 45;
+	cone_exp = 60;
+	area_size = 1000;
+	cast_shadows = false;
+
+	light_type = POINT;
+	light_camera = NULL;
+}
+
+void LightEntity::configure(cJSON* json)
+{
+	color = readJSONVector3(json, "color", color);
+	intensity = readJSONNumber(json, "intensity", intensity);
+	max_distance = readJSONNumber(json, "max_dist", max_distance);
+	cast_shadows = readJSONBool(json, "cast_shadows", false);
+	std::string str = readJSONString(json, "light_type", "");
+	if (str == "POINT")
+	{
+		light_type = eLightType::POINT;
+	}
+	else if (str == "SPOT") {
+		light_type = eLightType::SPOT;
+		cone_angle = readJSONNumber(json, "cone_angle", cone_angle);
+		cone_exp = readJSONNumber(json, "cone_exp", cone_exp);
+		shadow_bias = readJSONNumber(json, "shadow_bias", shadow_bias);
+	}
+	else if (str == "DIRECTIONAL") {
+		light_type = eLightType::DIRECTIONAL;
+		area_size = readJSONNumber(json, "area_size", area_size);
+	}
 }

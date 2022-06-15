@@ -116,8 +116,12 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	houseMesh = Mesh::Get("data/house1.ASE");
 	houseTex = Texture::Get("data/houses_and_windows.tga");
 
-	femaleMesh = Mesh::Get("data/female.mesh");
-	femaleTex = Texture::Get("data/female.tga");
+	//femaleMesh = Mesh::Get("data/female.mesh");
+	//femaleTex = Texture::Get("data/female.tga");
+
+	femaleMesh = Mesh::Get("data/fantasyf.mesh");
+	femaleTex = Texture::Get("data/polyTexture.png");
+	anim = Animation::Get("data/fantasyf.skanim");
 
 	maleMesh = Mesh::Get("data/male.mesh");
 	maleTex = Texture::Get("data/male.tga");
@@ -244,6 +248,8 @@ void Game::render(void)
 	skyModel.setScale(100, 100, 100);
 
 	RenderHouses(houseMesh);
+
+	RenderMeshWithAnim(femaleModel, femaleMesh, femaleTex, anim, shader, camera, time);
 
 	// ----------------------------- ARNAU --------------------------------------------------------------
 	RenderMesh(maleModel, maleMesh, maleTex, shader, camera);

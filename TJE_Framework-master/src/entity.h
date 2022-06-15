@@ -5,6 +5,7 @@
 #include "mesh.h"
 #include "texture.h"
 #include "camera.h"
+#include "animation.h"
 
 class Entity {
 public:
@@ -14,4 +15,6 @@ public:
 };
 
 void RenderMesh(Matrix44& model, Mesh* a_mesh, Texture* tex, Shader* a_shader, Camera* cam);
+void RenderMeshWithAnim(Matrix44& model, Mesh* a_mesh, Texture* tex, Animation* anim, Shader* a_shader, Camera* cam, float t);
+
 #endif

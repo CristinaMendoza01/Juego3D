@@ -26,6 +26,7 @@ Matrix44 houseModel;
 
 Mesh* femaleMesh = NULL;
 Texture* femaleTex = NULL;
+Animation* walkingf;
 Matrix44 femaleModel;
 
 Mesh* maleMesh = NULL;
@@ -38,6 +39,13 @@ float mouse_speed = 100.0f;
 FBO* fbo = NULL;
 
 Game* Game::instance = NULL;
+
+struct sParticle {
+	Vector3 pos;
+	Vector3 vel;
+};
+
+sParticle female;
 
 const int houses_width = 10;
 const int houses_height = 10;
@@ -116,12 +124,12 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	houseMesh = Mesh::Get("data/house1.ASE");
 	houseTex = Texture::Get("data/houses_and_windows.tga");
 
-	//femaleMesh = Mesh::Get("data/female.mesh");
-	//femaleTex = Texture::Get("data/female.tga");
+	femaleMesh = Mesh::Get("data/female.mesh");
+	femaleTex = Texture::Get("data/female.tga");
 
-	femaleMesh = Mesh::Get("data/fantasyf.mesh");
-	femaleTex = Texture::Get("data/polyTexture.png");
-	anim = Animation::Get("data/fantasyf.skanim");
+	//femaleMesh = Mesh::Get("data/fantasyf.mesh");
+	//femaleTex = Texture::Get("data/polyTexture.png");
+	walkingf = Animation::Get("data/walking_female.skanim");
 
 	maleMesh = Mesh::Get("data/male.mesh");
 	maleTex = Texture::Get("data/male.tga");
@@ -142,7 +150,7 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	SDL_ShowCursor(!mouse_locked); //hide or show the mouse
 }
 
-void RenderHouses(Mesh* hMesh) {
+void RenderObjects(Mesh* hMesh) {
 
 	if (shader)
 	{
@@ -192,28 +200,6 @@ void RenderHouses(Mesh* hMesh) {
 	}
 }
 
-void AddEntityInFront(Camera* cam, Mesh* a_mesh, Texture* tex) {
-
-	// Para definir punto donde spawnear el objeto
-	Game* g = Game::instance;
-	Vector2 mouse = Input::mouse_position; // Conseguimos la posición del mouse -> Pondremos mesh donde puntero mouse
-	Vector3 dir = cam->getRayDirection(mouse.x, mouse.y, g->window_width, g->window_height); // Sacamos la dirección
-	Vector3 rOrigin = cam->eye;
-	Vector3 spawnPos = RayPlaneCollision(Vector3(), Vector3(0, 1, 0), rOrigin, dir);; // Sacar la intersección entre la dirección y el plano
-
-	Matrix44 model;
-	model.translate(spawnPos.x, spawnPos.y, spawnPos.z);
-	//model.scale(3.0f, 3.0f, 3.0f); // Depende de a que distancia estés, te lo pone en un tamaño u otro
-
-	Entity* entity = new Entity();
-	entity->model = model;
-
-	entity->mesh = a_mesh;
-	entity->texture = tex;
-	entities.push_back(entity);
-}
-
-
 //what to do when the image has to be draw
 void Game::render(void)
 {
@@ -247,9 +233,10 @@ void Game::render(void)
 	RenderMesh(skyModel, skyMesh, skyTex, shader, camera);
 	skyModel.setScale(100, 100, 100);
 
-	RenderHouses(houseMesh);
+	RenderObjects(houseMesh);
 
-	RenderMeshWithAnim(femaleModel, femaleMesh, femaleTex, anim, shader, camera, time);
+	// Anim
+	//RenderMeshWithAnim(femaleModel, femaleMesh, femaleTex, walkingf, shader, camera, time);
 
 	// ----------------------------- ARNAU --------------------------------------------------------------
 	RenderMesh(maleModel, maleMesh, maleTex, shader, camera);
@@ -352,7 +339,7 @@ void Game::update(double seconds_elapsed)
 		mouse_locked = true;
 		float rotSpeed = 60.f * DEG2RAD * elapsed_time;
 		maleModel.rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f)); //Rotamos el modelo del jugador y con él, la camara.
-		//maleModel.rotate(Input::mouse_delta.y * rotSpeed, Vector3(-1.0f, 0.0f, 0.0f));
+		maleModel.rotate(Input::mouse_delta.y * rotSpeed, Vector3(1.0f, 0.0f, 0.0f));
 		float playerSpeed = 50.f * elapsed_time;
 		if (Input::isKeyPressed(SDL_SCANCODE_W)) maleModel.translate(0.f, 0.f, playerSpeed);
 		if (Input::isKeyPressed(SDL_SCANCODE_S)) maleModel.translate(0.f, 0.f, -playerSpeed);
@@ -363,6 +350,15 @@ void Game::update(double seconds_elapsed)
 	else { //CAMARA LIBRE
 		mouse_locked = false;
 		//async input to move the camera around
+		//float rotSpeed = 60.f * DEG2RAD * elapsed_time;
+		//femaleModel.rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f)); //Rotamos el modelo del jugador y con él, la camara.
+		////maleModel.rotate(Input::mouse_delta.y * rotSpeed, Vector3(-1.0f, 0.0f, 0.0f));
+		//float playerSpeed = 50.f * elapsed_time;
+		//if (Input::isKeyPressed(SDL_SCANCODE_W)) femaleModel.translate(0.f, 0.f, playerSpeed);
+		//if (Input::isKeyPressed(SDL_SCANCODE_S)) femaleModel.translate(0.f, 0.f, -playerSpeed);
+		//if (Input::isKeyPressed(SDL_SCANCODE_A)) femaleModel.translate(playerSpeed, 0.f, 0.f);
+		//if (Input::isKeyPressed(SDL_SCANCODE_D)) femaleModel.translate(-playerSpeed, 0.f, 0.f);
+		//if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) playerSpeed *= 10; //move faster with left shift
 		if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) speed *= 10; //move faster with left shift
 		if (Input::isKeyPressed(SDL_SCANCODE_W) || Input::isKeyPressed(SDL_SCANCODE_UP)) camera->move(Vector3(0.0f, 0.0f, 1.0f) * speed);
 		if (Input::isKeyPressed(SDL_SCANCODE_S) || Input::isKeyPressed(SDL_SCANCODE_DOWN)) camera->move(Vector3(0.0f, 0.0f, -1.0f) * speed);
@@ -422,8 +418,8 @@ void Game::onKeyDown(SDL_KeyboardEvent event)
 	{
 	case SDLK_ESCAPE: must_exit = true; break; //ESC key, kill the app
 	case SDLK_F1: Shader::ReloadAll(); break;
-	case SDLK_1: AddEntityInFront(camera, maleMesh, maleTex);  break;
-	case SDLK_2: AddEntityInFront(camera, femaleMesh, femaleTex);  break;
+	case SDLK_1: AddEntityInFront(camera, maleMesh, maleTex, entities);  break;
+	case SDLK_2: AddEntityInFront(camera, femaleMesh, femaleTex, entities);  break;
 	}
 }
 

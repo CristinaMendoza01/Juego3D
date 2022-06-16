@@ -14,6 +14,7 @@ public:
 	Texture* texture;
 };
 
+void AddEntityInFront(Camera* cam, Mesh* a_mesh, Texture* tex, std::vector<Entity*> &entities);
 void RenderMesh(Matrix44& model, Mesh* a_mesh, Texture* tex, Shader* a_shader, Camera* cam);
 void RenderMeshWithAnim(Matrix44& model, Mesh* a_mesh, Texture* tex, Animation* anim, Shader* a_shader, Camera* cam, float t);
 

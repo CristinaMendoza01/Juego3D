@@ -150,56 +150,6 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	SDL_ShowCursor(!mouse_locked); //hide or show the mouse
 }
 
-void RenderObjects(Mesh* hMesh) {
-
-	if (shader)
-	{
-		//enable shader
-		shader->enable();
-
-		Camera* cam = Game::instance->camera;
-		//upload uniforms
-		shader->setUniform("u_color", Vector4(1, 1, 1, 1));
-		shader->setUniform("u_viewprojection", cam->viewprojection_matrix);
-		shader->setUniform("u_texture", houseTex, 0);
-		shader->setUniform("u_time", time);
-
-		//do the draw call
-		for (size_t i = 0; i < houses_width; i++) {
-			for (size_t j = 0; j < houses_height; j++) {
-
-				Matrix44 hModel;
-				hModel.scale(8, 8, 8);
-				hModel.translate(i * padding, 0.0f, j * padding);
-
-				Vector3 hPos = hModel.getTranslation();
-				Vector3 camPos = cam->eye; //Posición de la camara
-				float dist = hPos.distance(camPos);
-
-				if (dist > no_render_dist) {
-					continue;
-				}
-
-				//hMesh = Mesh::Get("data/house1.ASE"); // mesh = mesh_low
-				//if (dist < lodDist) {	//Si tenemos lods --> mesh_low_1, mesh_low_2 etc
-					// mesh = mesh_normal
-				//}
-
-				// Para renderizar lo que necesitamos
-				BoundingBox box = transformBoundingBox(hModel, hMesh->box);
-				if (!cam->testBoxInFrustum(box.center, box.halfsize)) { //Si no tenemos la pos de la house, no la renderizamos
-					continue;
-				}
-
-				shader->setUniform("u_model", hModel);
-				hMesh->render(GL_TRIANGLES);
-			}
-		}
-		//disable shader
-		shader->disable();
-	}
-}
-
 //what to do when the image has to be draw
 void Game::render(void)
 {
@@ -221,7 +171,6 @@ void Game::render(void)
 	Vector3 up = maleModel.rotateVector(Vector3(0.f, 1.f, 0.f));
 	// ----------------------------- ARNAU --------------------------------------------------------------
 
-
 	//set the camera as default
 	camera->enable();
 
@@ -233,7 +182,7 @@ void Game::render(void)
 	RenderMesh(skyModel, skyMesh, skyTex, shader, camera);
 	skyModel.setScale(100, 100, 100);
 
-	RenderObjects(houseMesh);
+	RenderObjects(houseMesh, houseTex, shader, houses_width, houses_height, padding, no_render_dist);
 
 	// Anim
 	//RenderMeshWithAnim(femaleModel, femaleMesh, femaleTex, walkingf, shader, camera, time);

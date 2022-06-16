@@ -45,6 +45,57 @@ void RenderMesh(Matrix44& model, Mesh* a_mesh, Texture* tex, Shader* a_shader, C
 	a_shader->disable();
 }
 
+void RenderObjects(Mesh* mesh, Texture* tex, Shader* shader, int width, int height, float padding, float no_render_dist) {
+
+	if (shader)
+	{
+		//enable shader
+		shader->enable();
+
+		Camera* cam = Game::instance->camera;
+		//upload uniforms
+		shader->setUniform("u_color", Vector4(1, 1, 1, 1));
+		shader->setUniform("u_viewprojection", cam->viewprojection_matrix);
+		shader->setUniform("u_texture", tex, 0);
+		shader->setUniform("u_time", time);
+
+		//do the draw call
+		for (size_t i = 0; i < width; i++) {
+			for (size_t j = 0; j < height; j++) {
+
+				Matrix44 hModel;
+				hModel.scale(8, 8, 8);
+				hModel.translate(i * padding, 0.0f, j * padding);
+
+				Vector3 hPos = hModel.getTranslation();
+				Vector3 camPos = cam->eye; //Posición de la camara
+				float dist = hPos.distance(camPos);
+
+				if (dist > no_render_dist) {
+					continue;
+				}
+
+				//hMesh = Mesh::Get("data/house1.ASE"); // mesh = mesh_low
+				//if (dist < lodDist) {	//Si tenemos lods --> mesh_low_1, mesh_low_2 etc
+					// mesh = mesh_normal
+				//}
+
+				// Para renderizar lo que necesitamos
+				BoundingBox box = transformBoundingBox(hModel, mesh->box);
+				if (!cam->testBoxInFrustum(box.center, box.halfsize)) { //Si no tenemos la pos de la house, no la renderizamos
+					continue;
+				}
+
+				shader->setUniform("u_model", hModel);
+				mesh->render(GL_TRIANGLES);
+			}
+		}
+		//disable shader
+		shader->disable();
+	}
+}
+
+
 void RenderMeshWithAnim(Matrix44& model, Mesh* a_mesh, Texture* tex, Animation* anim, Shader* a_shader, Camera* cam, float t) {
 	a_shader = Shader::Get("data/shaders/skinning.vs", "data/shaders/texture.fs");
 	if (!a_shader) return;

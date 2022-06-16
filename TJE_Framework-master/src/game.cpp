@@ -8,6 +8,7 @@
 #include "animation.h"
 #include "entity.h"
 #include "audio.h"
+#include "Player.h"
 //#include "stage.h"
 
 #include <bass.h>
@@ -40,12 +41,12 @@ FBO* fbo = NULL;
 
 Game* Game::instance = NULL;
 
-struct sParticle {
-	Vector3 pos;
-	Vector3 vel;
-};
+//struct sPlayer {
+//	Vector3 pos;
+//	float yaw;
+//};
 
-sParticle female;
+sPlayer female;
 
 const int houses_width = 10;
 const int houses_height = 10;
@@ -166,18 +167,22 @@ void Game::render(void)
 
 
 	// ----------------------------- ARNAU --------------------------------------------------------------
-	Vector3 eye = maleModel * Vector3(0.f, 15.f, 1.f);
-	Vector3 center = maleModel * Vector3(0.f, 15.f, 10.f);
-	Vector3 up = maleModel.rotateVector(Vector3(0.f, 1.f, 0.f));
+	//Vector3 eye = maleModel * Vector3(0.f, 15.f, 1.f);
+	//Vector3 center = maleModel * Vector3(0.f, 15.f, 10.f);
+	//Vector3 up = maleModel.rotateVector(Vector3(0.f, 1.f, 0.f));
 	// ----------------------------- ARNAU --------------------------------------------------------------
 
 	//set the camera as default
 	camera->enable();
 
 	// ----------------------------- ARNAU --------------------------------------------------------------
-	if (cameraLocked) //Entramos en modo 1a Persona.
+	if (cameraLocked) {//Entramos en modo 1a Persona.
+		Vector3 eye = maleModel * Vector3(0, 15, 1);
+		Vector3 center = maleModel * Vector3(0, 15, 10);
+		Vector3 up = Vector3(0, 1, 0);
 		camera->lookAt(eye, center, up);
-	// ----------------------------- ARNAU --------------------------------------------------------------
+	}
+	//// ----------------------------- ARNAU --------------------------------------------------------------
 
 	RenderMesh(skyModel, skyMesh, skyTex, shader, camera);
 	skyModel.setScale(100, 100, 100);
@@ -185,10 +190,12 @@ void Game::render(void)
 	RenderObjects(houseMesh, houseTex, shader, houses_width, houses_height, padding, no_render_dist);
 
 	// Anim
-	//RenderMeshWithAnim(femaleModel, femaleMesh, femaleTex, walkingf, shader, camera, time);
+	femaleModel.translate(female.pos.x, female.pos.y, female.pos.z);
+	femaleModel.rotate(female.yaw * DEG2RAD, Vector3(0, 1, 0));
+	RenderMeshWithAnim(femaleModel, femaleMesh, femaleTex, walkingf, shader, camera, time);
 
 	// ----------------------------- ARNAU --------------------------------------------------------------
-	RenderMesh(maleModel, maleMesh, maleTex, shader, camera);
+	//RenderMesh(maleModel, maleMesh, maleTex, shader, camera);
 	// ----------------------------- ARNAU --------------------------------------------------------------
 
 	for (size_t i = 0; i < entities.size(); i++) { // Para el AddEntityInFront
@@ -285,6 +292,25 @@ void Game::update(double seconds_elapsed)
 
 	if (cameraLocked) //SI ESTAMOS EN 1a PERSONA
 	{
+		/*float playerSpeed = 2.0f * elapsed_time;
+		float rotSpeed = 120.0f * DEG2RAD * elapsed_time;
+
+		if (Input::isKeyPressed(SDL_SCANCODE_E)) female.yaw += rotSpeed;
+		if (Input::isKeyPressed(SDL_SCANCODE_Q)) female.yaw -= rotSpeed;;
+
+		Matrix44 playerRotate;
+		playerRotate.rotate(female.yaw * DEG2RAD, Vector3(0, 1, 0));
+		Vector3 forward = playerRotate.rotateVector(Vector3(0, 0, -1));
+		Vector3 right = playerRotate.rotateVector(Vector3(1, 0, 0));
+		Vector3 playerVel;
+
+		if (Input::isKeyPressed(SDL_SCANCODE_S)) playerVel = playerVel + (forward * playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_W)) playerVel = playerVel - (forward * playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_S)) playerVel = playerVel + (right * playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_A)) playerVel = playerVel - (right * playerSpeed);
+
+		female.pos = female.pos + playerVel;*/
+	 
 		mouse_locked = true;
 		float rotSpeed = 60.f * DEG2RAD * elapsed_time;
 		maleModel.rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f)); //Rotamos el modelo del jugador y con él, la camara.
@@ -298,6 +324,26 @@ void Game::update(double seconds_elapsed)
 	}
 	else { //CAMARA LIBRE
 		mouse_locked = false;
+		float playerSpeed = 0.05f * elapsed_time;
+		float rotSpeed = 120.0f * DEG2RAD * elapsed_time;
+
+		if (Input::isKeyPressed(SDL_SCANCODE_E)) female.yaw += rotSpeed;
+		if (Input::isKeyPressed(SDL_SCANCODE_Q)) female.yaw -= rotSpeed;;
+
+		Matrix44 playerRotate;
+		playerRotate.rotate(female.yaw * DEG2RAD, Vector3(0, 1, 0));
+		Vector3 forward = playerRotate.rotateVector(Vector3(0, 0, -1));
+		Vector3 right = playerRotate.rotateVector(Vector3(1, 0, 0));
+		
+		Vector3 playerVel;
+
+		if (Input::isKeyPressed(SDL_SCANCODE_S)) playerVel = playerVel + (forward * playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_W)) playerVel = playerVel - (forward * playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_D)) playerVel = playerVel - (right * playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_A)) playerVel = playerVel + (right * playerSpeed);
+
+		female.pos = female.pos + playerVel;
+
 		//async input to move the camera around
 		//float rotSpeed = 60.f * DEG2RAD * elapsed_time;
 		//femaleModel.rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f)); //Rotamos el modelo del jugador y con él, la camara.
@@ -309,10 +355,10 @@ void Game::update(double seconds_elapsed)
 		//if (Input::isKeyPressed(SDL_SCANCODE_D)) femaleModel.translate(-playerSpeed, 0.f, 0.f);
 		//if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) playerSpeed *= 10; //move faster with left shift
 		if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) speed *= 10; //move faster with left shift
-		if (Input::isKeyPressed(SDL_SCANCODE_W) || Input::isKeyPressed(SDL_SCANCODE_UP)) camera->move(Vector3(0.0f, 0.0f, 1.0f) * speed);
-		if (Input::isKeyPressed(SDL_SCANCODE_S) || Input::isKeyPressed(SDL_SCANCODE_DOWN)) camera->move(Vector3(0.0f, 0.0f, -1.0f) * speed);
-		if (Input::isKeyPressed(SDL_SCANCODE_A) || Input::isKeyPressed(SDL_SCANCODE_LEFT)) camera->move(Vector3(1.0f, 0.0f, 0.0f) * speed);
-		if (Input::isKeyPressed(SDL_SCANCODE_D) || Input::isKeyPressed(SDL_SCANCODE_RIGHT)) camera->move(Vector3(-1.0f, 0.0f, 0.0f) * speed);
+		if (Input::isKeyPressed(SDL_SCANCODE_UP)) camera->move(Vector3(0.0f, 0.0f, 1.0f) * speed);
+		if (Input::isKeyPressed(SDL_SCANCODE_DOWN)) camera->move(Vector3(0.0f, 0.0f, -1.0f) * speed);
+		if (Input::isKeyPressed(SDL_SCANCODE_LEFT)) camera->move(Vector3(1.0f, 0.0f, 0.0f) * speed);
+		if (Input::isKeyPressed(SDL_SCANCODE_RIGHT)) camera->move(Vector3(-1.0f, 0.0f, 0.0f) * speed);
 
 	}
 

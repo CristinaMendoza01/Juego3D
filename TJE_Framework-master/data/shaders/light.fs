@@ -34,37 +34,6 @@ uniform mat4 u_lshadowmap_vp;
 
 out vec4 FragColor;
 
-float TestShadowMap(vec3 pos){
-	if ( u_ltype == 1){
-		//project our 3D position to the shadowmap
-		vec4 proj_pos = u_lshadowmap_vp * vec4(pos,1.0);
-
-		//from homogeneus space to clip space
-		vec2 shadow_uv = proj_pos.xy / proj_pos.w;
-
-		//from clip space to uv space
-		shadow_uv = shadow_uv * 0.5 + vec2(0.5);
-
-		//get point depth [-1 .. +1] in non-linear space
-		float real_depth = (proj_pos.z - u_lshadowbias) / proj_pos.w;
-
-		//normalize from [-1..+1] to [0..+1] still non-linear
-		real_depth = real_depth * 0.5 + 0.5;
-
-		//read depth from depth buffer in [0..+1] non-linear
-		float shadow_depth = texture( u_lshadowmap, shadow_uv).x;
-
-		//compute final shadow factor by comparing
-		float shadow_factor = 1.0;
-
-		//we can compare them, even if they are not linear
-		if( shadow_depth < real_depth )
-			shadow_factor = 0.0;
-		return shadow_factor;
-	}
-}
-
-
 mat3 cotangent_frame(vec3 N, vec3 p, vec2 uv)
 {
 	// get edge vectors of the pixel triangle
@@ -154,13 +123,7 @@ void main()
 	
 	}
 
-	float shadow_factor = 1.0;
-
-	if(u_lshadowcast == 1){
-		shadow_factor= TestShadowMap(v_world_position);
-	}
-
-	light += ((NdotL * u_lcolor) * att * shadow_factor);
+	light += ((NdotL * u_lcolor) * att);
 
 	color.xyz *= (light) + (texture( u_occlusion_texture, v_uv ).xyz * u_ambient_light);
 

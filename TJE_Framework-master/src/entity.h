@@ -9,7 +9,8 @@
 enum eEntityType {
 	NONE = 0,
 	LIGHT = 1,
-	PLAYER = 2
+	PLAYER = 2,
+	OBJECT = 3,
 };
 
 enum eLightType {
@@ -43,17 +44,9 @@ public:
 	//Spot Light
 	float cone_angle;
 	float cone_exp;
-	bool spot_shadow_trigger;// Triggers changes in spotlight properties that affect shadows for atlas rebuilding task.
 
 	//Directional Light
 	float area_size;
-	bool directional_shadow_trigger;// Triggers changes in spotlight properties that affect shadows for atlas rebuilding task.
-
-	//Shadows
-	bool cast_shadows;
-	int shadow_index;
-	float shadow_bias;
-	Camera* light_camera;
 
 	LightEntity();
 	LightEntity(eLightType light_type);

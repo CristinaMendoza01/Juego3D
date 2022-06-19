@@ -32,10 +32,8 @@ LightEntity::LightEntity()
 	cone_angle = 45;
 	cone_exp = 60;
 	area_size = 1000;
-	cast_shadows = false;
 
 	light_type = POINT;
-	light_camera = NULL;
 }
 
 void LightEntity::configure(cJSON* json)
@@ -43,7 +41,6 @@ void LightEntity::configure(cJSON* json)
 	color = readJSONVector3(json, "color", color);
 	intensity = readJSONNumber(json, "intensity", intensity);
 	max_distance = readJSONNumber(json, "max_dist", max_distance);
-	cast_shadows = readJSONBool(json, "cast_shadows", false);
 	std::string str = readJSONString(json, "light_type", "");
 	if (str == "POINT")
 	{
@@ -53,7 +50,6 @@ void LightEntity::configure(cJSON* json)
 		light_type = eLightType::SPOT;
 		cone_angle = readJSONNumber(json, "cone_angle", cone_angle);
 		cone_exp = readJSONNumber(json, "cone_exp", cone_exp);
-		shadow_bias = readJSONNumber(json, "shadow_bias", shadow_bias);
 	}
 	else if (str == "DIRECTIONAL") {
 		light_type = eLightType::DIRECTIONAL;

@@ -5,7 +5,6 @@ Scene* Scene::instance = NULL;
 Scene::Scene()
 {
 	instance = this;
-
 }
 
 void Scene::clear()
@@ -31,6 +30,9 @@ bool Scene::loadMap(const char* filename)
 
 Entity* Scene::createEntity(std::string type)
 {
+	if (type == "OBJECT") {
+		return new Entity();
+	}
 	if (type == "LIGHT")
 		return new LightEntity();
 

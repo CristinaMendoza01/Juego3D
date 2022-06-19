@@ -283,15 +283,30 @@ void Game::update(double seconds_elapsed)
 	if (cameraLocked) //SI ESTAMOS EN 1a PERSONA
 	{
 		mouse_locked = true;
+		Vector3 Player_Move;
 		float rotSpeed = 60.f * DEG2RAD * elapsed_time;
 		maleModel.rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f)); //Rotamos el modelo del jugador y con él, la camara.
-		//maleModel.rotate(Input::mouse_delta.y * rotSpeed, Vector3(-1.0f, 0.0f, 0.0f));
+		camera->rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f));
+		camera->rotate(Input::mouse_delta.y * rotSpeed, Vector3(-1.0f, 0.0f, 0.0f));
+
 		float playerSpeed = 50.f * elapsed_time;
-		if (Input::isKeyPressed(SDL_SCANCODE_W)) maleModel.translate(0.f, 0.f, playerSpeed);
-		if (Input::isKeyPressed(SDL_SCANCODE_S)) maleModel.translate(0.f, 0.f, -playerSpeed);
-		if (Input::isKeyPressed(SDL_SCANCODE_A)) maleModel.translate(playerSpeed, 0.f, 0.f);
-		if (Input::isKeyPressed(SDL_SCANCODE_D)) maleModel.translate(-playerSpeed, 0.f, 0.f);
+
+		if (Input::isKeyPressed(SDL_SCANCODE_W)) Player_Move= Vector3(0.f, 0.f, playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_S)) Player_Move = Vector3(0.f, 0.f, -playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_A)) Player_Move = Vector3(playerSpeed, 0.f, 0.f);
+		if (Input::isKeyPressed(SDL_SCANCODE_D)) Player_Move = Vector3(-playerSpeed, 0.f, 0.f);
 		if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) playerSpeed *= 10; //move faster with left shift
+
+		Vector3 wpv_player = camera->getLocalVector(Player_Move);
+
+		camera->eye.x -= wpv_player.x;
+		camera->eye.z -= wpv_player.z;
+
+		camera->center.x -= wpv_player.x;
+		camera->center.x -= wpv_player.x;
+
+		maleModel.translateGlobal(-wpv_player.x, 0.0f, -wpv_player.z);
+		
 	}
 	else { //CAMARA LIBRE
 		mouse_locked = false;
@@ -362,7 +377,7 @@ void Game::onResize(int width, int height)
 	window_height = height;
 }
 
-void RenderScene(Scene* scene, Camera* camera) {
+/*void RenderScene(Scene* scene, Camera* camera) {
 
 	//set the clear color (the background color)
 	glClearColor(scene->background_color.x, scene->background_color.y, scene->background_color.z, 1.0);
@@ -376,26 +391,13 @@ void RenderScene(Scene* scene, Camera* camera) {
 	//render entities
 	for (int i = 0; i < scene->entities.size(); ++i)
 	{
-		BaseEntity* ent = scene->entities[i];
-		if (!ent->visible)
-			continue;
+		Entity* ent = scene->entities[i];
 
-		//is a prefab!
-		if (ent->entity_type == PREFAB)
-		{
-			PrefabEntity* pent = (GTR::PrefabEntity*)ent;
-
-			if (pent->prefab) {
-				renderPrefab(ent->model, pent->prefab, camera);
-			}
-		}
-
-		//is a light
-		if (ent->entity_type == LIGHT)
-		{
-			LightEntity* lent = (GTR::LightEntity*)ent;
+		if (ent->entity_type == eEntityType::LIGHT) {
+			LightEntity* lent = (LightEntity*)ent;
 			lights.push_back(lent);
 		}
+		
 	}
 }
 
@@ -490,7 +492,7 @@ void Game::MultiPassRender(const Matrix44 model, Mesh* mesh, Texture* texture, s
 				glEnable(GL_BLEND);
 				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			}
-			else*/
+			else
 				glDisable(GL_BLEND);
 		}
 		else {
@@ -506,7 +508,7 @@ void Game::MultiPassRender(const Matrix44 model, Mesh* mesh, Texture* texture, s
 		shader->setUniform("u_lmaxdist", light->max_distance);
 		shader->setUniform("u_ltype", (int)light->light_type);
 
-		if (/*light->shadowmap &&*/ light->cast_shadows) {
+		if (/*light->shadowmap && light->cast_shadows) {
 			shader->setUniform("u_lshadowcast", 1);
 			//shader->setUniform("u_lshadowmap", light->shadowmap, 8);
 			shader->setUniform("u_lshadowmap_vp", light->light_camera->viewprojection_matrix);
@@ -547,3 +549,4 @@ void Game::MultiPassRender(const Matrix44 model, Mesh* mesh, Texture* texture, s
 	glDepthFunc(GL_LESS);
 	glDisable(GL_BLEND);
 }
+*/

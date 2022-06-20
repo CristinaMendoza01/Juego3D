@@ -38,6 +38,7 @@ bool Scene::loadMap(const char* filename)
 	for (int i = 0; i < lines.size(); ++i) {
 		std::vector<std::string> line = split(lines[i], ' ');
 
+		//get the type of the entity
 		int type = stoi(line[TYPE]);
 		Mesh* mesh = Mesh::Get(line[MESH].c_str());
 		Texture* texture = new Texture();
@@ -56,30 +57,25 @@ bool Scene::loadMap(const char* filename)
 		std::vector<std::string> scale_str = split(line[SCALE], ',');
 		Vector3 scale = Vector3(stof(scale_str[0]), stof(scale_str[1]), stof(scale_str[2]));
 
-
+		//create the entity
 		Entity* ent = createEntity(type, mesh, texture, position, rotation, scale);
 
+		//add the entity to the list
 		addEntity(ent);
 	}
 }
 
 Entity* Scene::createEntity(int type, Mesh* mesh, Texture* texture, Vector3 position, Vector3 rotation, Vector3 scale)
 {
-	if (type == eEntityType::OBJECT) {
-		Entity* ent = new Entity();
+	Entity* ent = new Entity();
 
 		ent->mesh = mesh;
 		ent->texture = texture;
-		//ent->model = ;
+		ent->model.translate(position.x, position.y, position.z);
+		ent->model.rotate(PI*180*(DEG2RAD), rotation);
+		ent->model.scale(scale.x, scale.y, scale.z);
+		ent->entity_type = (eEntityType) type;
 
 		return ent;
-	}
-	if (type == eEntityType::LIGHT) {
-
-	}
-	if (type == eEntityType::PLAYER) {
-
-	}
-
-	return NULL;
+	
 }

@@ -13,11 +13,11 @@ enum eEntityType {
 	OBJECT = 3,
 };
 
-/*enum eLightType {
+enum eLightType {
 	POINT = 0,
 	SPOT = 1,
 	DIRECTIONAL = 2
-};*/
+};
 
 class cJSON;
 class Scene;
@@ -33,7 +33,7 @@ public:
 
 void RenderMesh(Matrix44& model, Mesh* a_mesh, Texture* tex, Shader* a_shader, Camera* cam);
 
-/*class LightEntity : public Entity {
+class LightEntity : public Entity {
 public:
 	//General features
 	Vector3 color;
@@ -52,5 +52,5 @@ public:
 	LightEntity(eLightType light_type);
 
 	void configure(cJSON* json);
-};*/
+};
 #endif

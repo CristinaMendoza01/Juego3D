@@ -46,6 +46,8 @@ float no_render_dist = 1000.0f; // Para el frustum
 bool cameraLocked = true;
 
 std::vector<Entity*> entities;
+std::vector<LightEntity*> lights;
+
 
 
 HSAMPLE loadAudio(const char* fileName) {
@@ -130,7 +132,7 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	}
 	
 	//Audio::PlayAudio("data/audio/mistery.wav");
-	PlayAudio("data/audio/mistery.wav");
+	//PlayAudio("data/audio/mistery.wav");
 
 	//hide the cursor
 	SDL_ShowCursor(!mouse_locked); //hide or show the mouse
@@ -290,7 +292,7 @@ void Game::update(double seconds_elapsed)
 		float rotSpeed = 60.f * DEG2RAD * elapsed_time;
 		maleModel.rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f)); //Rotamos el modelo del jugador y con él, la camara.
 		camera->rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f));
-		camera->rotate(Input::mouse_delta.y * rotSpeed, Vector3(-1.0f, 0.0f, 0.0f));
+		camera->rotate(Input::mouse_delta.y * rotSpeed, camera->getLocalVector(Vector3(-1.0f, 0.0f, 0.0f)));
 
 		float playerSpeed = 50.f * elapsed_time;
 
@@ -454,7 +456,7 @@ void Game::MultiPassRender(const Matrix44 model, Mesh* mesh, std::vector<LightEn
 	assert(glGetError() == GL_NO_ERROR);
 
 	//chose a shader
-	shader = Shader::Get("data/shaders/light");
+	shader = Shader::Get("data/shaders/basic.vs", "data/shaders/light.fs");
 
 	assert(glGetError() == GL_NO_ERROR);
 
@@ -490,7 +492,7 @@ void Game::MultiPassRender(const Matrix44 model, Mesh* mesh, std::vector<LightEn
 	for (int i = 0; i < l.size(); i++)
 	{
 		if (i == 0) {
-			/*if (material->alpha_mode == eAlphaMode::BLEND)
+			if (material->alpha_mode == eAlphaMode::BLEND)
 			{
 				glEnable(GL_BLEND);
 				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -551,5 +553,4 @@ void Game::MultiPassRender(const Matrix44 model, Mesh* mesh, std::vector<LightEn
 
 	glDepthFunc(GL_LESS);
 	glDisable(GL_BLEND);
-}
-*/
+}*/

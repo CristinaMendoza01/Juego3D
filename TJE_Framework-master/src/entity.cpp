@@ -23,7 +23,7 @@ void RenderMesh(Matrix44& model, Mesh* a_mesh, Texture* tex, Shader* a_shader, C
 	a_shader->disable();
 }
 
-/*LightEntity::LightEntity()
+LightEntity::LightEntity()
 {
 	entity_type = eEntityType::LIGHT;
 	color.set(1, 1, 1);
@@ -55,4 +55,4 @@ void LightEntity::configure(cJSON* json)
 		light_type = eLightType::DIRECTIONAL;
 		area_size = readJSONNumber(json, "area_size", area_size);
 	}
-}*/
+}

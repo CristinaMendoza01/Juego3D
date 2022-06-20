@@ -93,9 +93,18 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	glEnable(GL_CULL_FACE); //render both sides of every triangle
 	glEnable(GL_DEPTH_TEST); //check the occlusions using the Z buffer
 
+
+	// ----------------------------- ARNAU --------------------------------------------------------------
+	Vector3 eye = maleModel * Vector3(0.f, 15.f, 1.f);
+	Vector3 center = maleModel * Vector3(0.f, 15.f, 10.f);
+	Vector3 up = maleModel.rotateVector(Vector3(0.f, 1.f, 0.f));
+
 	//Create our camera
 	camera = new Camera();
 	camera->lookAt(Vector3(0.f, 100.f, 100.f), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera and point to 0,0,0
+	// ----------------------------- ARNAU --------------------------------------------------------------
+	if (cameraLocked) //Entramos en modo 1a Persona.
+		camera->lookAt(eye, center, up);
 	camera->setPerspective(70.f, window_width / (float)window_height, 0.1f, 1000000.f); //set the projection, we want to be perspective
 	// Si añadimos unos ceros más en el último param -> Vemos más lejos
 
@@ -213,19 +222,13 @@ void Game::render(void)
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE);
 
-	// ----------------------------- ARNAU --------------------------------------------------------------
-	Vector3 eye = maleModel * Vector3(0.f, 15.f, 1.f);
-	Vector3 center = maleModel * Vector3(0.f, 15.f, 10.f);
-	Vector3 up = maleModel.rotateVector(Vector3(0.f, 1.f, 0.f));
+	
 	// ----------------------------- ARNAU --------------------------------------------------------------
 
 
 	//set the camera as default
 	camera->enable();
 
-	// ----------------------------- ARNAU --------------------------------------------------------------
-	if (cameraLocked) //Entramos en modo 1a Persona.
-		camera->lookAt(eye, center, up);
 	// ----------------------------- ARNAU --------------------------------------------------------------
 
 	RenderMesh(skyModel, skyMesh, skyTex, shader, camera);
@@ -234,7 +237,7 @@ void Game::render(void)
 	RenderHouses(houseMesh);
 
 	// ----------------------------- ARNAU --------------------------------------------------------------
-	RenderMesh(maleModel, maleMesh, maleTex, shader, camera);
+	//RenderMesh(maleModel, maleMesh, maleTex, shader, camera);
 	// ----------------------------- ARNAU --------------------------------------------------------------
 
 	for (size_t i = 0; i < entities.size(); i++) { // Para el AddEntityInFront
@@ -303,7 +306,7 @@ void Game::update(double seconds_elapsed)
 		camera->eye.z -= wpv_player.z;
 
 		camera->center.x -= wpv_player.x;
-		camera->center.x -= wpv_player.x;
+		camera->center.z -= wpv_player.z;
 
 		maleModel.translateGlobal(-wpv_player.x, 0.0f, -wpv_player.z);
 		
@@ -402,7 +405,7 @@ void Game::onResize(int width, int height)
 }
 
 //renders a mesh given its transform and material
-void Game::MultiPassRender(const Matrix44 model, Mesh* mesh, Texture* texture, std::vector<LightEntity*> l, Camera* camera)
+void Game::MultiPassRender(const Matrix44 model, Mesh* mesh, std::vector<LightEntity*> l, Camera* camera)
 {
 	//in case there is nothing to do
 	if (!mesh || !mesh->getNumVertices() || !material)

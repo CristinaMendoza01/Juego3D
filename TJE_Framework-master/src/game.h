@@ -45,7 +45,7 @@ public:
 	void onGamepadButtonDown(SDL_JoyButtonEvent event);
 	void onGamepadButtonUp(SDL_JoyButtonEvent event);
 	void onResize(int width, int height);
-	void MultiPassRender(const Matrix44 model, Mesh* mesh, Texture* texture, std::vector<LightEntity*> l, Camera* camera);
+	//void MultiPassRender(const Matrix44 model, Mesh* mesh, std::vector<LightEntity*> l, Camera* camera);
 
 };
 

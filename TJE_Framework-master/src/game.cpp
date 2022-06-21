@@ -9,6 +9,7 @@
 #include "entity.h"
 #include "audio.h"
 #include "Player.h"
+#include "Scene.h"
 #include "stage.h"
 
 #include <bass.h>
@@ -44,6 +45,8 @@ Game* Game::instance = NULL;
 sPlayer female;
 
 Audio* audio;
+
+Scene* scene;
 
 const int houses_width = 10;
 const int houses_height = 10;
@@ -126,6 +129,12 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	audio->PlayAudio("data/audio/mistery.wav");
 	//PlayAudio("data/audio/mistery.wav");
 
+	scene = new Scene();
+
+	scene->loadMap("");
+
+	entities = scene->entities;
+
 	//hide the cursor
 	SDL_ShowCursor(!mouse_locked); //hide or show the mouse
 }
@@ -158,7 +167,7 @@ void Game::render(void)
 	RenderMesh(skyModel, skyMesh, skyTex, shader, camera);
 	skyModel.setScale(100, 100, 100);
 
-	RenderObjects(houseMesh, houseTex, shader, houses_width, houses_height, padding, no_render_dist);
+	//RenderObjects(houseMesh, houseTex, shader, houses_width, houses_height, padding, no_render_dist);
 
 	// Anim
 	femaleModel.translate(female.pos.x, female.pos.y, female.pos.z);

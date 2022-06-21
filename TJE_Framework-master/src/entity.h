@@ -5,6 +5,7 @@
 #include "mesh.h"
 #include "texture.h"
 #include "camera.h"
+#include "animation.h"
 
 enum eEntityType {
 	NONE = 0,

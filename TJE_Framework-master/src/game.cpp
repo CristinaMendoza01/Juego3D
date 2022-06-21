@@ -40,7 +40,7 @@ FBO* fbo = NULL;
 
 Game* Game::instance = NULL;
 
-Player female;
+sPlayer female;
 
 const int houses_width = 10;
 const int houses_height = 10;

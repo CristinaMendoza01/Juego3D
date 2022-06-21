@@ -34,7 +34,7 @@ Animation* walkingf;
 Mesh* detectiveMesh = NULL;
 Texture* detectiveTex = NULL;
 Matrix44 detectiveModel;
-Animation* walk;
+Animation* detectiveWalk;
 
 Mesh* maleMesh = NULL;
 Texture* maleTex = NULL;
@@ -47,7 +47,7 @@ FBO* fbo = NULL;
 
 Game* Game::instance = NULL;
 
-sPlayer female;
+sPlayer player;
 
 Audio* audio;
 
@@ -123,9 +123,9 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	maleTex = Texture::Get("data/male.tga");
 
 	// NO FUNCIONA
-	detectiveMesh = Mesh::Get("data/detective.obj");
-	detectiveTex = Texture::Get("data/detective.png");
-	walk = Animation::Get("data/detective.skanim");
+	detectiveMesh = Mesh::Get("data/detective.mesh");
+	detectiveTex = Texture::Get("data/detective.tga");
+	detectiveWalk = Animation::Get("data/detective.skanim");
 
 	// example of shader loading using the shaders manager
 	shader = Shader::Get("data/shaders/basic.vs", "data/shaders/texture.fs");
@@ -136,12 +136,12 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 		std::cout << "ERROR initializing audio" << std::endl;
 	}
 	
-	audio->PlayAudio("data/audio/mistery.wav");
-	//PlayAudio("data/audio/mistery.wav");
+	audio->PlayAudio("data/audio/pasos.wav");
+	//audio->PlayAudio("data/audio/mistery.wav");
 
 	scene = new Scene();
 
-	scene->loadMap("data/Lvl1.scene");
+	//scene->loadMap("data/Lvl1.scene");
 
 	entities = scene->entities;
 
@@ -180,10 +180,10 @@ void Game::render(void)
 	//RenderObjects(houseMesh, houseTex, shader, houses_width, houses_height, padding, no_render_dist);
 
 	// Anim
-	detectiveModel.translate(female.pos.x, female.pos.y, female.pos.z);
-	detectiveModel.rotate(female.yaw * DEG2RAD, Vector3(0, 1, 0));
-	//RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, walk, shader, camera, time);
-	RenderMesh(detectiveModel, detectiveMesh, detectiveTex, shader, camera);
+	detectiveModel.translate(player.pos.x, player.pos.y, player.pos.z);
+	detectiveModel.rotate(player.yaw * DEG2RAD, Vector3(0, 1, 0));
+	RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveWalk, shader, camera, time);
+	//RenderMesh(detectiveModel, detectiveMesh, detectiveTex, shader, camera);
 
 
 	//RenderMesh(maleModel, maleMesh, maleTex, shader, camera);
@@ -311,11 +311,11 @@ void Game::update(double seconds_elapsed)
 		float playerSpeed = 0.05f * elapsed_time;
 		float rotSpeed = 120.0f * DEG2RAD * elapsed_time;
 
-		if (Input::isKeyPressed(SDL_SCANCODE_E)) female.yaw += rotSpeed;
-		if (Input::isKeyPressed(SDL_SCANCODE_Q)) female.yaw -= rotSpeed;;
+		if (Input::isKeyPressed(SDL_SCANCODE_E)) player.yaw += rotSpeed;
+		if (Input::isKeyPressed(SDL_SCANCODE_Q)) player.yaw -= rotSpeed;;
 
 		Matrix44 playerRotate;
-		playerRotate.rotate(female.yaw * DEG2RAD, Vector3(0, 1, 0));
+		playerRotate.rotate(player.yaw * DEG2RAD, Vector3(0, 1, 0));
 		Vector3 forward = playerRotate.rotateVector(Vector3(0, 0, -1));
 		Vector3 right = playerRotate.rotateVector(Vector3(1, 0, 0));
 
@@ -326,7 +326,7 @@ void Game::update(double seconds_elapsed)
 		if (Input::isKeyPressed(SDL_SCANCODE_D)) playerVel = playerVel - (right * playerSpeed);
 		if (Input::isKeyPressed(SDL_SCANCODE_A)) playerVel = playerVel + (right * playerSpeed);
 
-		female.pos = female.pos + playerVel; // Character controller
+		player.pos = player.pos + playerVel; // Character controller
 
 		if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) speed *= 10; //move faster with left shift
 		if (Input::isKeyPressed(SDL_SCANCODE_UP)) camera->move(Vector3(0.0f, 0.0f, 1.0f) * speed);

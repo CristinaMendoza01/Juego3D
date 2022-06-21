@@ -9,6 +9,7 @@
 #include "entity.h"
 #include "audio.h"
 #include "Player.h"
+#include "stage.h"
 
 #include <bass.h>
 #include <cmath>
@@ -42,6 +43,8 @@ Game* Game::instance = NULL;
 
 sPlayer female;
 
+Audio* audio;
+
 const int houses_width = 10;
 const int houses_height = 10;
 float padding = 70.0f; // Distancia entre las houses
@@ -53,44 +56,17 @@ std::vector<Entity*> entities;
 std::vector<LightEntity*> lights;
 
 // ----------------------------- STAGES --------------------------------------------------------------
-//std::vector<Stage*> stages; // Vector stages
-//STAGE_ID currentStage = STAGE_ID::INTRO; //Índice que nos dice en que stage estamos, inicializamos con la INTRO
+std::vector<Stage*> stages; // Vector stages
+STAGE_ID currentStage = STAGE_ID::INTRO; //Índice que nos dice en que stage estamos, inicializamos con la INTRO
 
-//void InitStages() {
-//    stages.reserve(4); //Reserva 7 elementos (hace un malloc de 7 porque tenemos 7 stages)
-//    stages.push_back(new IntroStage()); //Para añadir elementos a un std vector = pushback
-//    stages.push_back(new InfoStage());
-//    stages.push_back(new TutorialStage());
-//    stages.push_back(new Level1Stage());
-//}
+void InitStages() {
+    stages.reserve(4); //Reserva 7 elementos (hace un malloc de 7 porque tenemos 7 stages)
+    stages.push_back(new IntroStage()); //Para añadir elementos a un std vector = pushback
+    stages.push_back(new InfoStage());
+    stages.push_back(new TutorialStage());
+    stages.push_back(new Level1Stage());
+}
 // ----------------------------- STAGES --------------------------------------------------------------
-
-HSAMPLE loadAudio(const char* fileName) {
-	//El handler para un sample
-	HSAMPLE hSample;
-	//use BASS_SAMPLE_LOOP in the last param to have a looped sound
-	hSample = BASS_SampleLoad(false, fileName, 0, 0, 3, BASS_SAMPLE_LOOP);
-	if (hSample == 0)
-	{
-		std::cout << "ERROR loading " << fileName << std::endl;
-	}
-	std::cout << " + AUDIO load " << fileName << std::endl;
-	return hSample;
-}
-
-void PlayAudio(const char* fileName) {
-	//Cargamos un sample del disco duro (memoria, filename, offset, length, max, flags)
-	HSAMPLE hSample = loadAudio(fileName);
-
-	//El handler para un canal
-	HCHANNEL hSampleChannel;
-
-	//Creamos un canal para el sample
-	hSampleChannel = BASS_SampleGetChannel(hSample, false);
-
-	//Lanzamos un sample
-	BASS_ChannelPlay(hSampleChannel, true);
-}
 
 Game::Game(int window_width, int window_height, SDL_Window* window)
 {
@@ -147,7 +123,7 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 		std::cout << "ERROR initializing audio" << std::endl;
 	}
 	
-	//Audio::PlayAudio("data/audio/mistery.wav");
+	audio->PlayAudio("data/audio/mistery.wav");
 	//PlayAudio("data/audio/mistery.wav");
 
 	//hide the cursor
@@ -176,14 +152,8 @@ void Game::render(void)
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE);
 
-	
-	// ----------------------------- ARNAU --------------------------------------------------------------
-
-
 	//set the camera as default
 	camera->enable();
-
-	// ----------------------------- ARNAU --------------------------------------------------------------
 
 	RenderMesh(skyModel, skyMesh, skyTex, shader, camera);
 	skyModel.setScale(100, 100, 100);
@@ -195,9 +165,7 @@ void Game::render(void)
 	femaleModel.rotate(female.yaw * DEG2RAD, Vector3(0, 1, 0));
 	RenderMeshWithAnim(femaleModel, femaleMesh, femaleTex, walkingf, shader, camera, time);
 
-	// ----------------------------- ARNAU --------------------------------------------------------------
 	//RenderMesh(maleModel, maleMesh, maleTex, shader, camera);
-	// ----------------------------- ARNAU --------------------------------------------------------------
 
 	for (size_t i = 0; i < entities.size(); i++) { // Para el AddEntityInFront
 		Entity* entity = entities[i];
@@ -219,22 +187,7 @@ void Game::render(void)
 	//}
 	//if (GetStage(currentStage, stages) == GetStage(STAGE_ID::LEVEL1, stages)) {
 
-		//    // ----------------------------- CAMARA 1A PERSONA --------------------------------------------------------------
-		//Vector3 eye = maleModel * Vector3(0.f, 15.f, 1.f);
-		//Vector3 center = maleModel * Vector3(0.f, 15.f, 10.f);
-		//Vector3 up = maleModel.rotateVector(Vector3(0.f, 1.f, 0.f));
-		// ----------------------------- CAMARA 1A PERSONA --------------------------------------------------------------
-
-		////set the camera as default
-		//camera->enable();
-
-		//// ----------------------------- camara 1a persona --------------------------------------------------------------
-		//if (cameralocked) {//entramos en modo 1a persona.
-		//    vector3 eye = malemodel * vector3(0, 15, 1);
-		//    vector3 center = malemodel * vector3(0, 15, 10);
-		//    vector3 up = vector3(0, 1, 0);
-		//    camera->lookat(eye, center, up);
-		//}
+	//}
 	//// ----------------------------- camara 1a persona --------------------------------------------------------------
 
 		//rendermesh(skymodel, skymesh, skytex, shader, camera);
@@ -248,7 +201,7 @@ void Game::render(void)
 		//rendermeshwithanim(femalemodel, femalemesh, femaletex, walkingf, shader, camera, time);
 
 		//// ----------------------------- mesh 1a persona --------------------------------------------------------------
-		////rendermesh(malemodel, malemesh, maletex, shader, camera);
+		////rendermesh(femalemodel, femalemesh, femaletex, shader, camera);
 		//// ----------------------------- mesh 1a persona --------------------------------------------------------------
 
 		//for (size_t i = 0; i < entities.size(); i++) { // para el addentityinfront
@@ -270,10 +223,10 @@ void Game::render(void)
 }
 
 // ----------------------------- STAGES --------------------------------------------------------------
-//void NextStage() { // Para pasar de stage
-//    int nextStageIndex = (((int)currentStage) + 1) % stages.size();
-//    SetStage(&currentStage, (STAGE_ID)nextStageIndex);
-//}
+void NextStage() { // Para pasar de stage
+    int nextStageIndex = (((int)currentStage) + 1) % stages.size();
+    SetStage(&currentStage, (STAGE_ID)nextStageIndex);
+}
 // ----------------------------- STAGES --------------------------------------------------------------
 
 void Game::update(double seconds_elapsed)

@@ -33,7 +33,7 @@ LightEntity::LightEntity()
 	cone_exp = 60;
 	area_size = 1000;
 
-	light_type = POINT;
+	light_type = eLightType::POINTLight;
 }
 
 void LightEntity::configure(cJSON* json)
@@ -44,7 +44,7 @@ void LightEntity::configure(cJSON* json)
 	std::string str = readJSONString(json, "light_type", "");
 	if (str == "POINT")
 	{
-		light_type = eLightType::POINT;
+		light_type = eLightType::POINTLight;
 	}
 	else if (str == "SPOT") {
 		light_type = eLightType::SPOT;

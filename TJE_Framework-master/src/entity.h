@@ -14,7 +14,7 @@ enum eEntityType {
 };
 
 enum eLightType {
-	POINT = 0,
+	POINTLight = 0,
 	SPOT = 1,
 	DIRECTIONAL = 2
 };

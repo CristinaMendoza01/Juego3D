@@ -31,6 +31,11 @@ Texture* femaleTex = NULL;
 Matrix44 femaleModel;
 Animation* walkingf;
 
+Mesh* detectiveMesh = NULL;
+Texture* detectiveTex = NULL;
+Matrix44 detectiveModel;
+Animation* walk;
+
 Mesh* maleMesh = NULL;
 Texture* maleTex = NULL;
 Matrix44 maleModel;
@@ -117,6 +122,11 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	maleMesh = Mesh::Get("data/male.mesh");
 	maleTex = Texture::Get("data/male.tga");
 
+	// NO FUNCIONA
+	detectiveMesh = Mesh::Get("data/detective.obj");
+	detectiveTex = Texture::Get("data/detective.png");
+	walk = Animation::Get("data/detective.skanim");
+
 	// example of shader loading using the shaders manager
 	shader = Shader::Get("data/shaders/basic.vs", "data/shaders/texture.fs");
 
@@ -131,7 +141,7 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 
 	scene = new Scene();
 
-	scene->loadMap("");
+	scene->loadMap("data/Lvl1.scene");
 
 	entities = scene->entities;
 
@@ -170,9 +180,11 @@ void Game::render(void)
 	//RenderObjects(houseMesh, houseTex, shader, houses_width, houses_height, padding, no_render_dist);
 
 	// Anim
-	femaleModel.translate(female.pos.x, female.pos.y, female.pos.z);
-	femaleModel.rotate(female.yaw * DEG2RAD, Vector3(0, 1, 0));
-	RenderMeshWithAnim(femaleModel, femaleMesh, femaleTex, walkingf, shader, camera, time);
+	detectiveModel.translate(female.pos.x, female.pos.y, female.pos.z);
+	detectiveModel.rotate(female.yaw * DEG2RAD, Vector3(0, 1, 0));
+	//RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, walk, shader, camera, time);
+	RenderMesh(detectiveModel, detectiveMesh, detectiveTex, shader, camera);
+
 
 	//RenderMesh(maleModel, maleMesh, maleTex, shader, camera);
 

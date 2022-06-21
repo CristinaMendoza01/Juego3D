@@ -1,11 +1,12 @@
 #pragma once
 #include "entity.h"
 
+
 class Player : public Entity
 {
-	Matrix44 model;
-	Mesh* mesh;
-	Texture* texture;
+public:
+	Vector3 pos;
+	float yaw;
 
 	Player();
 

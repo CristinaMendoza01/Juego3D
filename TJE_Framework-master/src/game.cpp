@@ -8,6 +8,7 @@
 #include "animation.h"
 #include "entity.h"
 #include "audio.h"
+#include "Player.h"
 
 #include <bass.h>
 #include <cmath>
@@ -26,6 +27,7 @@ Matrix44 houseModel;
 Mesh* femaleMesh = NULL;
 Texture* femaleTex = NULL;
 Matrix44 femaleModel;
+Animation* walkingf;
 
 Mesh* maleMesh = NULL;
 Texture* maleTex = NULL;
@@ -38,6 +40,8 @@ FBO* fbo = NULL;
 
 Game* Game::instance = NULL;
 
+Player female;
+
 const int houses_width = 10;
 const int houses_height = 10;
 float padding = 70.0f; // Distancia entre las houses
@@ -48,7 +52,18 @@ bool cameraLocked = true;
 std::vector<Entity*> entities;
 std::vector<LightEntity*> lights;
 
+// ----------------------------- STAGES --------------------------------------------------------------
+//std::vector<Stage*> stages; // Vector stages
+//STAGE_ID currentStage = STAGE_ID::INTRO; //Índice que nos dice en que stage estamos, inicializamos con la INTRO
 
+//void InitStages() {
+//    stages.reserve(4); //Reserva 7 elementos (hace un malloc de 7 porque tenemos 7 stages)
+//    stages.push_back(new IntroStage()); //Para añadir elementos a un std vector = pushback
+//    stages.push_back(new InfoStage());
+//    stages.push_back(new TutorialStage());
+//    stages.push_back(new Level1Stage());
+//}
+// ----------------------------- STAGES --------------------------------------------------------------
 
 HSAMPLE loadAudio(const char* fileName) {
 	//El handler para un sample
@@ -118,6 +133,7 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 
 	femaleMesh = Mesh::Get("data/female.mesh");
 	femaleTex = Texture::Get("data/female.tga");
+	walkingf = Animation::Get("data/walking_female.skanim");
 
 	maleMesh = Mesh::Get("data/male.mesh");
 	maleTex = Texture::Get("data/male.tga");
@@ -138,76 +154,12 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	SDL_ShowCursor(!mouse_locked); //hide or show the mouse
 }
 
-void RenderHouses(Mesh* hMesh) {
+void RenderAllGUIs() {
+	glDisable(GL_DEPTH_TEST);
 
-	if (shader)
-	{
-		//enable shader
-		shader->enable();
-
-		Camera* cam = Game::instance->camera;
-		//upload uniforms
-		shader->setUniform("u_color", Vector4(1, 1, 1, 1));
-		shader->setUniform("u_viewprojection", cam->viewprojection_matrix);
-		shader->setUniform("u_texture", houseTex, 0);
-		shader->setUniform("u_time", time);
-
-		//do the draw call
-		for (size_t i = 0; i < houses_width; i++) {
-			for (size_t j = 0; j < houses_height; j++) {
-
-				Matrix44 hModel;
-				hModel.scale(8, 8, 8);
-				hModel.translate(i * padding, 0.0f, j * padding);
-
-				Vector3 hPos = hModel.getTranslation();
-				Vector3 camPos = cam->eye; //Posición de la camara
-				float dist = hPos.distance(camPos);
-
-				if (dist > no_render_dist) {
-					continue;
-				}
-
-				//hMesh = Mesh::Get("data/house1.ASE"); // mesh = mesh_low
-				//if (dist < lodDist) {	//Si tenemos lods --> mesh_low_1, mesh_low_2 etc
-					// mesh = mesh_normal
-				//}
-
-				// Para renderizar lo que necesitamos
-				BoundingBox box = transformBoundingBox(hModel, hMesh->box);
-				if (!cam->testBoxInFrustum(box.center, box.halfsize)) { //Si no tenemos la pos de la house, no la renderizamos
-					continue;
-				}
-
-				shader->setUniform("u_model", hModel);
-				hMesh->render(GL_TRIANGLES);
-			}
-		}
-		//disable shader
-		shader->disable();
-	}
+	glEnable(GL_BLEND);
 }
 
-void AddEntityInFront(Camera* cam, Mesh* a_mesh, Texture* tex) {
-
-	// Para definir punto donde spawnear el objeto
-	Game* g = Game::instance;
-	Vector2 mouse = Input::mouse_position; // Conseguimos la posición del mouse -> Pondremos mesh donde puntero mouse
-	Vector3 dir = cam->getRayDirection(mouse.x, mouse.y, g->window_width, g->window_height); // Sacamos la dirección
-	Vector3 rOrigin = cam->eye;
-	Vector3 spawnPos = RayPlaneCollision(Vector3(), Vector3(0, 1, 0), rOrigin, dir);; // Sacar la intersección entre la dirección y el plano
-
-	Matrix44 model;
-	model.translate(spawnPos.x, spawnPos.y, spawnPos.z);
-	//model.scale(3.0f, 3.0f, 3.0f); // Depende de a que distancia estés, te lo pone en un tamaño u otro
-
-	Entity* entity = new Entity();
-	entity->model = model;
-
-	entity->mesh = a_mesh;
-	entity->texture = tex;
-	entities.push_back(entity);
-}
 
 
 //what to do when the image has to be draw
@@ -236,7 +188,12 @@ void Game::render(void)
 	RenderMesh(skyModel, skyMesh, skyTex, shader, camera);
 	skyModel.setScale(100, 100, 100);
 
-	RenderHouses(houseMesh);
+	RenderObjects(houseMesh, houseTex, shader, houses_width, houses_height, padding, no_render_dist);
+
+	// Anim
+	femaleModel.translate(female.pos.x, female.pos.y, female.pos.z);
+	femaleModel.rotate(female.yaw * DEG2RAD, Vector3(0, 1, 0));
+	RenderMeshWithAnim(femaleModel, femaleMesh, femaleTex, walkingf, shader, camera, time);
 
 	// ----------------------------- ARNAU --------------------------------------------------------------
 	//RenderMesh(maleModel, maleMesh, maleTex, shader, camera);
@@ -247,6 +204,61 @@ void Game::render(void)
 		RenderMesh(entity->model, entity->mesh, entity->texture, shader, camera);
 	}
 
+	// ----------------------------- STAGES --------------------------------------------------------------
+
+	//GetStage(currentStage, stages)->Render();
+
+	//if (GetStage(currentStage, stages) == GetStage(STAGE_ID::INTRO, stages)) {
+
+	//}
+	//if (GetStage(currentStage, stages) == GetStage(STAGE_ID::INFO, stages)) {
+
+	//}
+	//if (GetStage(currentStage, stages) == GetStage(STAGE_ID::TUTORIAL, stages)) {
+
+	//}
+	//if (GetStage(currentStage, stages) == GetStage(STAGE_ID::LEVEL1, stages)) {
+
+		//    // ----------------------------- CAMARA 1A PERSONA --------------------------------------------------------------
+		//Vector3 eye = maleModel * Vector3(0.f, 15.f, 1.f);
+		//Vector3 center = maleModel * Vector3(0.f, 15.f, 10.f);
+		//Vector3 up = maleModel.rotateVector(Vector3(0.f, 1.f, 0.f));
+		// ----------------------------- CAMARA 1A PERSONA --------------------------------------------------------------
+
+		////set the camera as default
+		//camera->enable();
+
+		//// ----------------------------- camara 1a persona --------------------------------------------------------------
+		//if (cameralocked) {//entramos en modo 1a persona.
+		//    vector3 eye = malemodel * vector3(0, 15, 1);
+		//    vector3 center = malemodel * vector3(0, 15, 10);
+		//    vector3 up = vector3(0, 1, 0);
+		//    camera->lookat(eye, center, up);
+		//}
+	//// ----------------------------- camara 1a persona --------------------------------------------------------------
+
+		//rendermesh(skymodel, skymesh, skytex, shader, camera);
+		//skymodel.setscale(100, 100, 100);
+
+		//renderobjects(housemesh, housetex, shader, houses_width, houses_height, padding, no_render_dist);
+
+		//// anim
+		//femalemodel.translate(female.pos.x, female.pos.y, female.pos.z);
+		//femalemodel.rotate(female.yaw * deg2rad, vector3(0, 1, 0));
+		//rendermeshwithanim(femalemodel, femalemesh, femaletex, walkingf, shader, camera, time);
+
+		//// ----------------------------- mesh 1a persona --------------------------------------------------------------
+		////rendermesh(malemodel, malemesh, maletex, shader, camera);
+		//// ----------------------------- mesh 1a persona --------------------------------------------------------------
+
+		//for (size_t i = 0; i < entities.size(); i++) { // para el addentityinfront
+		//    entity* entity = entities[i];
+		//    rendermesh(entity->model, entity->mesh, entity->texture, shader, camera);
+		//}
+	//}
+	// ----------------------------- STAGES --------------------------------------------------------------
+
+
 	//Draw the floor grid
 	drawGrid();
 
@@ -256,6 +268,13 @@ void Game::render(void)
 	//swap between front buffer and back buffer
 	SDL_GL_SwapWindow(this->window);
 }
+
+// ----------------------------- STAGES --------------------------------------------------------------
+//void NextStage() { // Para pasar de stage
+//    int nextStageIndex = (((int)currentStage) + 1) % stages.size();
+//    SetStage(&currentStage, (STAGE_ID)nextStageIndex);
+//}
+// ----------------------------- STAGES --------------------------------------------------------------
 
 void Game::update(double seconds_elapsed)
 {
@@ -315,14 +334,82 @@ void Game::update(double seconds_elapsed)
 	}
 	else { //CAMARA LIBRE
 		mouse_locked = false;
-		//async input to move the camera around
+		float playerSpeed = 0.05f * elapsed_time;
+		float rotSpeed = 120.0f * DEG2RAD * elapsed_time;
+
+		if (Input::isKeyPressed(SDL_SCANCODE_E)) female.yaw += rotSpeed;
+		if (Input::isKeyPressed(SDL_SCANCODE_Q)) female.yaw -= rotSpeed;;
+
+		Matrix44 playerRotate;
+		playerRotate.rotate(female.yaw * DEG2RAD, Vector3(0, 1, 0));
+		Vector3 forward = playerRotate.rotateVector(Vector3(0, 0, -1));
+		Vector3 right = playerRotate.rotateVector(Vector3(1, 0, 0));
+
+		Vector3 playerVel;
+
+		if (Input::isKeyPressed(SDL_SCANCODE_S)) playerVel = playerVel + (forward * playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_W)) playerVel = playerVel - (forward * playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_D)) playerVel = playerVel - (right * playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_A)) playerVel = playerVel + (right * playerSpeed);
+
+		female.pos = female.pos + playerVel; // Character controller
+
 		if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) speed *= 10; //move faster with left shift
-		if (Input::isKeyPressed(SDL_SCANCODE_W) || Input::isKeyPressed(SDL_SCANCODE_UP)) camera->move(Vector3(0.0f, 0.0f, 1.0f) * speed);
-		if (Input::isKeyPressed(SDL_SCANCODE_S) || Input::isKeyPressed(SDL_SCANCODE_DOWN)) camera->move(Vector3(0.0f, 0.0f, -1.0f) * speed);
-		if (Input::isKeyPressed(SDL_SCANCODE_A) || Input::isKeyPressed(SDL_SCANCODE_LEFT)) camera->move(Vector3(1.0f, 0.0f, 0.0f) * speed);
-		if (Input::isKeyPressed(SDL_SCANCODE_D) || Input::isKeyPressed(SDL_SCANCODE_RIGHT)) camera->move(Vector3(-1.0f, 0.0f, 0.0f) * speed);
+		if (Input::isKeyPressed(SDL_SCANCODE_UP)) camera->move(Vector3(0.0f, 0.0f, 1.0f) * speed);
+		if (Input::isKeyPressed(SDL_SCANCODE_DOWN)) camera->move(Vector3(0.0f, 0.0f, -1.0f) * speed);
+		if (Input::isKeyPressed(SDL_SCANCODE_LEFT)) camera->move(Vector3(1.0f, 0.0f, 0.0f) * speed);
+		if (Input::isKeyPressed(SDL_SCANCODE_RIGHT)) camera->move(Vector3(-1.0f, 0.0f, 0.0f) * speed);
+
+		////async input to move the camera around
+		//if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) speed *= 10; //move faster with left shift
+		//if (Input::isKeyPressed(SDL_SCANCODE_W) || Input::isKeyPressed(SDL_SCANCODE_UP)) camera->move(Vector3(0.0f, 0.0f, 1.0f) * speed);
+		//if (Input::isKeyPressed(SDL_SCANCODE_S) || Input::isKeyPressed(SDL_SCANCODE_DOWN)) camera->move(Vector3(0.0f, 0.0f, -1.0f) * speed);
+		//if (Input::isKeyPressed(SDL_SCANCODE_A) || Input::isKeyPressed(SDL_SCANCODE_LEFT)) camera->move(Vector3(1.0f, 0.0f, 0.0f) * speed);
+		//if (Input::isKeyPressed(SDL_SCANCODE_D) || Input::isKeyPressed(SDL_SCANCODE_RIGHT)) camera->move(Vector3(-1.0f, 0.0f, 0.0f) * speed);
 
 	}
+
+	// ----------------------------- STAGES --------------------------------------------------------------
+	//GetStage(currentStage, stages)->Update(seconds_elapsed); // Actualiza la stage que toca
+
+	//if (GetStage(currentStage, stages) == GetStage(STAGE_ID::LEVEL1, stages)) {
+	//	if (Input::wasKeyPressed(SDL_SCANCODE_TAB)) { //CAMBIAR MODO DE LA CAMARA
+	//		cameraLocked = !cameraLocked;
+	//	}
+
+	//	if (cameraLocked) //SI ESTAMOS EN 1a PERSONA
+	//	{
+	//		mouse_locked = true;
+	//		float rotSpeed = 60.f * DEG2RAD * elapsed_time;
+	//		maleModel.rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f)); //Rotamos el modelo del jugador y con Ã©l, la camara.
+	//		//maleModel.rotate(Input::mouse_delta.y * rotSpeed, Vector3(-1.0f, 0.0f, 0.0f));
+	//		float playerSpeed = 50.f * elapsed_time;
+	//		if (Input::isKeyPressed(SDL_SCANCODE_W)) maleModel.translate(0.f, 0.f, playerSpeed);
+	//		if (Input::isKeyPressed(SDL_SCANCODE_S)) maleModel.translate(0.f, 0.f, -playerSpeed);
+	//		if (Input::isKeyPressed(SDL_SCANCODE_A)) maleModel.translate(playerSpeed, 0.f, 0.f);
+	//		if (Input::isKeyPressed(SDL_SCANCODE_D)) maleModel.translate(-playerSpeed, 0.f, 0.f);
+	//		if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) playerSpeed *= 10; //move faster with left shift
+	//	}
+	//	else { //CAMARA LIBRE
+	//		mouse_locked = false;
+	//		//async input to move the camera around
+	//		if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) speed *= 10; //move faster with left shift
+	//		if (Input::isKeyPressed(SDL_SCANCODE_W) || Input::isKeyPressed(SDL_SCANCODE_UP)) camera->move(Vector3(0.0f, 0.0f, 1.0f) * speed);
+	//		if (Input::isKeyPressed(SDL_SCANCODE_S) || Input::isKeyPressed(SDL_SCANCODE_DOWN)) camera->move(Vector3(0.0f, 0.0f, -1.0f) * speed);
+	//		if (Input::isKeyPressed(SDL_SCANCODE_A) || Input::isKeyPressed(SDL_SCANCODE_LEFT)) camera->move(Vector3(1.0f, 0.0f, 0.0f) * speed);
+	//		if (Input::isKeyPressed(SDL_SCANCODE_D) || Input::isKeyPressed(SDL_SCANCODE_RIGHT)) camera->move(Vector3(-1.0f, 0.0f, 0.0f) * speed);
+
+	//	}
+	//}
+
+	////Read the keyboard state, to see all the keycodes: https://wiki.libsdl.org/SDL_Keycode
+	//if (Input::wasKeyPressed(SDL_SCANCODE_S)) { //S para pasar de Info a Tutorial a Level1
+	//	if (currentStage == 0 || currentStage == 1 || currentStage == 2 || currentStage == 3) {
+	//		NextStage();
+	//	}
+	//}
+	// ----------------------------- STAGES --------------------------------------------------------------
+
 
 	//to navigate with the mouse fixed in the middle
 	if (mouse_locked)
@@ -336,8 +423,8 @@ void Game::onKeyDown(SDL_KeyboardEvent event)
 	{
 	case SDLK_ESCAPE: must_exit = true; break; //ESC key, kill the app
 	case SDLK_F1: Shader::ReloadAll(); break;
-	case SDLK_1: AddEntityInFront(camera, maleMesh, maleTex);  break;
-	case SDLK_2: AddEntityInFront(camera, femaleMesh, femaleTex);  break;
+	case SDLK_1: AddEntityInFront(camera, maleMesh, maleTex, entities);  break;
+	case SDLK_2: AddEntityInFront(camera, femaleMesh, femaleTex, entities);  break;
 	}
 }
 

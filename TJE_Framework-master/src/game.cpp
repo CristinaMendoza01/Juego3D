@@ -109,23 +109,23 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	camera->setPerspective(70.f, window_width / (float)window_height, 0.1f, 1000000.f); //set the projection, we want to be perspective
 	// Si añadimos unos ceros más en el último param -> Vemos más lejos
 
-	skyMesh = Mesh::Get("data/cielo.ASE");
-	skyTex = Texture::Get("data/cielo.tga");
+	skyMesh = Mesh::Get("data/assets/cielo.ASE");
+	skyTex = Texture::Get("data/textures/cielo.tga");
 
-	houseMesh = Mesh::Get("data/house1.ASE");
-	houseTex = Texture::Get("data/houses_and_windows.tga");
+	houseMesh = Mesh::Get("data/assets/house1.ASE");
+	houseTex = Texture::Get("data/textures/houses_and_windows.tga");
 
-	femaleMesh = Mesh::Get("data/female.mesh");
-	femaleTex = Texture::Get("data/female.tga");
-	walkingf = Animation::Get("data/walking_female.skanim");
+	femaleMesh = Mesh::Get("data/assets/female.mesh");
+	femaleTex = Texture::Get("data/textures/female.tga");
+	walkingf = Animation::Get("data/animations/walking_female.skanim");
 
-	maleMesh = Mesh::Get("data/male.mesh");
-	maleTex = Texture::Get("data/male.tga");
+	maleMesh = Mesh::Get("data/assets/male.mesh");
+	maleTex = Texture::Get("data/textures/male.tga");
 
 	// NO FUNCIONA
-	detectiveMesh = Mesh::Get("data/detective.mesh");
-	detectiveTex = Texture::Get("data/detective.tga");
-	detectiveWalk = Animation::Get("data/detective.skanim");
+	detectiveMesh = Mesh::Get("data/assets/detective.mesh");
+	detectiveTex = Texture::Get("data/textures/detective.tga");
+	detectiveWalk = Animation::Get("data/animations/detective.skanim");
 
 	// example of shader loading using the shaders manager
 	shader = Shader::Get("data/shaders/basic.vs", "data/shaders/texture.fs");
@@ -183,8 +183,6 @@ void Game::render(void)
 	detectiveModel.translate(player.pos.x, player.pos.y, player.pos.z);
 	detectiveModel.rotate(player.yaw * DEG2RAD, Vector3(0, 1, 0));
 	RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveWalk, shader, camera, time);
-	//RenderMesh(detectiveModel, detectiveMesh, detectiveTex, shader, camera);
-
 
 	//RenderMesh(maleModel, maleMesh, maleTex, shader, camera);
 
@@ -308,7 +306,7 @@ void Game::update(double seconds_elapsed)
 	}
 	else { //CAMARA LIBRE
 		mouse_locked = false;
-		float playerSpeed = 0.05f * elapsed_time;
+		float playerSpeed = 12.0f * elapsed_time;
 		float rotSpeed = 120.0f * DEG2RAD * elapsed_time;
 
 		if (Input::isKeyPressed(SDL_SCANCODE_E)) player.yaw += rotSpeed;

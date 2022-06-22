@@ -1,15 +1,6 @@
 #pragma once
 #include "entity.h"
 
-enum eReadMap {
-	TYPE = 0,
-	MESH = 1,
-	TEXTURE = 2,
-	POSITION = 3,
-	ROTATION = 4,
-	SCALE = 5
-};
-
 class Scene
 {
 public:

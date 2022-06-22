@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "utils.h"
+#include "extra/textparser.h"
 
 Scene* Scene::instance = NULL;
 
@@ -26,36 +27,42 @@ void Scene::addEntity(Entity* entity)
 
 bool Scene::loadMap(const char* filename)
 {
+	TextParser* parser = new TextParser(filename);
+
 	clear();
 
-	std::string map_content;
-	readFile(filename, map_content);
+	while (!parser->eof())
+	{
 
-	//divide the file into lines (entities per line)
-	std::vector<std::string> lines = split(map_content, '\n');
-	
-	//for each line read the parameters to load every entity
-	for (int i = 0; i < lines.size(); ++i) {
-		std::vector<std::string> line = split(lines[i], ' ');
+		// entity name
+		int type = parser->getint();
 
-		//get the type of the entity
-		int type = stoi(line[TYPE]);
-		Mesh* mesh = Mesh::Get(line[MESH].c_str());
-		Texture* texture = new Texture();
-		texture->load(line[TEXTURE].c_str());
+		if (type == 10) { break; }
 
-		//Position
-		std::vector<std::string> position_str = split(line[POSITION], ',');
-		Vector3 position = Vector3(stof(position_str[0]), stof(position_str[1]), stof(position_str[2]));
-		position = position * 10; //adapt scale
+		//std::cout << ent_name << "\n";
 
-		//Rotation
-		std::vector<std::string> rotation_str = split(line[ROTATION], ',');
-		Vector3 rotation = Vector3(stof(rotation_str[0]), stof(rotation_str[1]), stof(rotation_str[2]));
+		//mesh file
+		Mesh* mesh = Mesh::Get(parser->getword());
+		// texture file
+		Texture* texture = Texture::Get(parser->getword());
 
-		//Rotation
-		std::vector<std::string> scale_str = split(line[SCALE], ',');
-		Vector3 scale = Vector3(stof(scale_str[0]), stof(scale_str[1]), stof(scale_str[2]));
+		// matrix model
+		float pos_x = parser->getfloat();
+		float pos_y = parser->getfloat();
+		float pos_z = parser->getfloat();
+
+
+		float rot_x = parser->getfloat();
+		float rot_y = parser->getfloat();
+		float rot_z = parser->getfloat();
+
+		float scale_x = parser->getfloat();
+		float scale_y = parser->getfloat();
+		float scale_z = parser->getfloat();
+
+		Vector3 position = Vector3(pos_x, pos_y,pos_z);
+		Vector3 rotation = Vector3(rot_x, rot_y, rot_z);
+		Vector3 scale = Vector3(scale_x, scale_y, scale_z);
 
 		//create the entity
 		Entity* ent = createEntity(type, mesh, texture, position, rotation, scale);
@@ -63,6 +70,8 @@ bool Scene::loadMap(const char* filename)
 		//add the entity to the list
 		addEntity(ent);
 	}
+	
+	
 }
 
 Entity* Scene::createEntity(int type, Mesh* mesh, Texture* texture, Vector3 position, Vector3 rotation, Vector3 scale)
@@ -72,7 +81,7 @@ Entity* Scene::createEntity(int type, Mesh* mesh, Texture* texture, Vector3 posi
 		ent->mesh = mesh;
 		ent->texture = texture;
 		ent->model.translate(position.x, position.y, position.z);
-		ent->model.rotate(PI*180*(DEG2RAD), rotation);
+		ent->model.rotate(180*DEG2RAD, rotation);
 		ent->model.scale(scale.x, scale.y, scale.z);
 		ent->entity_type = (eEntityType) type;
 

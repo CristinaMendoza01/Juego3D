@@ -26,6 +26,10 @@ Mesh* houseMesh = NULL;
 Texture* houseTex = NULL;
 Matrix44 houseModel;
 
+Mesh* cityMesh = NULL;
+Texture* cityTex = NULL;
+Matrix44 cityModel;
+
 Mesh* femaleMesh = NULL;
 Texture* femaleTex = NULL;
 Matrix44 femaleModel;
@@ -127,6 +131,9 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	detectiveTex = Texture::Get("data/textures/detective.tga");
 	detectiveWalk = Animation::Get("data/animations/detective.skanim");
 
+	cityMesh = Mesh::Get("data/scenes/Level2/city.obj");
+	cityTex = Texture::Get("data/scenes/Level2/city.png");
+
 	// example of shader loading using the shaders manager
 	shader = Shader::Get("data/shaders/basic.vs", "data/shaders/texture.fs");
 
@@ -177,6 +184,9 @@ void Game::render(void)
 	RenderMesh(skyModel, skyMesh, skyTex, shader, camera);
 	skyModel.setScale(100, 100, 100);
 
+	// Prueba de que la city se ve bien
+	RenderMesh(cityModel, cityMesh, cityTex, shader, camera);
+	cityModel.setScale(100, 100, 100);
 	//RenderObjects(houseMesh, houseTex, shader, houses_width, houses_height, padding, no_render_dist);
 
 	// Anim

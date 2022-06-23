@@ -1,0 +1,8440 @@
+{
+ "name": "house",
+ "camera": [
+  [
+   -3.558242082595825,
+   7.574193000793457,
+   -0.409770667552948
+  ],
+  [
+   3.5436131954193115,
+   -3.048917770385742,
+   1.2104239463806152
+  ]
+ ],
+ "scene": {
+  "ref": 0,
+  "layers": 3,
+  "flags": {
+   "visible": true,
+   "collides": true,
+   "no_transform": true
+  },
+  "children": [
+   {
+    "position": [
+     0.006307542324066162,
+     0,
+     1.9278603792190552
+    ],
+    "id": "node23679.22999998927::0.4396689974001662",
+    "ref": 1,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 2,
+      "mesh": "data/meshes/furniture/wallWindow.obj",
+      "submesh": 0,
+      "color": [
+       0.5571428537368774,
+       0.2909027636051178,
+       0.08171427249908447,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 3,
+      "mesh": "data/meshes/furniture/wallWindow.obj",
+      "submesh": 1,
+      "color": [
+       0.9678571224212646,
+       0.9678571224212646,
+       0.9678571224212646,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 4,
+      "mesh": "data/meshes/furniture/wallWindow.obj",
+      "submesh": 2,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 5,
+      "mesh": "data/meshes/furniture/wallWindow.obj",
+      "submesh": 3,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 6,
+      "mesh": "data/meshes/furniture/wallWindow.obj",
+      "submesh": 4,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 7,
+      "mesh": "data/meshes/furniture/wallWindow.obj",
+      "submesh": 5,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 8,
+      "mesh": "data/meshes/furniture/wallWindow.obj",
+      "submesh": 6,
+      "color": [
+       0.698039174079895,
+       0.8274509906768799,
+       0.7686275243759155,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 9,
+      "mesh": "data/meshes/furniture/wallWindow.obj",
+      "submesh": 7,
+      "color": [
+       0.5571428537368774,
+       0.2909027636051178,
+       0.08171427249908447,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -0.07876497507095337,
+     0,
+     -1.9885096549987793
+    ],
+    "id": "node37909.44999998808::0.2143333002755119",
+    "ref": 10,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 11,
+      "mesh": "data/meshes/furniture/wallWindowSlide.obj",
+      "submesh": 0,
+      "color": [
+       0.5571428537368774,
+       0.2909027636051178,
+       0.08171427249908447,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 12,
+      "mesh": "data/meshes/furniture/wallWindowSlide.obj",
+      "submesh": 1,
+      "color": [
+       0.9678571224212646,
+       0.9678571224212646,
+       0.9678571224212646,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 13,
+      "mesh": "data/meshes/furniture/wallWindowSlide.obj",
+      "submesh": 2,
+      "color": [
+       0.9678571224212646,
+       0.9678571224212646,
+       0.9678571224212646,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 14,
+      "mesh": "data/meshes/furniture/wallWindowSlide.obj",
+      "submesh": 3,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 15,
+      "mesh": "data/meshes/furniture/wallWindowSlide.obj",
+      "submesh": 4,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 16,
+      "mesh": "data/meshes/furniture/wallWindowSlide.obj",
+      "submesh": 5,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 17,
+      "mesh": "data/meshes/furniture/wallWindowSlide.obj",
+      "submesh": 6,
+      "color": [
+       0.698039174079895,
+       0.8274509906768799,
+       0.7686275243759155,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 18,
+      "mesh": "data/meshes/furniture/wallWindowSlide.obj",
+      "submesh": 7,
+      "color": [
+       0.5571428537368774,
+       0.2909027636051178,
+       0.08171427249908447,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 19,
+      "mesh": "data/meshes/furniture/wallWindowSlide.obj",
+      "submesh": 8,
+      "color": [
+       0.698039174079895,
+       0.8274509906768799,
+       0.7686275243759155,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 20,
+      "mesh": "data/meshes/furniture/wallWindowSlide.obj",
+      "submesh": 9,
+      "color": [
+       0.5571428537368774,
+       0.2909027636051178,
+       0.08171427249908447,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -1.9476513862609863,
+     0,
+     0.46785596013069153
+    ],
+    "rotation": [
+     0,
+     -0.7072985768318176,
+     0,
+     0.7069149017333984
+    ],
+    "scaling": [
+     1.0000004768371582,
+     1,
+     1.0000004768371582
+    ],
+    "id": "node86041.05999997258::0.4025072360170443",
+    "ref": 21,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 22,
+      "mesh": "data/meshes/furniture/wallDoorway.obj",
+      "submesh": 0,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 23,
+      "mesh": "data/meshes/furniture/wallDoorway.obj",
+      "submesh": 1,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 24,
+      "mesh": "data/meshes/furniture/wallDoorway.obj",
+      "submesh": 2,
+      "color": [
+       0.9678571224212646,
+       0.9678571224212646,
+       0.9678571224212646,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 25,
+      "mesh": "data/meshes/furniture/wallDoorway.obj",
+      "submesh": 3,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 26,
+      "mesh": "data/meshes/furniture/wallDoorway.obj",
+      "submesh": 4,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 27,
+      "mesh": "data/meshes/furniture/wallDoorway.obj",
+      "submesh": 5,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -1.929457187652588,
+     0,
+     0.2019442915916443
+    ],
+    "rotation": [
+     0,
+     -0.702922523021698,
+     0,
+     0.7112664580345154
+    ],
+    "scaling": [
+     1.0000059604644775,
+     1,
+     1.0000059604644775
+    ],
+    "id": "node133305.38499999046::0.5791196567367325",
+    "ref": 28,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 29,
+      "mesh": "data/meshes/furniture/doorwayFront.obj",
+      "submesh": 0,
+      "color": [
+       0.5571428537368774,
+       0.2909027636051178,
+       0.08171427249908447,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 30,
+      "mesh": "data/meshes/furniture/doorwayFront.obj",
+      "submesh": 1,
+      "color": [
+       0.9725490212440491,
+       1,
+       1,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 31,
+      "mesh": "data/meshes/furniture/doorwayFront.obj",
+      "submesh": 2,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 32,
+      "mesh": "data/meshes/furniture/doorwayFront.obj",
+      "submesh": 3,
+      "color": [
+       0.010714292526245117,
+       0.009454291313886642,
+       0.008464290760457516,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 33,
+      "mesh": "data/meshes/furniture/doorwayFront.obj",
+      "submesh": 4,
+      "color": [
+       0.698039174079895,
+       0.8274509906768799,
+       0.7686275243759155,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -1.9497284889221191,
+     0,
+     -0.3849654197692871
+    ],
+    "rotation": [
+     0,
+     -0.705795168876648,
+     0,
+     0.7084159255027771
+    ],
+    "scaling": [
+     1.6016316413879395,
+     1,
+     1.0000014305114746
+    ],
+    "id": "node189836.19499999285::0.42695231643915554",
+    "ref": 34,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 35,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 0,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 36,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 1,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 37,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 2,
+      "color": [
+       0.9678571224212646,
+       0.9678571224212646,
+       0.9678571224212646,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 38,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 3,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 39,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 4,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 40,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 5,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -1.9319863319396973,
+     0,
+     1.9739792346954346
+    ],
+    "rotation": [
+     0,
+     -0.7031593322753906,
+     0,
+     0.7110323309898376
+    ],
+    "scaling": [
+     1.587262749671936,
+     1,
+     1.0000613927841187
+    ],
+    "id": "node213618.2800000012::0.1557922209250615",
+    "ref": 41,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 42,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 0,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 43,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 1,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 44,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 2,
+      "color": [
+       0.9678571224212646,
+       0.9678571224212646,
+       0.9678571224212646,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 45,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 3,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 46,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 4,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 47,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 5,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -0.976285457611084,
+     0,
+     1.9281721115112305
+    ],
+    "id": "node266849.125::0.7128468737069236",
+    "ref": 48,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 49,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 0,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 50,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 1,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 51,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 2,
+      "color": [
+       0.9678571224212646,
+       0.9678571224212646,
+       0.9678571224212646,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 52,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 3,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 53,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 4,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 54,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 5,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     1.9496698379516602,
+     0,
+     1.9283547401428223
+    ],
+    "scaling": [
+     1.9707167148590088,
+     1,
+     1
+    ],
+    "id": "node279781.8549999893::0.988068393167129",
+    "ref": 55,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 56,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 0,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 57,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 1,
+      "color": [
+       0.48509523272514343,
+       0.8173419237136841,
+       0.8714285492897034,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 58,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 2,
+      "color": [
+       0.9678571224212646,
+       0.9678571224212646,
+       0.9678571224212646,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 59,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 3,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 60,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 4,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 61,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 5,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     1.9441330432891846,
+     0,
+     -1.9866106510162354
+    ],
+    "rotation": [
+     0,
+     0.7056145668029785,
+     0,
+     0.7085958123207092
+    ],
+    "scaling": [
+     3.311169385910034,
+     1,
+     1.0000392198562622
+    ],
+    "id": "node307214.00999999046::0.9971390617057039",
+    "ref": 62,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 63,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 0,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 64,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 1,
+      "color": [
+       0.48509523272514343,
+       0.8173419237136841,
+       0.8714285492897034,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 65,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 2,
+      "color": [
+       0.9678571224212646,
+       0.9678571224212646,
+       0.9678571224212646,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 66,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 3,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 67,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 4,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 68,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 5,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     1.927365779876709,
+     0,
+     1.2904725074768066
+    ],
+    "rotation": [
+     0,
+     0.6956973671913147,
+     0,
+     0.7183350324630737
+    ],
+    "scaling": [
+     1.3847507238388062,
+     1,
+     1.0003596544265747
+    ],
+    "id": "node341179.0799999833::0.13606418733904535",
+    "ref": 69,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 70,
+      "mesh": "data/meshes/furniture/wallHalf.obj",
+      "submesh": 0,
+      "color": [
+       0.5571428537368774,
+       0.2909027636051178,
+       0.08171427249908447,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 71,
+      "mesh": "data/meshes/furniture/wallHalf.obj",
+      "submesh": 1,
+      "color": [
+       0.48509523272514343,
+       0.8173419237136841,
+       0.8714285492897034,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 72,
+      "mesh": "data/meshes/furniture/wallHalf.obj",
+      "submesh": 2,
+      "color": [
+       0.9678571224212646,
+       0.9678571224212646,
+       0.9678571224212646,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 73,
+      "mesh": "data/meshes/furniture/wallHalf.obj",
+      "submesh": 3,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 74,
+      "mesh": "data/meshes/furniture/wallHalf.obj",
+      "submesh": 4,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 75,
+      "mesh": "data/meshes/furniture/wallHalf.obj",
+      "submesh": 5,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -0.07955092191696167,
+     0,
+     -1.941777229309082
+    ],
+    "rotation": [
+     0,
+     0.9999842047691345,
+     0,
+     -0.005615751259028912
+    ],
+    "scaling": [
+     2.0609683990478516,
+     1,
+     1.0001170635223389
+    ],
+    "id": "node386193.61499997973::0.23986743435311664",
+    "ref": 76,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 77,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 0,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 78,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 1,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 79,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 2,
+      "color": [
+       0.9678571224212646,
+       0.9678571224212646,
+       0.9678571224212646,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 80,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 3,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 81,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 4,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 82,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 5,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -0.9406108260154724,
+     0,
+     -1.9888315200805664
+    ],
+    "scaling": [
+     1.0320487022399902,
+     1,
+     1
+    ],
+    "id": "node428275.06999999285::0.7144602133561975",
+    "ref": 83,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 84,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 0,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 85,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 1,
+      "color": [
+       0.9678571224212646,
+       0.9678571224212646,
+       0.9678571224212646,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 86,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 2,
+      "color": [
+       0.9678571224212646,
+       0.9678571224212646,
+       0.9678571224212646,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 87,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 3,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 88,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 4,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 89,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 5,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     1.9171313047409058,
+     0,
+     -1.9440014362335205
+    ],
+    "rotation": [
+     0,
+     0.0006753358175046742,
+     0,
+     0.9999997615814209
+    ],
+    "scaling": [
+     3.8134894371032715,
+     1,
+     3.945993661880493
+    ],
+    "id": "node595567.4299999774::0.746773863527729",
+    "ref": 90,
+    "color": [
+     0.9678571224212646,
+     0.9678571224212646,
+     0.9678571224212646,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 91,
+      "mesh": "data/meshes/furniture/floorFull.obj",
+      "submesh": 0,
+      "color": [
+       0.5571428537368774,
+       0.2909027636051178,
+       0.08171427249908447,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 92,
+      "mesh": "data/meshes/furniture/floorFull.obj",
+      "submesh": 1,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     1.1278951168060303,
+     0,
+     -0.06807443499565125
+    ],
+    "rotation": [
+     0,
+     0.7038291692733765,
+     0,
+     0.7103692889213562
+    ],
+    "id": "node783991.6499999762::0.9849762869656338",
+    "ref": 93,
+    "color": [
+     0.010714292526245117,
+     0.009454291313886642,
+     0.008464290760457516,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     0.5828174352645874,
+     0,
+     1.5799448490142822
+    ],
+    "id": "node847288.8999999762::0.6684706100117517",
+    "ref": 94,
+    "color": [
+     0.5571428537368774,
+     0.2909027636051178,
+     0.08171427249908447,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     0.3654271364212036,
+     0,
+     0.44132065773010254
+    ],
+    "rotation": [
+     0,
+     0.9999997615814209,
+     0,
+     -0.0006766048027202487
+    ],
+    "scaling": [
+     0.9999977350234985,
+     1,
+     0.9999977350234985
+    ],
+    "id": "node855162.5399999917::0.03238372472312645",
+    "ref": 95,
+    "color": [
+     0.5571428537368774,
+     0.2909027636051178,
+     0.08171427249908447,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     0.7885133028030396,
+     0,
+     0.8541846871376038
+    ],
+    "rotation": [
+     0,
+     0.698908805847168,
+     0,
+     0.7152107954025269
+    ],
+    "id": "node866523.1999999881::0.32140480781785086",
+    "ref": 96,
+    "color": [
+     0.5571428537368774,
+     0.2909027636051178,
+     0.08171427249908447,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     0.2608831822872162,
+     0,
+     1.0972658395767212
+    ],
+    "rotation": [
+     0,
+     -0.7042729258537292,
+     0,
+     0.7099292874336243
+    ],
+    "scaling": [
+     0.9999982714653015,
+     1,
+     0.9999982714653015
+    ],
+    "id": "node882898.8899999857::0.991670448252826",
+    "ref": 97,
+    "color": [
+     0.5571428537368774,
+     0.2909027636051178,
+     0.08171427249908447,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     -1.9227240085601807,
+     0,
+     -1.5841033458709717
+    ],
+    "rotation": [
+     0,
+     0.9999884366989136,
+     0,
+     0.004813496954739094
+    ],
+    "scaling": [
+     1.0000125169754028,
+     1,
+     1.0000125169754028
+    ],
+    "id": "node912702.6349999905::0.021717627573863973",
+    "ref": 98,
+    "color": [
+     0.5571428537368774,
+     0.2909027636051178,
+     0.08171427249908447,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 99,
+      "mesh": "data/meshes/furniture/dryer.obj",
+      "submesh": 0,
+      "color": [
+       0.7464286088943481,
+       0.17093200981616974,
+       0.1069880798459053,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 100,
+      "mesh": "data/meshes/furniture/dryer.obj",
+      "submesh": 1,
+      "color": [
+       0.36862748861312866,
+       0.46666669845581055,
+       0.46666669845581055,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 101,
+      "mesh": "data/meshes/furniture/dryer.obj",
+      "submesh": 2,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 102,
+      "mesh": "data/meshes/furniture/dryer.obj",
+      "submesh": 3,
+      "color": [
+       0.9372549057006836,
+       0.9803922176361084,
+       0.9568626880645752,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 103,
+      "mesh": "data/meshes/furniture/dryer.obj",
+      "submesh": 4,
+      "color": [
+       0.36862748861312866,
+       0.46666669845581055,
+       0.46666669845581055,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 104,
+      "mesh": "data/meshes/furniture/dryer.obj",
+      "submesh": 5,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 105,
+      "mesh": "data/meshes/furniture/dryer.obj",
+      "submesh": 6,
+      "color": [
+       0.9372549057006836,
+       0.9803922176361084,
+       0.9568626880645752,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     1.04766047000885,
+     0,
+     -1.503861427307129
+    ],
+    "rotation": [
+     0,
+     0.9999682307243347,
+     0,
+     0.007969562895596027
+    ],
+    "scaling": [
+     1.0000001192092896,
+     1,
+     1.0000001192092896
+    ],
+    "id": "node967283.3449999988::0.3423317577788507",
+    "ref": 106,
+    "color": [
+     0.7464286088943481,
+     0.17093200981616974,
+     0.1069880798459053,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 107,
+      "mesh": "data/meshes/furniture/kitchenCabinet.obj",
+      "submesh": 0,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 108,
+      "mesh": "data/meshes/furniture/kitchenCabinet.obj",
+      "submesh": 1,
+      "color": [
+       0.03571426868438721,
+       0.029642842710018158,
+       0.029642842710018158,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 109,
+      "mesh": "data/meshes/furniture/kitchenCabinet.obj",
+      "submesh": 2,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 110,
+      "mesh": "data/meshes/furniture/kitchenCabinet.obj",
+      "submesh": 3,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 111,
+      "mesh": "data/meshes/furniture/kitchenCabinet.obj",
+      "submesh": 4,
+      "color": [
+       0.03571426868438721,
+       0.029642842710018158,
+       0.029642842710018158,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 112,
+      "mesh": "data/meshes/furniture/kitchenCabinet.obj",
+      "submesh": 5,
+      "color": [
+       0.6779999732971191,
+       0.4559476971626282,
+       0.299030601978302,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 113,
+      "mesh": "data/meshes/furniture/kitchenCabinet.obj",
+      "submesh": 6,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     1.4740540981292725,
+     0,
+     -1.4861339330673218
+    ],
+    "rotation": [
+     0,
+     0.9999999403953552,
+     0,
+     0.0003770034236367792
+    ],
+    "id": "node1025397.25::0.21754607072023102",
+    "ref": 114,
+    "color": [
+     0.7464286088943481,
+     0.17093200981616974,
+     0.1069880798459053,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 115,
+      "mesh": "data/meshes/furniture/kitchenCabinetCornerInner.obj",
+      "submesh": 0,
+      "color": [
+       0.03571426868438721,
+       0.029642842710018158,
+       0.029642842710018158,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 116,
+      "mesh": "data/meshes/furniture/kitchenCabinetCornerInner.obj",
+      "submesh": 1,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 117,
+      "mesh": "data/meshes/furniture/kitchenCabinetCornerInner.obj",
+      "submesh": 2,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 118,
+      "mesh": "data/meshes/furniture/kitchenCabinetCornerInner.obj",
+      "submesh": 3,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     0.6251511573791504,
+     0,
+     -1.5042043924331665
+    ],
+    "rotation": [
+     0,
+     -0.9999977946281433,
+     0,
+     -0.002110534580424428
+    ],
+    "scaling": [
+     1.0000067949295044,
+     1,
+     1.0000067949295044
+    ],
+    "id": "node1076811.544999987::0.472521615612999",
+    "ref": 119,
+    "color": [
+     0.7464286088943481,
+     0.17093200981616974,
+     0.1069880798459053,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 120,
+      "mesh": "data/meshes/furniture/kitchenCabinetDrawer.obj",
+      "submesh": 0,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 121,
+      "mesh": "data/meshes/furniture/kitchenCabinetDrawer.obj",
+      "submesh": 1,
+      "color": [
+       0.03571426868438721,
+       0.029642842710018158,
+       0.029642842710018158,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 122,
+      "mesh": "data/meshes/furniture/kitchenCabinetDrawer.obj",
+      "submesh": 2,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 123,
+      "mesh": "data/meshes/furniture/kitchenCabinetDrawer.obj",
+      "submesh": 3,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 124,
+      "mesh": "data/meshes/furniture/kitchenCabinetDrawer.obj",
+      "submesh": 4,
+      "color": [
+       0.03571426868438721,
+       0.029642842710018158,
+       0.029642842710018158,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 125,
+      "mesh": "data/meshes/furniture/kitchenCabinetDrawer.obj",
+      "submesh": 5,
+      "color": [
+       0.6779999732971191,
+       0.4559476971626282,
+       0.299030601978302,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 126,
+      "mesh": "data/meshes/furniture/kitchenCabinetDrawer.obj",
+      "submesh": 6,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 127,
+      "mesh": "data/meshes/furniture/kitchenCabinetDrawer.obj",
+      "submesh": 7,
+      "color": [
+       0.6779999732971191,
+       0.4559476971626282,
+       0.299030601978302,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 128,
+      "mesh": "data/meshes/furniture/kitchenCabinetDrawer.obj",
+      "submesh": 8,
+      "color": [
+       0.03571426868438721,
+       0.029642842710018158,
+       0.029642842710018158,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 129,
+      "mesh": "data/meshes/furniture/kitchenCabinetDrawer.obj",
+      "submesh": 9,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     1.8452978134155273,
+     0.4106602668762207,
+     -1.7019765377044678
+    ],
+    "rotation": [
+     0,
+     -0.26225653290748596,
+     0,
+     0.964998185634613
+    ],
+    "scaling": [
+     1.1560639142990112,
+     1.2334613800048828,
+     0.7066287398338318
+    ],
+    "id": "node1104310.294999987::0.4385241563523834",
+    "ref": 130,
+    "color": [
+     0.7464286088943481,
+     0.17093200981616974,
+     0.1069880798459053,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 131,
+      "mesh": "data/meshes/furniture/kitchenMicrowave.obj",
+      "submesh": 0,
+      "color": [
+       0.03571426868438721,
+       0.029642842710018158,
+       0.029642842710018158,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 132,
+      "mesh": "data/meshes/furniture/kitchenMicrowave.obj",
+      "submesh": 1,
+      "color": [
+       0.9725490212440491,
+       1,
+       1,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 133,
+      "mesh": "data/meshes/furniture/kitchenMicrowave.obj",
+      "submesh": 2,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 134,
+      "mesh": "data/meshes/furniture/kitchenMicrowave.obj",
+      "submesh": 3,
+      "color": [
+       0.36862748861312866,
+       0.46666669845581055,
+       0.46666669845581055,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 135,
+      "mesh": "data/meshes/furniture/kitchenMicrowave.obj",
+      "submesh": 4,
+      "color": [
+       0.9725490212440491,
+       1,
+       1,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 136,
+      "mesh": "data/meshes/furniture/kitchenMicrowave.obj",
+      "submesh": 5,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 137,
+      "mesh": "data/meshes/furniture/kitchenMicrowave.obj",
+      "submesh": 6,
+      "color": [
+       0.9725490212440491,
+       1,
+       1,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 138,
+      "mesh": "data/meshes/furniture/kitchenMicrowave.obj",
+      "submesh": 7,
+      "color": [
+       0.698039174079895,
+       0.8274509906768799,
+       0.7686275243759155,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 139,
+      "mesh": "data/meshes/furniture/kitchenMicrowave.obj",
+      "submesh": 8,
+      "color": [
+       0.36862748861312866,
+       0.46666669845581055,
+       0.46666669845581055,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     1.1355003118515015,
+     0.42861735820770264,
+     -1.6629780530929565
+    ],
+    "rotation": [
+     0,
+     0.9964281916618347,
+     0,
+     0.08444427698850632
+    ],
+    "scaling": [
+     0.9999978542327881,
+     1,
+     0.9999978542327881
+    ],
+    "id": "node1172174.3899999857::0.5588591730435297",
+    "ref": 140,
+    "color": [
+     0.7464286088943481,
+     0.17093200981616974,
+     0.1069880798459053,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 141,
+      "mesh": "data/meshes/furniture/kitchenCoffeeMachine.obj",
+      "submesh": 0,
+      "color": [
+       0.9857142567634583,
+       0.02628568932414055,
+       0.02628568932414055,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 142,
+      "mesh": "data/meshes/furniture/kitchenCoffeeMachine.obj",
+      "submesh": 1,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 143,
+      "mesh": "data/meshes/furniture/kitchenCoffeeMachine.obj",
+      "submesh": 2,
+      "color": [
+       0.36862748861312866,
+       0.46666669845581055,
+       0.46666669845581055,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 144,
+      "mesh": "data/meshes/furniture/kitchenCoffeeMachine.obj",
+      "submesh": 3,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 145,
+      "mesh": "data/meshes/furniture/kitchenCoffeeMachine.obj",
+      "submesh": 4,
+      "color": [
+       0.9725490212440491,
+       1,
+       1,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     0.19316565990447998,
+     0,
+     -1.5087330341339111
+    ],
+    "rotation": [
+     0,
+     0.9999736547470093,
+     0,
+     0.007255802862346172
+    ],
+    "scaling": [
+     0.9999969601631165,
+     1,
+     0.9999969601631165
+    ],
+    "id": "node1223838.0099999905::0.4258199419428894",
+    "ref": 146,
+    "color": [
+     0.7464286088943481,
+     0.17093200981616974,
+     0.1069880798459053,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 147,
+      "mesh": "data/meshes/furniture/kitchenStove.obj",
+      "submesh": 0,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 148,
+      "mesh": "data/meshes/furniture/kitchenStove.obj",
+      "submesh": 1,
+      "color": [
+       0.03571426868438721,
+       0.029642842710018158,
+       0.029642842710018158,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 149,
+      "mesh": "data/meshes/furniture/kitchenStove.obj",
+      "submesh": 2,
+      "color": [
+       0.03571426868438721,
+       0.029642842710018158,
+       0.029642842710018158,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 150,
+      "mesh": "data/meshes/furniture/kitchenStove.obj",
+      "submesh": 3,
+      "color": [
+       0.9725490212440491,
+       1,
+       1,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 151,
+      "mesh": "data/meshes/furniture/kitchenStove.obj",
+      "submesh": 4,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 152,
+      "mesh": "data/meshes/furniture/kitchenStove.obj",
+      "submesh": 5,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 153,
+      "mesh": "data/meshes/furniture/kitchenStove.obj",
+      "submesh": 6,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 154,
+      "mesh": "data/meshes/furniture/kitchenStove.obj",
+      "submesh": 7,
+      "color": [
+       0.9725490212440491,
+       1,
+       1,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 155,
+      "mesh": "data/meshes/furniture/kitchenStove.obj",
+      "submesh": 8,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 156,
+      "mesh": "data/meshes/furniture/kitchenStove.obj",
+      "submesh": 9,
+      "color": [
+       0.698039174079895,
+       0.8274509906768799,
+       0.7686275243759155,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -0.2169717699289322,
+     0,
+     -1.5093104839324951
+    ],
+    "rotation": [
+     0,
+     0.9999991655349731,
+     0,
+     0.001279412186704576
+    ],
+    "scaling": [
+     0.9999992251396179,
+     1,
+     0.9999992251396179
+    ],
+    "id": "node1269236.0249999762::0.18248925201624377",
+    "ref": 157,
+    "color": [
+     0.7464286088943481,
+     0.17093200981616974,
+     0.1069880798459053,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     0.1993522346019745,
+     0,
+     -1.4960412979125977
+    ],
+    "rotation": [
+     0,
+     -0.709700345993042,
+     0,
+     0.7045036554336548
+    ],
+    "id": "node1349248.974999994::0.46977548252910784",
+    "ref": 158,
+    "color": [
+     0.7464286088943481,
+     0.17093200981616974,
+     0.1069880798459053,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 159,
+      "mesh": "data/meshes/furniture/kitchenCabinetCornerInner.obj",
+      "submesh": 0,
+      "color": [
+       0.03571426868438721,
+       0.029642842710018158,
+       0.029642842710018158,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 160,
+      "mesh": "data/meshes/furniture/kitchenCabinetCornerInner.obj",
+      "submesh": 1,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 161,
+      "mesh": "data/meshes/furniture/kitchenCabinetCornerInner.obj",
+      "submesh": 2,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 162,
+      "mesh": "data/meshes/furniture/kitchenCabinetCornerInner.obj",
+      "submesh": 3,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -1.4838625192642212,
+     0,
+     -1.6513092517852783
+    ],
+    "rotation": [
+     0,
+     -0.9999824166297913,
+     0,
+     0.005933066364377737
+    ],
+    "scaling": [
+     1.0000072717666626,
+     1,
+     1.0000072717666626
+    ],
+    "id": "node1382747.1899999976::0.2126531927818618",
+    "ref": 163,
+    "color": [
+     0.7464286088943481,
+     0.17093200981616974,
+     0.1069880798459053,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 164,
+      "mesh": "data/meshes/furniture/kitchenFridge.obj",
+      "submesh": 1,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 165,
+      "mesh": "data/meshes/furniture/kitchenFridge.obj",
+      "submesh": 3,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -1.3215526342391968,
+     0,
+     1.321731686592102
+    ],
+    "rotation": [
+     0,
+     -0.11939932405948639,
+     0,
+     0.9928463101387024
+    ],
+    "id": "node1502093.5799999833::0.35096944492080007",
+    "ref": 166,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 167,
+      "mesh": "data/meshes/furniture/loungeChair.obj",
+      "submesh": 0,
+      "color": [
+       0.2964285612106323,
+       0.2956578731536865,
+       0.28358331322669983,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 168,
+      "mesh": "data/meshes/furniture/loungeChair.obj",
+      "submesh": 1,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 169,
+      "mesh": "data/meshes/furniture/loungeChair.obj",
+      "submesh": 2,
+      "color": [
+       0.9433962106704712,
+       0.36717599630355835,
+       0.34264859557151794,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 170,
+      "mesh": "data/meshes/furniture/loungeChair.obj",
+      "submesh": 3,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -0.23507392406463623,
+     0,
+     1.2934504747390747
+    ],
+    "id": "node1518843.1399999857::0.10446100918592216",
+    "ref": 171,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 172,
+      "mesh": "data/meshes/furniture/loungeSofa.obj",
+      "submesh": 0,
+      "color": [
+       0.8321428298950195,
+       0.7960833311080933,
+       0.7960833311080933,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 173,
+      "mesh": "data/meshes/furniture/loungeSofa.obj",
+      "submesh": 1,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 174,
+      "mesh": "data/meshes/furniture/loungeSofa.obj",
+      "submesh": 2,
+      "color": [
+       0.9433962106704712,
+       0.36717599630355835,
+       0.34264859557151794,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 175,
+      "mesh": "data/meshes/furniture/loungeSofa.obj",
+      "submesh": 3,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -0.803122341632843,
+     0,
+     1.0782488584518433
+    ],
+    "rotation": [
+     0,
+     -0.09780813008546829,
+     0,
+     0.995205283164978
+    ],
+    "id": "node1536040.2349999845::0.8160403461896686",
+    "ref": 176,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 177,
+      "mesh": "data/meshes/furniture/loungeSofaOttoman.obj",
+      "submesh": 0,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 178,
+      "mesh": "data/meshes/furniture/loungeSofaOttoman.obj",
+      "submesh": 2,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -1.8963758945465088,
+     0.05006670951843262,
+     -0.39895617961883545
+    ],
+    "rotation": [
+     0,
+     0.6956362128257751,
+     0,
+     0.7183942794799805
+    ],
+    "scaling": [
+     0.4231906235218048,
+     0.423188179731369,
+     0.4231906235218048
+    ],
+    "id": "node1760364.2999999821::0.8789182112310885",
+    "ref": 179,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 180,
+      "mesh": "data/meshes/furniture/rugRounded.obj",
+      "submesh": 0,
+      "color": [
+       0.6079999804496765,
+       0.29781270027160645,
+       0.28515198826789856,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 181,
+      "mesh": "data/meshes/furniture/rugRounded.obj",
+      "submesh": 1,
+      "color": [
+       0.9433962106704712,
+       0.36717599630355835,
+       0.34264859557151794,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 182,
+      "mesh": "data/meshes/furniture/rugRounded.obj",
+      "submesh": 2,
+      "color": [
+       0.6079999804496765,
+       0.29781270027160645,
+       0.28515198826789856,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 183,
+      "mesh": "data/meshes/furniture/rugRounded.obj",
+      "submesh": 3,
+      "color": [
+       0.9433962106704712,
+       0.36717599630355835,
+       0.34264859557151794,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -0.9685739874839783,
+     0,
+     0.8185659646987915
+    ],
+    "id": "node1790161.7099999785::0.5736224747900338",
+    "ref": 184,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     0.21056532859802246,
+     0,
+     0.3387768566608429
+    ],
+    "rotation": [
+     0,
+     0.6925124526023865,
+     0,
+     0.7214059233665466
+    ],
+    "scaling": [
+     1.6029927730560303,
+     1,
+     1.4987043142318726
+    ],
+    "id": "node1800469.7749999762::0.38191808113605963",
+    "ref": 185,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     -0.7185362577438354,
+     0,
+     0.10561180114746094
+    ],
+    "rotation": [
+     0,
+     -0.1554088294506073,
+     0,
+     0.9878502488136292
+    ],
+    "id": "node1856449.2549999952::0.733839426540847",
+    "ref": 186,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     -1.0676085948944092,
+     0,
+     0.4277477264404297
+    ],
+    "id": "node1895033.2549999952::0.7458190195977135",
+    "ref": 187,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 188,
+      "mesh": "data/meshes/furniture/tableCoffee.obj",
+      "submesh": 0,
+      "color": [
+       0.9321428537368774,
+       0.9308379888534546,
+       0.9103928804397583,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 189,
+      "mesh": "data/meshes/furniture/tableCoffee.obj",
+      "submesh": 1,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -0.927597165107727,
+     0.22866368293762207,
+     0.5305230617523193
+    ],
+    "rotation": [
+     0,
+     0.9986330270767212,
+     0,
+     0.052269648760557175
+    ],
+    "id": "node1903409.6749999821::0.37324671202078963",
+    "ref": 190,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 191,
+      "mesh": "data/meshes/furniture/televisionModern.obj",
+      "submesh": 0,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 192,
+      "mesh": "data/meshes/furniture/televisionModern.obj",
+      "submesh": 1,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 193,
+      "mesh": "data/meshes/furniture/televisionModern.obj",
+      "submesh": 2,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 194,
+      "mesh": "data/meshes/furniture/televisionModern.obj",
+      "submesh": 3,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -1.422273874282837,
+     0,
+     -1.2972724437713623
+    ],
+    "id": "node1930155.1299999952::0.8850187081552636",
+    "ref": 195,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     -1.5284161567687988,
+     0,
+     -1.580000877380371
+    ],
+    "rotation": [
+     0,
+     -0.9999892115592957,
+     0,
+     -0.00464661605656147
+    ],
+    "scaling": [
+     0.9999999403953552,
+     1,
+     0.9999999403953552
+    ],
+    "id": "node1971819.9699999988::0.027153102648877603",
+    "ref": 196,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 197,
+      "mesh": "data/meshes/furniture/washer.obj",
+      "submesh": 0,
+      "color": [
+       0.9372549057006836,
+       0.9803922176361084,
+       0.9568626880645752,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 198,
+      "mesh": "data/meshes/furniture/washer.obj",
+      "submesh": 1,
+      "color": [
+       0.36862748861312866,
+       0.46666669845581055,
+       0.46666669845581055,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 199,
+      "mesh": "data/meshes/furniture/washer.obj",
+      "submesh": 2,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 200,
+      "mesh": "data/meshes/furniture/washer.obj",
+      "submesh": 3,
+      "color": [
+       0.9372549057006836,
+       0.9803922176361084,
+       0.9568626880645752,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 201,
+      "mesh": "data/meshes/furniture/washer.obj",
+      "submesh": 4,
+      "color": [
+       0.36862748861312866,
+       0.46666669845581055,
+       0.46666669845581055,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 202,
+      "mesh": "data/meshes/furniture/washer.obj",
+      "submesh": 5,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 203,
+      "mesh": "data/meshes/furniture/washer.obj",
+      "submesh": 6,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 204,
+      "mesh": "data/meshes/furniture/washer.obj",
+      "submesh": 7,
+      "color": [
+       0.698039174079895,
+       0.8274509906768799,
+       0.7686275243759155,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 205,
+      "mesh": "data/meshes/furniture/washer.obj",
+      "submesh": 8,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     1.649030327796936,
+     0,
+     -1.49002206325531
+    ],
+    "rotation": [
+     0,
+     0.7099279165267944,
+     0,
+     0.7042742967605591
+    ],
+    "scaling": [
+     0.9999966025352478,
+     1,
+     0.9999966025352478
+    ],
+    "id": "node2001851.8799999952::0.5105565073039424",
+    "ref": 206,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 207,
+      "mesh": "data/meshes/furniture/kitchenFridge.obj",
+      "submesh": 0,
+      "color": [
+       0.8714285492897034,
+       0.8485972285270691,
+       0.4909047484397888,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 208,
+      "mesh": "data/meshes/furniture/kitchenFridge.obj",
+      "submesh": 1,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 209,
+      "mesh": "data/meshes/furniture/kitchenFridge.obj",
+      "submesh": 2,
+      "color": [
+       0.9372549057006836,
+       0.9803922176361084,
+       0.9568626880645752,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 210,
+      "mesh": "data/meshes/furniture/kitchenFridge.obj",
+      "submesh": 3,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 211,
+      "mesh": "data/meshes/furniture/kitchenFridge.obj",
+      "submesh": 4,
+      "color": [
+       0.8714285492897034,
+       0.8485972285270691,
+       0.4909047484397888,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 212,
+      "mesh": "data/meshes/furniture/kitchenFridge.obj",
+      "submesh": 5,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 213,
+      "mesh": "data/meshes/furniture/kitchenFridge.obj",
+      "submesh": 6,
+      "color": [
+       0.8714285492897034,
+       0.8485972285270691,
+       0.4909047484397888,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 214,
+      "mesh": "data/meshes/furniture/kitchenFridge.obj",
+      "submesh": 7,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 215,
+      "mesh": "data/meshes/furniture/kitchenFridge.obj",
+      "submesh": 8,
+      "color": [
+       0.698039174079895,
+       0.8274509906768799,
+       0.7686275243759155,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     1.1206425428390503,
+     0,
+     0.9318478107452393
+    ],
+    "id": "node2180710.019999981::0.19494458551336047",
+    "ref": 216,
+    "color": [
+     0.9321428537368774,
+     0.9308379888534546,
+     0.9103928804397583,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 217,
+      "mesh": "data/meshes/furniture/floorFull.obj",
+      "submesh": 0,
+      "color": [
+       0.5571428537368774,
+       0.2909027636051178,
+       0.08171427249908447,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 218,
+      "mesh": "data/meshes/furniture/floorFull.obj",
+      "submesh": 1,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     1.919891595840454,
+     0,
+     0.8387058973312378
+    ],
+    "scaling": [
+     1.6426782608032227,
+     1,
+     1
+    ],
+    "id": "node2710602.3099999726::0.5154512511394647",
+    "ref": 219,
+    "color": [
+     0.5571428537368774,
+     0.2909027636051178,
+     0.08171427249908447,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 220,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 0,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 221,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 1,
+      "color": [
+       0.48509523272514343,
+       0.8173419237136841,
+       0.8714285492897034,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 222,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 2,
+      "color": [
+       0.48509523272514343,
+       0.8173419237136841,
+       0.8714285492897034,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 223,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 3,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 224,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 4,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 225,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 5,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     1.1613085269927979,
+     0,
+     1.5425269603729248
+    ],
+    "id": "node2729401.4549999833::0.8784772474415494",
+    "ref": 226,
+    "color": [
+     0.5571428537368774,
+     0.2909027636051178,
+     0.08171427249908447,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 227,
+      "mesh": "data/meshes/furniture/toiletSquare.obj",
+      "submesh": 0,
+      "color": [
+       0.9725490212440491,
+       1,
+       1,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 228,
+      "mesh": "data/meshes/furniture/toiletSquare.obj",
+      "submesh": 1,
+      "color": [
+       0.9372549057006836,
+       0.9803922176361084,
+       0.9568626880645752,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 229,
+      "mesh": "data/meshes/furniture/toiletSquare.obj",
+      "submesh": 2,
+      "color": [
+       0.9725490212440491,
+       1,
+       1,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 230,
+      "mesh": "data/meshes/furniture/toiletSquare.obj",
+      "submesh": 3,
+      "color": [
+       0.9372549057006836,
+       0.9803922176361084,
+       0.9568626880645752,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 231,
+      "mesh": "data/meshes/furniture/toiletSquare.obj",
+      "submesh": 4,
+      "color": [
+       0.9725490212440491,
+       1,
+       1,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     1.5052876472473145,
+     0,
+     1.0528621673583984
+    ],
+    "rotation": [
+     0,
+     0.7152625322341919,
+     0,
+     0.6988558173179626
+    ],
+    "scaling": [
+     0.7315540313720703,
+     0.731555163860321,
+     0.7315540313720703
+    ],
+    "id": "node2746317.474999994::0.5680018600539691",
+    "ref": 232,
+    "color": [
+     0.5571428537368774,
+     0.2909027636051178,
+     0.08171427249908447,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 233,
+      "mesh": "data/meshes/furniture/bathtub.obj",
+      "submesh": 0,
+      "color": [
+       0.9725490212440491,
+       1,
+       1,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 234,
+      "mesh": "data/meshes/furniture/bathtub.obj",
+      "submesh": 1,
+      "color": [
+       0.9372549057006836,
+       0.9803922176361084,
+       0.9568626880645752,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 235,
+      "mesh": "data/meshes/furniture/bathtub.obj",
+      "submesh": 2,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 236,
+      "mesh": "data/meshes/furniture/bathtub.obj",
+      "submesh": 3,
+      "color": [
+       0.9725490212440491,
+       1,
+       1,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 237,
+      "mesh": "data/meshes/furniture/bathtub.obj",
+      "submesh": 4,
+      "color": [
+       0.9372549057006836,
+       0.9803922176361084,
+       0.9568626880645752,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 238,
+      "mesh": "data/meshes/furniture/bathtub.obj",
+      "submesh": 5,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     0.8417384624481201,
+     0,
+     1.4728020429611206
+    ],
+    "rotation": [
+     0,
+     0.005643435753881931,
+     0,
+     0.999984085559845
+    ],
+    "id": "node2762100.049999982::0.8063157498290745",
+    "ref": 239,
+    "color": [
+     0.5571428537368774,
+     0.2909027636051178,
+     0.08171427249908447,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 240,
+      "mesh": "data/meshes/furniture/bathroomCabinetDrawer.obj",
+      "submesh": 0,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 241,
+      "mesh": "data/meshes/furniture/bathroomCabinetDrawer.obj",
+      "submesh": 1,
+      "color": [
+       0.9725490212440491,
+       1,
+       1,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 242,
+      "mesh": "data/meshes/furniture/bathroomCabinetDrawer.obj",
+      "submesh": 2,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 243,
+      "mesh": "data/meshes/furniture/bathroomCabinetDrawer.obj",
+      "submesh": 3,
+      "color": [
+       0.9372549057006836,
+       0.9803922176361084,
+       0.9568626880645752,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 244,
+      "mesh": "data/meshes/furniture/bathroomCabinetDrawer.obj",
+      "submesh": 4,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 245,
+      "mesh": "data/meshes/furniture/bathroomCabinetDrawer.obj",
+      "submesh": 5,
+      "color": [
+       0.9725490212440491,
+       1,
+       1,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 246,
+      "mesh": "data/meshes/furniture/bathroomCabinetDrawer.obj",
+      "submesh": 6,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 247,
+      "mesh": "data/meshes/furniture/bathroomCabinetDrawer.obj",
+      "submesh": 7,
+      "color": [
+       0.9372549057006836,
+       0.9803922176361084,
+       0.9568626880645752,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 248,
+      "mesh": "data/meshes/furniture/bathroomCabinetDrawer.obj",
+      "submesh": 8,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 249,
+      "mesh": "data/meshes/furniture/bathroomCabinetDrawer.obj",
+      "submesh": 9,
+      "color": [
+       0.9725490212440491,
+       1,
+       1,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 250,
+      "mesh": "data/meshes/furniture/bathroomCabinetDrawer.obj",
+      "submesh": 10,
+      "color": [
+       0.9372549057006836,
+       0.9803922176361084,
+       0.9568626880645752,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 251,
+      "mesh": "data/meshes/furniture/bathroomCabinetDrawer.obj",
+      "submesh": 11,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 252,
+      "mesh": "data/meshes/furniture/bathroomCabinetDrawer.obj",
+      "submesh": 12,
+      "color": [
+       0.9725490212440491,
+       1,
+       1,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 253,
+      "mesh": "data/meshes/furniture/bathroomCabinetDrawer.obj",
+      "submesh": 13,
+      "color": [
+       0.9372549057006836,
+       0.9803922176361084,
+       0.9568626880645752,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     0.2492964267730713,
+     0,
+     0.8395956754684448
+    ],
+    "rotation": [
+     0,
+     0.7290220856666565,
+     0,
+     0.6844902038574219
+    ],
+    "scaling": [
+     1.0987308025360107,
+     1,
+     1.00039541721344
+    ],
+    "id": "node2818730.644999981::0.7645411029133986",
+    "ref": 254,
+    "color": [
+     0.5571428537368774,
+     0.2909027636051178,
+     0.08171427249908447,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 255,
+      "mesh": "data/meshes/furniture/wallDoorway.obj",
+      "submesh": 0,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 256,
+      "mesh": "data/meshes/furniture/wallDoorway.obj",
+      "submesh": 1,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 257,
+      "mesh": "data/meshes/furniture/wallDoorway.obj",
+      "submesh": 2,
+      "color": [
+       0.48509523272514343,
+       0.8173419237136841,
+       0.8714285492897034,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 258,
+      "mesh": "data/meshes/furniture/wallDoorway.obj",
+      "submesh": 3,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 259,
+      "mesh": "data/meshes/furniture/wallDoorway.obj",
+      "submesh": 4,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 260,
+      "mesh": "data/meshes/furniture/wallDoorway.obj",
+      "submesh": 5,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     0.2247380018234253,
+     0,
+     1.1518046855926514
+    ],
+    "rotation": [
+     0,
+     0.7310272455215454,
+     0,
+     0.6823482513427734
+    ],
+    "scaling": [
+     0.9999978542327881,
+     1,
+     0.9999978542327881
+    ],
+    "id": "node2879977.819999993::0.686420397097179",
+    "ref": 261,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 262,
+      "mesh": "data/meshes/furniture/doorway.obj",
+      "submesh": 0,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 263,
+      "mesh": "data/meshes/furniture/doorway.obj",
+      "submesh": 1,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 264,
+      "mesh": "data/meshes/furniture/doorway.obj",
+      "submesh": 2,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 265,
+      "mesh": "data/meshes/furniture/doorway.obj",
+      "submesh": 3,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     1.9348700046539307,
+     1.2416777610778809,
+     0.8688350915908813
+    ],
+    "scaling": [
+     1.5262024402618408,
+     1,
+     1.0638569593429565
+    ],
+    "id": "node2904193.5649999976::0.5035064131447309",
+    "ref": 266,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       -0.011935751885175705,
+       0,
+       -0.010250139981508255
+      ],
+      "rotation": [
+       0,
+       0.009718854911625385,
+       0,
+       0.9999527931213379
+      ],
+      "scaling": [
+       1.065835952758789,
+       1,
+       1.000043511390686
+      ],
+      "ref": 267,
+      "mesh": "data/meshes/furniture/floorFull.obj",
+      "submesh": 0,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 268,
+      "mesh": "data/meshes/furniture/floorFull.obj",
+      "submesh": 1,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     1.9395695924758911,
+     0,
+     -0.7588980793952942
+    ],
+    "scaling": [
+     1.7620816230773926,
+     1,
+     1
+    ],
+    "id": "node3033403.744999975::0.35859399501387634",
+    "ref": 269,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 270,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 0,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 271,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 1,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 272,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 2,
+      "color": [
+       0.48509523272514343,
+       0.8173419237136841,
+       0.8714285492897034,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 273,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 3,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 274,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 4,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 275,
+      "mesh": "data/meshes/furniture/wall.obj",
+      "submesh": 5,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     2.2425713539123535,
+     0,
+     -0.28918761014938354
+    ],
+    "id": "node3084920.2049999833::0.8842968015382038",
+    "ref": 276,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 277,
+      "mesh": "data/meshes/furniture/bedSingle.obj",
+      "submesh": 0,
+      "color": [
+       0.9725490212440491,
+       1,
+       1,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 278,
+      "mesh": "data/meshes/furniture/bedSingle.obj",
+      "submesh": 1,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 279,
+      "mesh": "data/meshes/furniture/bedSingle.obj",
+      "submesh": 2,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 280,
+      "mesh": "data/meshes/furniture/bedSingle.obj",
+      "submesh": 3,
+      "color": [
+       0.9725490212440491,
+       1,
+       1,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 281,
+      "mesh": "data/meshes/furniture/bedSingle.obj",
+      "submesh": 4,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 282,
+      "mesh": "data/meshes/furniture/bedSingle.obj",
+      "submesh": 5,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 283,
+      "mesh": "data/meshes/furniture/bedSingle.obj",
+      "submesh": 6,
+      "color": [
+       0.11452381312847137,
+       0.4153191149234772,
+       0.4642857313156128,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 284,
+      "mesh": "data/meshes/furniture/bedSingle.obj",
+      "submesh": 7,
+      "color": [
+       0.9725490212440491,
+       1,
+       1,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 285,
+      "mesh": "data/meshes/furniture/bedSingle.obj",
+      "submesh": 8,
+      "color": [
+       0.9725490212440491,
+       1,
+       1,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     0.2975887060165405,
+     0,
+     -0.4272840619087219
+    ],
+    "rotation": [
+     0,
+     -0.999998152256012,
+     0,
+     -0.001933206687681377
+    ],
+    "scaling": [
+     0.7387957572937012,
+     0.7387909293174744,
+     0.7387957572937012
+    ],
+    "id": "node3096001.0849999785::0.7536161510528707",
+    "ref": 286,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 287,
+      "mesh": "data/meshes/furniture/desk.obj",
+      "submesh": 0,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 288,
+      "mesh": "data/meshes/furniture/desk.obj",
+      "submesh": 1,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 289,
+      "mesh": "data/meshes/furniture/desk.obj",
+      "submesh": 2,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 290,
+      "mesh": "data/meshes/furniture/desk.obj",
+      "submesh": 3,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     0.6928514242172241,
+     0,
+     -0.5365298986434937
+    ],
+    "id": "node3114151.669999987::0.917927716132712",
+    "ref": 291,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 292,
+      "mesh": "data/meshes/furniture/chairRounded.obj",
+      "submesh": 0,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 293,
+      "mesh": "data/meshes/furniture/chairRounded.obj",
+      "submesh": 1,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     0.3911675214767456,
+     0.28977346420288086,
+     -0.48957425355911255
+    ],
+    "rotation": [
+     0,
+     0.9985317587852478,
+     0,
+     0.05416930094361305
+    ],
+    "scaling": [
+     0.6816419959068298,
+     0.6816486716270447,
+     0.6816419959068298
+    ],
+    "id": "node3125620.879999995::0.5401998312939829",
+    "ref": 294,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 295,
+      "mesh": "data/meshes/furniture/laptop.obj",
+      "submesh": 0,
+      "color": [
+       0.013047645799815655,
+       0.013121929951012135,
+       0.014285743236541748,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 296,
+      "mesh": "data/meshes/furniture/laptop.obj",
+      "submesh": 1,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 297,
+      "mesh": "data/meshes/furniture/laptop.obj",
+      "submesh": 2,
+      "color": [
+       0.36862748861312866,
+       0.46666669845581055,
+       0.46666669845581055,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 298,
+      "mesh": "data/meshes/furniture/laptop.obj",
+      "submesh": 3,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 299,
+      "mesh": "data/meshes/furniture/laptop.obj",
+      "submesh": 4,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 300,
+      "mesh": "data/meshes/furniture/laptop.obj",
+      "submesh": 5,
+      "color": [
+       0.36862748861312866,
+       0.46666669845581055,
+       0.46666669845581055,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     1.2755622863769531,
+     0,
+     -0.4553958773612976
+    ],
+    "rotation": [
+     0,
+     0.9999175667762756,
+     0,
+     0.012838604860007763
+    ],
+    "scaling": [
+     0.9999933838844299,
+     1,
+     0.9999933838844299
+    ],
+    "id": "node3215890.224999994::0.3895788893381391",
+    "ref": 301,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 302,
+      "mesh": "data/meshes/furniture/bookcaseClosedDoors.obj",
+      "submesh": 0,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 303,
+      "mesh": "data/meshes/furniture/bookcaseClosedDoors.obj",
+      "submesh": 1,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 304,
+      "mesh": "data/meshes/furniture/bookcaseClosedDoors.obj",
+      "submesh": 2,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 305,
+      "mesh": "data/meshes/furniture/bookcaseClosedDoors.obj",
+      "submesh": 3,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 306,
+      "mesh": "data/meshes/furniture/bookcaseClosedDoors.obj",
+      "submesh": 4,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 307,
+      "mesh": "data/meshes/furniture/bookcaseClosedDoors.obj",
+      "submesh": 5,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     1.2639715671539307,
+     0,
+     0.633309543132782
+    ],
+    "id": "node3265117.7849999964::0.865929311304076",
+    "ref": 308,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 309,
+      "mesh": "data/meshes/furniture/cabinetBedDrawer.obj",
+      "submesh": 0,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 310,
+      "mesh": "data/meshes/furniture/cabinetBedDrawer.obj",
+      "submesh": 1,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 311,
+      "mesh": "data/meshes/furniture/cabinetBedDrawer.obj",
+      "submesh": 2,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 312,
+      "mesh": "data/meshes/furniture/cabinetBedDrawer.obj",
+      "submesh": 3,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 313,
+      "mesh": "data/meshes/furniture/cabinetBedDrawer.obj",
+      "submesh": 4,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 314,
+      "mesh": "data/meshes/furniture/cabinetBedDrawer.obj",
+      "submesh": 5,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 315,
+      "mesh": "data/meshes/furniture/cabinetBedDrawer.obj",
+      "submesh": 6,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 316,
+      "mesh": "data/meshes/furniture/cabinetBedDrawer.obj",
+      "submesh": 7,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     1.2402477264404297,
+     0.06240248680114746,
+     -0.12000871449708939
+    ],
+    "scaling": [
+     0.7025856971740723,
+     0.7025856971740723,
+     0.7025856971740723
+    ],
+    "id": "node3330178.655000001::0.20647901799641555",
+    "ref": 317,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 318,
+      "mesh": "data/meshes/furniture/rugRound.obj",
+      "submesh": 0,
+      "color": [
+       0.9433962106704712,
+       0.36717599630355835,
+       0.34264859557151794,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 319,
+      "mesh": "data/meshes/furniture/rugRound.obj",
+      "submesh": 1,
+      "color": [
+       0.6079999804496765,
+       0.29781270027160645,
+       0.28515198826789856,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 320,
+      "mesh": "data/meshes/furniture/rugRound.obj",
+      "submesh": 2,
+      "color": [
+       0.9433962106704712,
+       0.36717599630355835,
+       0.34264859557151794,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 321,
+      "mesh": "data/meshes/furniture/rugRound.obj",
+      "submesh": 3,
+      "color": [
+       0.6079999804496765,
+       0.29781270027160645,
+       0.28515198826789856,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     0.1416630744934082,
+     0,
+     -0.754835307598114
+    ],
+    "rotation": [
+     0,
+     0.7153849601745605,
+     0,
+     0.6987305283546448
+    ],
+    "scaling": [
+     0.9183234572410583,
+     1,
+     0.9999555945396423
+    ],
+    "id": "node3393820.714999974::0.39168161768440957",
+    "ref": 322,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     0.19471555948257446,
+     0,
+     0.1449384242296219
+    ],
+    "rotation": [
+     0,
+     0.7273914217948914,
+     0,
+     0.6862227916717529
+    ],
+    "scaling": [
+     1.423291563987732,
+     1,
+     1.0012935400009155
+    ],
+    "id": "node3418339.7599999905::0.5533105779335554",
+    "ref": 323,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 324,
+      "mesh": "data/meshes/furniture/wallHalf.obj",
+      "submesh": 0,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 325,
+      "mesh": "data/meshes/furniture/wallHalf.obj",
+      "submesh": 1,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 326,
+      "mesh": "data/meshes/furniture/wallHalf.obj",
+      "submesh": 2,
+      "color": [
+       0.48509523272514343,
+       0.8173419237136841,
+       0.8714285492897034,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 327,
+      "mesh": "data/meshes/furniture/wallHalf.obj",
+      "submesh": 3,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 328,
+      "mesh": "data/meshes/furniture/wallHalf.obj",
+      "submesh": 4,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 329,
+      "mesh": "data/meshes/furniture/wallHalf.obj",
+      "submesh": 5,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     0.17158737778663635,
+     0,
+     -0.7214353084564209
+    ],
+    "rotation": [
+     0,
+     0.7153485417366028,
+     0,
+     0.6987678408622742
+    ],
+    "id": "node3467411.074999988::0.27053781384176334",
+    "ref": 330,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 331,
+      "mesh": "data/meshes/furniture/wallDoorway.obj",
+      "submesh": 0,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 332,
+      "mesh": "data/meshes/furniture/wallDoorway.obj",
+      "submesh": 1,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 333,
+      "mesh": "data/meshes/furniture/wallDoorway.obj",
+      "submesh": 2,
+      "color": [
+       0.48509523272514343,
+       0.8173419237136841,
+       0.8714285492897034,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 334,
+      "mesh": "data/meshes/furniture/wallDoorway.obj",
+      "submesh": 3,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 335,
+      "mesh": "data/meshes/furniture/wallDoorway.obj",
+      "submesh": 4,
+      "color": [
+       0.8962264060974121,
+       0.6015712022781372,
+       0.39315590262413025,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 336,
+      "mesh": "data/meshes/furniture/wallDoorway.obj",
+      "submesh": 5,
+      "color": [
+       0.30588239431381226,
+       0.38823530077934265,
+       0.38823530077934265,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     1.0350843667984009,
+     0.04089164733886719,
+     -0.6093894839286804
+    ],
+    "id": "node3712661.280000001::0.7524925508897282",
+    "ref": 337,
+    "color": [
+     0.8321428298950195,
+     0.7960833311080933,
+     0.7960833311080933,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 338,
+      "mesh": "data/meshes/furniture/lampRoundFloor.obj",
+      "submesh": 0,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 339,
+      "mesh": "data/meshes/furniture/lampRoundFloor.obj",
+      "submesh": 1,
+      "color": [
+       1,
+       0.9137254953384399,
+       0.5882353186607361,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 340,
+      "mesh": "data/meshes/furniture/lampRoundFloor.obj",
+      "submesh": 2,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 341,
+      "mesh": "data/meshes/furniture/lampRoundFloor.obj",
+      "submesh": 3,
+      "color": [
+       1,
+       0.9137254953384399,
+       0.5882353186607361,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -0.9208216071128845,
+     0.044184327125549316,
+     -1.8375210762023926
+    ],
+    "id": "node3928282.655000001::0.587560662782491",
+    "ref": 342,
+    "color": [
+     0.8321428298950195,
+     0.7960833311080933,
+     0.7960833311080933,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 343,
+      "mesh": "data/meshes/furniture/lampSquareFloor.obj",
+      "submesh": 0,
+      "color": [
+       1,
+       0.9137254953384399,
+       0.5882353186607361,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 344,
+      "mesh": "data/meshes/furniture/lampSquareFloor.obj",
+      "submesh": 1,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 345,
+      "mesh": "data/meshes/furniture/lampSquareFloor.obj",
+      "submesh": 2,
+      "color": [
+       1,
+       0.9137254953384399,
+       0.5882353186607361,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 346,
+      "mesh": "data/meshes/furniture/lampSquareFloor.obj",
+      "submesh": 3,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -1.2879873514175415,
+     0.058068156242370605,
+     1.771200180053711
+    ],
+    "id": "node3943786.5849999785::0.9633792193655224",
+    "ref": 347,
+    "color": [
+     0.8321428298950195,
+     0.7960833311080933,
+     0.7960833311080933,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 348,
+      "mesh": "data/meshes/furniture/lampSquareTable.obj",
+      "submesh": 0,
+      "color": [
+       1,
+       0.9137254953384399,
+       0.5882353186607361,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 349,
+      "mesh": "data/meshes/furniture/lampSquareTable.obj",
+      "submesh": 1,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 350,
+      "mesh": "data/meshes/furniture/lampSquareTable.obj",
+      "submesh": 2,
+      "color": [
+       1,
+       0.9137254953384399,
+       0.5882353186607361,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 351,
+      "mesh": "data/meshes/furniture/lampSquareTable.obj",
+      "submesh": 3,
+      "color": [
+       0.7406104803085327,
+       0.822866678237915,
+       0.8396226167678833,
+       1
+      ],
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -0.018835783004760742,
+     1.305416464805603,
+     -0.025136232376098633
+    ],
+    "rotation": [
+     0,
+     -0.7047107219696045,
+     0,
+     0.7094947099685669
+    ],
+    "scaling": [
+     4.02067756652832,
+     4.02067756652832,
+     4.02067756652832
+    ],
+    "id": "node4038123.7649999857::0.5330964218361836",
+    "ref": 352,
+    "mesh": "data/meshes/primitives/roof.obj",
+    "color": [
+     0.800000011920929,
+     0.04800000041723251,
+     0.04800000041723251,
+     1
+    ],
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   }
+  ]
+ },
+ "objects": [
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/wallWindow.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/wallWindowSlide.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/wallDoorway.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/doorwayFront.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/wall.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/wall.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/wall.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/wall.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/wall.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/wallHalf.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/wall.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/wall.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/floorFull.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/stairs.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/chairCushion.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/chairCushion.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/chairCushion.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/chairCushion.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/dryer.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/kitchenCabinet.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/kitchenCabinetCornerInner.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/kitchenCabinetDrawer.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/kitchenMicrowave.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/kitchenCoffeeMachine.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/kitchenStove.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/kitchenCabinet.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/kitchenCabinetCornerInner.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/kitchenFridge.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/loungeChair.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/loungeSofa.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/loungeSofaOttoman.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/rugRounded.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/tableCoffeeGlassSquare.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/tableCloth.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/tableCoffee.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/tableCoffee.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/televisionModern.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/washer.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/washer.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/kitchenFridge.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/floorFull.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/wall.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/toiletSquare.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/bathtub.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/bathroomCabinetDrawer.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/wallDoorway.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/doorway.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/floorFull.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/wall.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/bedSingle.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/desk.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/chairRounded.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/laptop.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/bookcaseClosedDoors.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/cabinetBedDrawer.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/rugRound.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/wallDoorway.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/wallHalf.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/wallDoorway.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/lampRoundFloor.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/lampSquareFloor.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/furniture/lampSquareTable.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "data/meshes/primitives/roof.obj"
+  }
+ ],
+ "editor": {
+  "active_layer": 0,
+  "scene_mode": false,
+  "group": true,
+  "targets": null
+ }
+}

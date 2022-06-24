@@ -50,7 +50,9 @@ Matrix44 detectiveModel;
 Animation* detectiveWalk;
 
 //GUIs
+Matrix44 quadModel;
 Texture* pause = NULL;
+Texture* gui = NULL;
 
 Animation* anim = NULL;
 float angle = 0;
@@ -145,6 +147,7 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 
 	// GUI
 	pause = Texture::Get("data/gui/pause.png");
+	gui = Texture::Get("data/gui/gui.png");
 
 	// example of shader loading using the shaders manager
 	shader = Shader::Get("data/shaders/basic.vs", "data/shaders/texture.fs");
@@ -168,8 +171,28 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	SDL_ShowCursor(!mouse_locked); //hide or show the mouse
 }
 
-// No manera más óptima
-void RenderGUI(Texture* tex, Shader* a_shader, float centerx, float centery, float w, float h, bool flipYV = false) {
+//// No manera más óptima
+//void RenderGUI(Matrix44& model, Mesh* a_mesh, Texture* tex, Shader* a_shader, Camera* cam, Vector4 tex_range, int primitive) {
+//	if (!a_shader) return;
+//
+//	//enable shader
+//	a_shader->enable();
+//
+//	//upload uniforms
+//	a_shader->setUniform("u_color", Vector4(1, 1, 1, 1));
+//	a_shader->setUniform("u_viewprojection", cam->viewprojection_matrix);
+//	if (tex != NULL) {
+//		a_shader->setUniform("u_texture", tex, 0);
+//	}
+//	a_shader->setUniform("u_time", time);
+//	a_shader->setUniform("u_tex_range", tex_range);
+//	a_shader->setUniform("u_model", model);
+//	a_mesh->render(primitive);
+//
+//	//disable shader
+//	a_shader->disable();
+//}
+void RenderingGUI(Texture* tex, Shader* a_shader, float centerx, float centery, float w, float h, Vector4 tex_range,bool flipYV = false) {
 	int wWidth = Game::instance->window_width;
 	int wHeight = Game::instance->window_height;
 
@@ -179,7 +202,25 @@ void RenderGUI(Texture* tex, Shader* a_shader, float centerx, float centery, flo
 	Camera cam2D;
 	cam2D.setOrthographic(0, wWidth, wHeight, 0, -1, 1);
 
-	RenderMesh(Matrix44(), &quad, tex, a_shader, &cam2D, GL_TRIANGLES);
+	if (!a_shader) return;
+
+	//enable shader
+	a_shader->enable();
+
+	//upload uniforms
+	a_shader->setUniform("u_color", Vector4(1, 1, 1, 1));
+	a_shader->setUniform("u_viewprojection", cam2D.viewprojection_matrix);
+	if (tex != NULL) {
+		a_shader->setUniform("u_texture", tex, 0);
+	}
+	a_shader->setUniform("u_time", time);
+	a_shader->setUniform("u_tex_range", tex_range);
+	a_shader->setUniform("u_model", quadModel);
+	quad.render(GL_TRIANGLES);
+
+	//disable shader
+	a_shader->disable();
+	//RenderGUI(quadModel, &quad, tex, a_shader, &cam2D, Vector4(0.25, 0, 0.25, 0.5), GL_TRIANGLES);
 }
 
 void RenderAllGUIs() {
@@ -188,7 +229,8 @@ void RenderAllGUIs() {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	RenderGUI(pause, shader, 60, 60, 60, 60, true);
+	Shader* gui_shader = Shader::Get("data/shaders/basic.vs", "data/shaders/gui.fs");
+	RenderingGUI(gui, gui_shader, 60, 60, 60, 60, Vector4(0.25, 0, 0.25, 0.5), true);
 
 	//glEnable(GL_DEPTH_TEST); // No necesarias creo
 	//glEnable(GL_CULL_FACE);

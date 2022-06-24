@@ -9,8 +9,8 @@
 #include "entity.h"
 #include "audio.h"
 #include "Player.h"
-#include "Scene.h"
 #include "stage.h"
+#include "Scene.h"
 
 #include <bass.h>
 #include <cmath>
@@ -18,9 +18,23 @@
 //some globals
 Shader* shader = NULL;
 
+Mesh* femaleMesh = NULL;
+Texture* femaleTex = NULL;
+Matrix44 femaleModel;
+Animation* walkingf;
+
+Mesh* maleMesh = NULL;
+Texture* maleTex = NULL;
+Matrix44 maleModel;
+
+// IMPORTANTES
 Mesh* skyMesh = NULL;
 Texture* skyTex = NULL;
 Matrix44 skyModel;
+
+Mesh* campingMesh = NULL;
+Texture* campingTex = NULL;
+Matrix44 campingModel;
 
 Mesh* houseMesh = NULL;
 Texture* houseTex = NULL;
@@ -30,19 +44,13 @@ Mesh* cityMesh = NULL;
 Texture* cityTex = NULL;
 Matrix44 cityModel;
 
-Mesh* femaleMesh = NULL;
-Texture* femaleTex = NULL;
-Matrix44 femaleModel;
-Animation* walkingf;
-
 Mesh* detectiveMesh = NULL;
 Texture* detectiveTex = NULL;
 Matrix44 detectiveModel;
 Animation* detectiveWalk;
 
-Mesh* maleMesh = NULL;
-Texture* maleTex = NULL;
-Matrix44 maleModel;
+//GUIs
+Texture* pause = NULL;
 
 Animation* anim = NULL;
 float angle = 0;
@@ -98,8 +106,6 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	glEnable(GL_CULL_FACE); //render both sides of every triangle
 	glEnable(GL_DEPTH_TEST); //check the occlusions using the Z buffer
 
-
-	// ----------------------------- ARNAU --------------------------------------------------------------
 	Vector3 eye = maleModel * Vector3(0.f, 15.f, 1.f);
 	Vector3 center = maleModel * Vector3(0.f, 15.f, 10.f);
 	Vector3 up = maleModel.rotateVector(Vector3(0.f, 1.f, 0.f));
@@ -107,7 +113,7 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	//Create our camera
 	camera = new Camera();
 	camera->lookAt(Vector3(0.f, 100.f, 100.f), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera and point to 0,0,0
-	// ----------------------------- ARNAU --------------------------------------------------------------
+
 	if (cameraLocked) //Entramos en modo 1a Persona.
 		camera->lookAt(eye, center, up);
 	camera->setPerspective(70.f, window_width / (float)window_height, 0.1f, 1000000.f); //set the projection, we want to be perspective
@@ -116,9 +122,6 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	skyMesh = Mesh::Get("data/assets/cielo.ASE");
 	skyTex = Texture::Get("data/textures/cielo.tga");
 
-	houseMesh = Mesh::Get("data/assets/house1.ASE");
-	houseTex = Texture::Get("data/textures/houses_and_windows.tga");
-
 	femaleMesh = Mesh::Get("data/assets/female.mesh");
 	femaleTex = Texture::Get("data/textures/female.tga");
 	walkingf = Animation::Get("data/animations/walking_female.skanim");
@@ -126,13 +129,22 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	maleMesh = Mesh::Get("data/assets/male.mesh");
 	maleTex = Texture::Get("data/textures/male.tga");
 
-	// NO FUNCIONA
+	// Meshes principales
 	detectiveMesh = Mesh::Get("data/assets/detective.mesh");
 	detectiveTex = Texture::Get("data/textures/detective.tga");
 	detectiveWalk = Animation::Get("data/animations/detective.skanim");
 
 	cityMesh = Mesh::Get("data/scenes/Level2/city.obj");
 	cityTex = Texture::Get("data/scenes/Level2/city.png");
+
+	houseMesh = Mesh::Get("data/scenes/Level3/house.obj");
+	houseTex = Texture::Get("data/scenes/Level3/house.png");
+
+	campingMesh = Mesh::Get("data/scenes/Level1/camping.obj");
+	campingTex = Texture::Get("data/scenes/Level1/camping.png");
+
+	// GUI
+	pause = Texture::Get("data/gui/pause.png");
 
 	// example of shader loading using the shaders manager
 	shader = Shader::Get("data/shaders/basic.vs", "data/shaders/texture.fs");
@@ -156,12 +168,32 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	SDL_ShowCursor(!mouse_locked); //hide or show the mouse
 }
 
-void RenderAllGUIs() {
-	glDisable(GL_DEPTH_TEST);
+// No manera más óptima
+void RenderGUI(Texture* tex, Shader* a_shader, float centerx, float centery, float w, float h, bool flipYV = false) {
+	int wWidth = Game::instance->window_width;
+	int wHeight = Game::instance->window_height;
 
-	glEnable(GL_BLEND);
+	Mesh quad;
+	quad.createQuad(centerx, centery, w, h, flipYV); // center_x (centro del quad), center_y, widht, height
+
+	Camera cam2D;
+	cam2D.setOrthographic(0, wWidth, wHeight, 0, -1, 1);
+
+	RenderMesh(Matrix44(), &quad, tex, a_shader, &cam2D, GL_TRIANGLES);
 }
 
+void RenderAllGUIs() {
+	glDisable(GL_DEPTH_TEST);
+	glDisable(GL_CULL_FACE);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	RenderGUI(pause, shader, 60, 60, 60, 60, true);
+
+	//glEnable(GL_DEPTH_TEST); // No necesarias creo
+	//glEnable(GL_CULL_FACE);
+	//glDisable(GL_BLEND);
+}
 
 
 //what to do when the image has to be draw
@@ -181,24 +213,33 @@ void Game::render(void)
 	//set the camera as default
 	camera->enable();
 
-	RenderMesh(skyModel, skyMesh, skyTex, shader, camera);
+	RenderMesh(skyModel, skyMesh, skyTex, shader, camera, GL_TRIANGLES);
 	skyModel.setScale(100, 100, 100);
 
-	// Prueba de que la city se ve bien
-	RenderMesh(cityModel, cityMesh, cityTex, shader, camera);
+	// Level 1
+	/*RenderMesh(campingModel, campingMesh, campingTex, shader, camera);
+	campingModel.setScale(100, 100, 100);*/
+
+	// Level 2
+	RenderMesh(cityModel, cityMesh, cityTex, shader, camera, GL_TRIANGLES);
 	cityModel.setScale(100, 100, 100);
+
+	// Level 3
+	//RenderMesh(houseModel, houseMesh, houseTex, shader, camera);
+	//houseModel.setScale(100, 100, 100);
+
 	//RenderObjects(houseMesh, houseTex, shader, houses_width, houses_height, padding, no_render_dist);
 
 	// Anim
 	detectiveModel.translate(player.pos.x, player.pos.y, player.pos.z);
 	detectiveModel.rotate(player.yaw * DEG2RAD, Vector3(0, 1, 0));
-	RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveWalk, shader, camera, time);
+	RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveWalk, shader, camera, GL_TRIANGLES, time);
 
 	//RenderMesh(maleModel, maleMesh, maleTex, shader, camera);
 
 	for (size_t i = 0; i < entities.size(); i++) { // Para el AddEntityInFront
 		Entity* entity = entities[i];
-		RenderMesh(entity->model, entity->mesh, entity->texture, shader, camera);
+		RenderMesh(entity->model, entity->mesh, entity->texture, shader, camera, GL_TRIANGLES);
 	}
 
 	// ----------------------------- STAGES --------------------------------------------------------------
@@ -246,6 +287,8 @@ void Game::render(void)
 
 	//render the FPS, Draw Calls, etc
 	drawText(2, 2, getGPUStats(), Vector3(1, 1, 1), 2);
+
+	RenderAllGUIs();
 
 	//swap between front buffer and back buffer
 	SDL_GL_SwapWindow(this->window);

@@ -6,7 +6,7 @@
 #include "animation.h"
 #include "extra/cJSON.h"
 
-void RenderMesh(Matrix44& model, Mesh* a_mesh, Texture* tex, Shader* a_shader, Camera* cam) {
+void RenderMesh(Matrix44& model, Mesh* a_mesh, Texture* tex, Shader* a_shader, Camera* cam, int primitive) {
 
 	if (!a_shader) return;
 
@@ -16,11 +16,13 @@ void RenderMesh(Matrix44& model, Mesh* a_mesh, Texture* tex, Shader* a_shader, C
 	//upload uniforms
 	a_shader->setUniform("u_color", Vector4(1, 1, 1, 1));
 	a_shader->setUniform("u_viewprojection", cam->viewprojection_matrix);
-	a_shader->setUniform("u_texture", tex, 0);
+	if (tex != NULL) {
+		a_shader->setUniform("u_texture", tex, 0);
+	}
 	a_shader->setUniform("u_time", time);
-
+	a_shader->setUniform("u_tex_tiling", 1.0f);
 	a_shader->setUniform("u_model", model);
-	a_mesh->render(GL_TRIANGLES);
+	a_mesh->render(primitive);
 
 	//disable shader
 	a_shader->disable();
@@ -92,7 +94,7 @@ void RenderObjects(Mesh* mesh, Texture* tex, Shader* shader, int width, int heig
 	}
 }
 
-void RenderMeshWithAnim(Matrix44& model, Mesh* a_mesh, Texture* tex, Animation* anim, Shader* a_shader, Camera* cam, float t) {
+void RenderMeshWithAnim(Matrix44& model, Mesh* a_mesh, Texture* tex, Animation* anim, Shader* a_shader, Camera* cam, int primitive, float t) {
 	a_shader = Shader::Get("data/shaders/skinning.vs", "data/shaders/texture.fs");
 	if (!a_shader) return;
 	//enable shader
@@ -103,11 +105,13 @@ void RenderMeshWithAnim(Matrix44& model, Mesh* a_mesh, Texture* tex, Animation* 
 	//upload uniforms
 	a_shader->setUniform("u_color", Vector4(1, 1, 1, 1));
 	a_shader->setUniform("u_viewprojection", cam->viewprojection_matrix);
-	a_shader->setUniform("u_texture", tex, 0);
+	if (tex != NULL) {
+		a_shader->setUniform("u_texture", tex, 0);
+	}
 	a_shader->setUniform("u_time", time);
 	a_shader->setUniform("u_tex_tiling", 1.0f);
 	a_shader->setUniform("u_model", model);
-	a_mesh->renderAnimated(GL_TRIANGLES, &anim->skeleton);
+	a_mesh->renderAnimated(primitive, &anim->skeleton);
 
 	//disable shader
 	a_shader->disable();

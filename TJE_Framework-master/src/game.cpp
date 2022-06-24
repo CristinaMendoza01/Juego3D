@@ -77,6 +77,10 @@ bool cameraLocked = true;
 std::vector<Entity*> entities;
 std::vector<LightEntity*> lights;
 
+// ----------------------------- PROFE: YO LO PONDRIA EN EL INPUT --------------------------------------------------------------
+bool wasLeftMousePressed = false;
+// ----------------------------- PROFE: YO LO PONDRIA EN EL INPUT --------------------------------------------------------------
+
 // ----------------------------- STAGES --------------------------------------------------------------
 std::vector<Stage*> stages; // Vector stages
 STAGE_ID currentStage = STAGE_ID::INTRO; //Índice que nos dice en que stage estamos, inicializamos con la INTRO
@@ -192,7 +196,7 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 //	//disable shader
 //	a_shader->disable();
 //}
-void RenderingGUI(Texture* tex, Shader* a_shader, float centerx, float centery, float w, float h, Vector4 tex_range,bool flipYV = false) {
+void RenderingGUI(Texture* tex, Shader* a_shader, float centerx, float centery, float w, float h, Vector4 tex_range, Vector4 color = Vector4(1,1,1,1), bool flipYV = false) {
 	int wWidth = Game::instance->window_width;
 	int wHeight = Game::instance->window_height;
 
@@ -208,7 +212,7 @@ void RenderingGUI(Texture* tex, Shader* a_shader, float centerx, float centery, 
 	a_shader->enable();
 
 	//upload uniforms
-	a_shader->setUniform("u_color", Vector4(1, 1, 1, 1));
+	a_shader->setUniform("u_color", color);
 	a_shader->setUniform("u_viewprojection", cam2D.viewprojection_matrix);
 	if (tex != NULL) {
 		a_shader->setUniform("u_texture", tex, 0);
@@ -223,6 +227,23 @@ void RenderingGUI(Texture* tex, Shader* a_shader, float centerx, float centery, 
 	//RenderGUI(quadModel, &quad, tex, a_shader, &cam2D, Vector4(0.25, 0, 0.25, 0.5), GL_TRIANGLES);
 }
 
+bool RenderButton(Texture* tex, Shader* a_shader, float centerx, float centery, float w, float h, Vector4 tex_range, Vector4 color = Vector4(1, 1, 1, 1), bool flipYV = true) {
+	
+	Vector2 mouse = Input::mouse_position;
+	float halfWidth = w * 0.5;
+	float halfHeight = h * 0.5;
+	float min_x = centerx - halfWidth;
+	float max_x = centerx + halfWidth;
+	float min_y = centery - halfHeight;
+	float max_y = centery + halfHeight;
+
+	bool hover = (mouse.x >= min_x) && (mouse.x <= max_x) && (mouse.y >= min_y) && (mouse.y <= max_y);
+	Vector4 buttonColor = hover ? Vector4(1, 1, 1, 1) : Vector4(1, 1, 1, 0.7f); // Para cuando pasas encima del icono se "ilumina"
+
+	RenderingGUI(tex, a_shader, centerx, centery, w, h, tex_range, buttonColor, flipYV);
+	return wasLeftMousePressed && hover;
+}
+
 void RenderAllGUIs() {
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE);
@@ -230,13 +251,28 @@ void RenderAllGUIs() {
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	Shader* gui_shader = Shader::Get("data/shaders/basic.vs", "data/shaders/gui.fs");
-	RenderingGUI(gui, gui_shader, 60, 60, 60, 60, Vector4(0.25, 0, 0.25, 0.5), true);
 
-	//glEnable(GL_DEPTH_TEST); // No necesarias creo
-	//glEnable(GL_CULL_FACE);
-	//glDisable(GL_BLEND);
+	int gui_id = 0; // Hacer que si apretas un botón, cambie el gui_id y el usuario pueda ver el otro icono
+	Vector4 sprite_gui[] =
+	{
+		(Vector4(0, 0, 0.25, 0.5)),
+		(Vector4(0.25, 0, 0.25, 0.5)),
+		(Vector4(0.5, 0, 0.25, 0.5)),
+		(Vector4(0.75, 0, 0.25, 0.5))
+	};
+
+	// BOTONES GUI
+	if (RenderButton(gui, gui_shader, 60, 60, 60, 60, sprite_gui[gui_id])) {
+		std::cout << "left one" << std::endl;
+	}
+	if (RenderButton(gui, gui_shader, 120, 60, 60, 60, sprite_gui[1])) {
+		std::cout << "right one" << std::endl;
+	}
+
+	glEnable(GL_DEPTH_TEST); // No necesarias creo
+	glEnable(GL_CULL_FACE);
+	glDisable(GL_BLEND);
 }
-
 
 //what to do when the image has to be draw
 void Game::render(void)
@@ -331,6 +367,8 @@ void Game::render(void)
 	drawText(2, 2, getGPUStats(), Vector3(1, 1, 1), 2);
 
 	RenderAllGUIs();
+
+	wasLeftMousePressed = false;
 
 	//swap between front buffer and back buffer
 	SDL_GL_SwapWindow(this->window);
@@ -511,6 +549,11 @@ void Game::onGamepadButtonUp(SDL_JoyButtonEvent event)
 
 void Game::onMouseButtonDown(SDL_MouseButtonEvent event)
 {
+	if (event.button == SDL_BUTTON_LEFT) //middle mouse
+	{
+		wasLeftMousePressed = true;
+	}
+
 	if (event.button == SDL_BUTTON_MIDDLE) //middle mouse
 	{
 		mouse_locked = !mouse_locked;

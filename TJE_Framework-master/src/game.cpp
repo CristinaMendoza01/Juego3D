@@ -58,6 +58,8 @@ Animation* detectiveWalk;
 Matrix44 quadModel;
 Texture* pause = NULL;
 Texture* gui = NULL;
+Texture* menu_inicial = NULL;
+Texture* menu_game = NULL;
 
 Animation* anim = NULL;
 float angle = 0;
@@ -173,6 +175,8 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	// GUI
 	pause = Texture::Get("data/gui/pause.png");
 	gui = Texture::Get("data/gui/gui.png");
+	menu_inicial = Texture::Get("data/gui/menu_inicial.png");
+	menu_game = Texture::Get("data/gui/menu_game.png");
 
 	// example of shader loading using the shaders manager
 	shader = Shader::Get("data/shaders/basic.vs", "data/shaders/texture.fs");
@@ -249,7 +253,7 @@ void RenderGUI(Texture* tex, Shader* a_shader, float centerx, float centery, flo
 	a_shader->disable();
 }
 
-bool RenderButton(Texture* tex, Shader* a_shader, float centerx, float centery, float w, float h, Vector4 tex_range, Vector4 color = Vector4(1, 1, 1, 1), bool flipYV = true) {
+bool RenderButton(Texture* tex, Shader* a_shader, float centerx, float centery, float w, float h, Vector4 tex_range, Vector4 color = Vector4(1, 1, 1, 1), bool flipYV = false) {
 	
 	Vector2 mouse = Input::mouse_position;
 	float halfWidth = w * 0.5;
@@ -284,14 +288,34 @@ void RenderAllGUIs() {
 		(Vector4(0.75, 0, 0.25, 0.5))
 	};
 
-	// BOTONES GUI
+	// ----------------------------- BOTONES GUI ---------------------------------------------
+	// Durante el juego
 	if (RenderButton(gui, gui_shader, 60, 60, 60, 60, sprite_gui[gui_id])) {
 		std::cout << "left one" << std::endl;
+
 		//glViewport(wWidth - 200, wHeight - 200, 200, 200); //Minimapa
 	}
-	if (RenderButton(gui, gui_shader, 120, 60, 60, 60, sprite_gui[1])) {
+	if (RenderButton(gui, gui_shader, 120, 60, 60, 60, sprite_gui[2])) {
 		std::cout << "right one" << std::endl;
 	}
+	// Al iniciar el juego
+	if (RenderButton(menu_inicial, gui_shader, 400, 300, 200, 100, Vector4(0, 0, 1, 0.5))) {
+		std::cout << "start" << std::endl;
+	}
+	if (RenderButton(menu_inicial, gui_shader, 400, 400, 200, 100, Vector4(0, 0.5, 1, 0.5))) {
+		std::cout << "tutorial" << std::endl;
+	}
+	// Hacer como menu desplegable al clicar el sprite_gui[0]
+	if (RenderButton(menu_game, gui_shader, 60, 200, 100, 70, Vector4(0, 0, 0.5, 0.5))) {
+		std::cout << "play" << std::endl;
+	}
+	if (RenderButton(menu_game, gui_shader, 60, 270, 100, 70, Vector4(0.5, 0, 0.5, 0.5))) {
+		std::cout << "restart" << std::endl;
+	}
+	if (RenderButton(menu_game, gui_shader, 60, 340, 100, 70, Vector4(0, 0.5, 0.5, 0.5))) {
+		std::cout << "quit" << std::endl;
+	}
+	// ----------------------------- BOTONES GUI ---------------------------------------------
 
 	glEnable(GL_DEPTH_TEST); // No necesarias creo
 	glEnable(GL_CULL_FACE);

@@ -24,6 +24,8 @@ public:
 	std::vector<Entity*> entities;
 
 	std::pair<Mesh*, Texture*> Scene::loadScene(const char* obj_filename, const char* tex_filename);
-
 };
+
+void putCamera(Matrix44 model, Camera* camera, bool locked, int w, int h);
+
 

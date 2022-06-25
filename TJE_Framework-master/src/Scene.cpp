@@ -1,4 +1,4 @@
-#include "Scene.h"
+#include "scene.h"
 #include "utils.h"
 #include "extra/textparser.h"
 

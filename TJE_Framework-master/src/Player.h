@@ -6,7 +6,7 @@ struct sPlayer {
 	float yaw;
 };
 
-//class Player : public Entity
+//class player : public Entity
 //{
 //	Matrix44 model;
 //	Mesh* mesh;
@@ -14,7 +14,7 @@ struct sPlayer {
 //	Vector3 pos;
 //	float yaw;
 //
-//	Player();
+//	player();
 //
 //
 //	void Update();

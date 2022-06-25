@@ -85,6 +85,9 @@
     <ClCompile Include="..\..\src\stage.cpp">
       <Filter>game</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\pathfinders.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\camera.h" />
@@ -165,6 +168,9 @@
       <Filter>extra</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\stage.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\pathfinders.h">
       <Filter>game</Filter>
     </ClInclude>
   </ItemGroup>

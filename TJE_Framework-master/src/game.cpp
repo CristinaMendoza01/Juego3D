@@ -6,6 +6,7 @@
 #include "input.h"
 #include "utils.h"
 #include "mesh.h"
+#include "pathfinders.h"
 #include "player.h"
 #include "scene.h"
 #include "shader.h"
@@ -81,6 +82,14 @@ std::vector<LightEntity*> lights;
 bool wasLeftMousePressed = false;
 // ----------------------------- PROFE: YO LO PONDRIA EN EL INPUT --------------------------------------------------------------
 
+// ----------------------------- IA -> PATHFINDERS --------------------------------------------------------------
+int startx, starty, targetx, targety;
+uint8* grid;
+int output[100];
+int W, H;
+float tileSizeX, tileSizeY;
+// ----------------------------- IA -> PATHFINDERS --------------------------------------------------------------
+
 // ----------------------------- STAGES --------------------------------------------------------------
 std::vector<Stage*> stages; // Vector stages
 STAGE_ID currentStage = STAGE_ID::INTRO; //Índice que nos dice en que stage estamos, inicializamos con la INTRO
@@ -93,6 +102,19 @@ void InitStages() {
     stages.push_back(new Level1Stage());
 }
 // ----------------------------- STAGES --------------------------------------------------------------
+
+std::pair<Mesh*, Texture*> loadObject(const char* obj_filename, const char* tex_filename)
+{
+	Mesh* mesh = Mesh::Get(obj_filename);
+	Texture* tex = Texture::Get(tex_filename);
+
+	std::pair<Mesh*, Texture*> sol;
+
+	sol.first = mesh;
+	sol.second = tex;
+
+	return sol;
+}
 
 Game::Game(int window_width, int window_height, SDL_Window* window)
 {
@@ -175,6 +197,31 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	SDL_ShowCursor(!mouse_locked); //hide or show the mouse
 }
 
+void PathFinding() {
+	//the map info should be an array W*H of bytes where 0 means block, 1 means walkable
+	grid = new uint8[W*H];
+	//here we must fill the map with all the info
+	//...
+	//when we want to find the shortest path, this array contains the shortest path, every value is the Nth position in the map, 100 steps max
+	int output[100];
+
+	//we call the path function, it returns the number of steps to reach target, otherwise 0
+	int path_steps = AStarFindPathNoTieDiag(
+			startx, starty, //origin (tienen que ser enteros)
+			targetx, targety, //target (tienen que ser enteros)
+			grid, //pointer to map data
+			W, H, //map width and height
+			output, //pointer where the final path will be stored
+			100); //max supported steps of the final path
+
+	//check if there was a path
+	if( path_steps != -1 )
+	{
+		for(int i = 0; i < path_steps; ++i)
+			std::cout << "X: " << (output[i]%W) << ", Y: " << floor(output[i]/W) << std::endl;
+	}
+}
+
 //// No manera más óptima
 //void RenderGUI(Matrix44& model, Mesh* a_mesh, Texture* tex, Shader* a_shader, Camera* cam, Vector4 tex_range, int primitive) {
 //	if (!a_shader) return;
@@ -196,6 +243,7 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 //	//disable shader
 //	a_shader->disable();
 //}
+
 void RenderingGUI(Texture* tex, Shader* a_shader, float centerx, float centery, float w, float h, Vector4 tex_range, Vector4 color = Vector4(1,1,1,1), bool flipYV = false) {
 	int wWidth = Game::instance->window_width;
 	int wHeight = Game::instance->window_height;
@@ -298,19 +346,37 @@ void Game::render(void)
 	RenderMesh(skyModel, skyMesh, skyTex, shader, camera, GL_TRIANGLES);
 	skyModel.setScale(100, 100, 100);
 
+	//// Level 1
+	///*RenderMesh(campingModel, campingMesh, campingTex, shader, camera);
+	//campingModel.setScale(100, 100, 100);*/
+
+	//// Level 2
+	//RenderMesh(cityModel, cityMesh, cityTex, shader, camera, GL_TRIANGLES);
+	//cityModel.setScale(100, 100, 100);
+
+	//// Level 3
+	////RenderMesh(houseModel, houseMesh, houseTex, shader, camera);
+	////houseModel.setScale(100, 100, 100);
+
+	////RenderObjects(houseMesh, houseTex, shader, houses_width, houses_height, padding, no_render_dist);
+
+	// ----------------------------- LEVELS USANDO SCENE ---------------------------------------------
 	// Level 1
-	/*RenderMesh(campingModel, campingMesh, campingTex, shader, camera);
+	std::pair<Mesh*, Texture*> campingLevel = scene->loadScene("data/scenes/Level1/camping.obj", "data/scenes/Level1/camping.png");
+	/*RenderMesh(campingModel, campingLevel.first, campingLevel.second, shader, camera);
 	campingModel.setScale(100, 100, 100);*/
 
 	// Level 2
-	RenderMesh(cityModel, cityMesh, cityTex, shader, camera, GL_TRIANGLES);
+	std::pair<Mesh*, Texture*> cityLevel = scene->loadScene("data/scenes/Level2/city.obj", "data/scenes/Level2/city.png");
+	RenderMesh(cityModel, cityLevel.first, cityLevel.second, shader, camera, GL_TRIANGLES);
 	cityModel.setScale(100, 100, 100);
 
 	// Level 3
-	//RenderMesh(houseModel, houseMesh, houseTex, shader, camera);
+	std::pair<Mesh*, Texture*> houseLevel = scene->loadScene("data/scenes/Level3/house.obj", "data/scenes/Level2/house.png");
+	//RenderMesh(houseModel, houseLevel.first, houseLevel.second, shader, camera);
 	//houseModel.setScale(100, 100, 100);
-
-	//RenderObjects(houseMesh, houseTex, shader, houses_width, houses_height, padding, no_render_dist);
+	// ----------------------------- LEVELS USANDO SCENE ---------------------------------------------
+	
 
 	// Anim
 	detectiveModel.translate(player.pos.x, player.pos.y, player.pos.z);

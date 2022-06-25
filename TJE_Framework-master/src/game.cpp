@@ -252,6 +252,9 @@ void RenderAllGUIs() {
 
 	Shader* gui_shader = Shader::Get("data/shaders/basic.vs", "data/shaders/gui.fs");
 
+	int wWidth = Game::instance->window_width;
+	int wHeight = Game::instance->window_height;
+
 	int gui_id = 0; // Hacer que si apretas un botón, cambie el gui_id y el usuario pueda ver el otro icono
 	Vector4 sprite_gui[] =
 	{
@@ -264,6 +267,7 @@ void RenderAllGUIs() {
 	// BOTONES GUI
 	if (RenderButton(gui, gui_shader, 60, 60, 60, 60, sprite_gui[gui_id])) {
 		std::cout << "left one" << std::endl;
+		//glViewport(wWidth - 200, wHeight - 200, 200, 200); //Minimapa
 	}
 	if (RenderButton(gui, gui_shader, 120, 60, 60, 60, sprite_gui[1])) {
 		std::cout << "right one" << std::endl;

@@ -78,6 +78,10 @@ bool cameraLocked = true;
 std::vector<Entity*> entities;
 std::vector<LightEntity*> lights;
 
+std::pair <Mesh*, Texture*> campingLevel;
+std::pair <Mesh*, Texture*> cityLevel;
+std::pair <Mesh*, Texture*> houseLevel;
+
 // ----------------------------- PROFE: YO LO PONDRIA EN EL INPUT --------------------------------------------------------------
 bool wasLeftMousePressed = false;
 // ----------------------------- PROFE: YO LO PONDRIA EN EL INPUT --------------------------------------------------------------
@@ -162,14 +166,10 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	detectiveTex = Texture::Get("data/textures/detective.tga");
 	detectiveWalk = Animation::Get("data/animations/detective.skanim");
 
-	cityMesh = Mesh::Get("data/scenes/Level2/city.obj");
-	cityTex = Texture::Get("data/scenes/Level2/city.png");
-
-	houseMesh = Mesh::Get("data/scenes/Level3/house.obj");
-	houseTex = Texture::Get("data/scenes/Level3/house.png");
-
-	campingMesh = Mesh::Get("data/scenes/Level1/camping.obj");
-	campingTex = Texture::Get("data/scenes/Level1/camping.png");
+	// Levels
+	campingLevel = scene->loadScene("data/scenes/Level1/camping.obj", "data/scenes/Level1/camping.png");
+	cityLevel = scene->loadScene("data/scenes/Level2/city.obj", "data/scenes/Level2/city.png");
+	houseLevel = scene->loadScene("data/scenes/Level3/house.obj", "data/scenes/Level2/house.png");
 
 	// GUI
 	pause = Texture::Get("data/gui/pause.png");
@@ -188,10 +188,6 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	//audio->PlayAudio("data/audio/mistery.wav");
 
 	scene = new Scene();
-
-	//scene->loadMap("data/Lvl1.scene");
-
-	entities = scene->entities;
 
 	//hide the cursor
 	SDL_ShowCursor(!mouse_locked); //hide or show the mouse
@@ -223,26 +219,26 @@ void PathFinding() {
 }
 
 //// No manera más óptima
-//void RenderGUI(Matrix44& model, Mesh* a_mesh, Texture* tex, Shader* a_shader, Camera* cam, Vector4 tex_range, int primitive) {
-//	if (!a_shader) return;
-//
-//	//enable shader
-//	a_shader->enable();
-//
-//	//upload uniforms
-//	a_shader->setUniform("u_color", Vector4(1, 1, 1, 1));
-//	a_shader->setUniform("u_viewprojection", cam->viewprojection_matrix);
-//	if (tex != NULL) {
-//		a_shader->setUniform("u_texture", tex, 0);
-//	}
-//	a_shader->setUniform("u_time", time);
-//	a_shader->setUniform("u_tex_range", tex_range);
-//	a_shader->setUniform("u_model", model);
-//	a_mesh->render(primitive);
-//
-//	//disable shader
-//	a_shader->disable();
-//}
+void RenderGUI(Matrix44& model, Mesh* a_mesh, Texture* tex, Shader* a_shader, Camera* cam, Vector4 tex_range, int primitive) {
+	if (!a_shader) return;
+
+	//enable shader
+	a_shader->enable();
+
+	//upload uniforms
+	a_shader->setUniform("u_color", Vector4(1, 1, 1, 1));
+	a_shader->setUniform("u_viewprojection", cam->viewprojection_matrix);
+	if (tex != NULL) {
+		a_shader->setUniform("u_texture", tex, 0);
+	}
+	a_shader->setUniform("u_time", time);
+	a_shader->setUniform("u_tex_range", tex_range);
+	a_shader->setUniform("u_model", model);
+	a_mesh->render(primitive);
+
+	//disable shader
+	a_shader->disable();
+}
 
 void RenderingGUI(Texture* tex, Shader* a_shader, float centerx, float centery, float w, float h, Vector4 tex_range, Vector4 color = Vector4(1,1,1,1), bool flipYV = false) {
 	int wWidth = Game::instance->window_width;
@@ -362,17 +358,14 @@ void Game::render(void)
 
 	// ----------------------------- LEVELS USANDO SCENE ---------------------------------------------
 	// Level 1
-	std::pair<Mesh*, Texture*> campingLevel = scene->loadScene("data/scenes/Level1/camping.obj", "data/scenes/Level1/camping.png");
 	/*RenderMesh(campingModel, campingLevel.first, campingLevel.second, shader, camera);
 	campingModel.setScale(100, 100, 100);*/
 
 	// Level 2
-	std::pair<Mesh*, Texture*> cityLevel = scene->loadScene("data/scenes/Level2/city.obj", "data/scenes/Level2/city.png");
 	RenderMesh(cityModel, cityLevel.first, cityLevel.second, shader, camera, GL_TRIANGLES);
 	cityModel.setScale(100, 100, 100);
 
 	// Level 3
-	std::pair<Mesh*, Texture*> houseLevel = scene->loadScene("data/scenes/Level3/house.obj", "data/scenes/Level2/house.png");
 	//RenderMesh(houseModel, houseLevel.first, houseLevel.second, shader, camera);
 	//houseModel.setScale(100, 100, 100);
 	// ----------------------------- LEVELS USANDO SCENE ---------------------------------------------

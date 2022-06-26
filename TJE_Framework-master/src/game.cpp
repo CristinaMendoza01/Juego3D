@@ -379,6 +379,25 @@ void RenderStages() {
 
 }
 
+void CheckCollision(Camera* cam) {
+
+	// Para definir punto donde spawnear el objeto
+	Game* g = Game::instance;
+	Vector2 mouse = Input::mouse_position; // Conseguimos la posición del mouse -> Pondremos mesh donde puntero mouse
+	Vector3 dir = cam->getRayDirection(mouse.x, mouse.y, g->window_width, g->window_height); // Sacamos la dirección
+	Vector3 rOrigin = cam->eye;
+
+	// Colisiones para los elementos del vector entities --> Cambiarlo a las scenes tmb
+	for (size_t i = 0; i < entities.size(); i++) {
+		Vector3 pos;
+		Vector3 normal;
+		Entity* entity = entities[i];
+		if (entity->mesh->testRayCollision(entity->model, rOrigin, dir, pos, normal)) {
+			std::cout << "Collision" << std::endl;
+		}
+	}
+}
+
 //what to do when the image has to be draw
 void Game::render(void)
 {
@@ -580,6 +599,7 @@ void Game::onKeyDown(SDL_KeyboardEvent event)
 	case SDLK_F1: Shader::ReloadAll(); break;
 	case SDLK_1: AddEntityInFront(camera, maleMesh, maleTex, entities);  break;
 	case SDLK_2: AddEntityInFront(camera, femaleMesh, femaleTex, entities);  break;
+	case SDLK_3: CheckCollision(camera); break;
 	}
 }
 

@@ -223,26 +223,26 @@ void PathFinding() {
 }
 
 // No manera más óptima
-void MiniMapa() {
-	int wWidth = Game::instance->window_width;
-	int wHeight = Game::instance->window_height;
-	glViewport(wWidth - 200, wHeight - 200, 200, 200);
-	glClear(GL_DEPTH_BUFFER_BIT);
-
-	// CÓDIGO PROFE --> NO FUNCIONA
-	Camera cam;
-	cam.setPerspective(60, 1, 0.1f, 1000.f);
-	Vector3 eye = player.pos + Vector3(0, 100, 0);
-	Vector3 center = player.pos;
-	Vector3 up = detectiveModel.rotateVector(Vector3(0, 0, -1));
-	cam.lookAt(eye, center, up);
-	Matrix44 mapModel;
-	mapModel.scale(100, 100, 100);
-	RenderMesh(mapModel, cityLevel.first, cityLevel.second, shader, &cam, GL_TRIANGLES);
-
-	glViewport(0, 0, wWidth, wHeight);
-}
-
+//void MiniMapa() {
+//	int wWidth = Game::instance->window_width;
+//	int wHeight = Game::instance->window_height;
+//	glViewport(wWidth - 200, wHeight - 200, 200, 200);
+//	glClear(GL_DEPTH_BUFFER_BIT);
+//
+//	// CÓDIGO PROFE --> NO FUNCIONA
+//	Camera cam;
+//	cam.setPerspective(60, 1, 0.1f, 1000.f);
+//	Vector3 eye = player.pos + Vector3(0, 100, 0);
+//	Vector3 center = player.pos;
+//	Vector3 up = detectiveModel.rotateVector(Vector3(0, 0, -1));
+//	cam.lookAt(eye, center, up);
+//	Matrix44 mapModel;
+//	mapModel.scale(100, 100, 100);
+//	RenderMesh(mapModel, cityLevel.first, cityLevel.second, shader, &cam, GL_TRIANGLES);
+//
+//	glViewport(0, 0, wWidth, wHeight);
+//}
+//
 void RenderGUI(Texture* tex, Shader* a_shader, float centerx, float centery, float w, float h, Vector4 tex_range, Vector4 color = Vector4(1,1,1,1), bool flipYV = false) {
 	int wWidth = Game::instance->window_width;
 	int wHeight = Game::instance->window_height;
@@ -310,7 +310,7 @@ void RenderAllGUIs() {
 
 	// ----------------------------- BOTONES GUI ---------------------------------------------
 	
-	MiniMapa();
+	MiniMapa(player, detectiveModel, cityLevel, shader);
 
 	// Durante el juego
 	if (RenderButton(gui, gui_shader, 60, 60, 60, 60, sprite_gui[gui_id])) {

@@ -1,5 +1,6 @@
 #pragma once
 #include "entity.h"
+#include "player.h"
 
 class Scene
 {
@@ -27,5 +28,6 @@ public:
 };
 
 void putCamera(Matrix44 model, Camera* camera, bool locked, int w, int h);
+void MiniMapa(sPlayer player, Matrix44 model, std::pair <Mesh*, Texture*> cityLevel, Shader* shader);
 
 

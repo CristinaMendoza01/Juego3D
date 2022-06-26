@@ -3,6 +3,7 @@
 #include "extra/textparser.h"
 #include "input.h"
 #include "game.h"
+#include "player.h"
 
 Scene* Scene::instance = NULL;
 
@@ -116,4 +117,25 @@ void putCamera(Matrix44 model, Camera* camera, bool locked, int w, int h) {
 		camera->lookAt(eye, center, up);
 	camera->setPerspective(70.f, w / (float)h, 0.1f, 1000000.f); //set the projection, we want to be perspective
 	// Si añadimos unos ceros más en el último param -> Vemos más lejos
+}
+
+
+void MiniMapa(sPlayer player, Matrix44 model, std::pair <Mesh*, Texture*> cityLevel, Shader* shader) {
+	int wWidth = Game::instance->window_width;
+	int wHeight = Game::instance->window_height;
+	glViewport(wWidth - 200, wHeight - 200, 200, 200);
+	glClear(GL_DEPTH_BUFFER_BIT);
+
+	// CÓDIGO PROFE --> NO FUNCIONA
+	Camera cam;
+	cam.setPerspective(60, 1, 0.1f, 1000.f);
+	Vector3 eye = player.pos + Vector3(0, 100, 0);
+	Vector3 center = player.pos;
+	Vector3 up = model.rotateVector(Vector3(0, 0, -1));
+	cam.lookAt(eye, center, up);
+	Matrix44 mapModel;
+	mapModel.scale(100, 100, 100);
+	RenderMesh(mapModel, cityLevel.first, cityLevel.second, shader, &cam, GL_TRIANGLES);
+
+	glViewport(0, 0, wWidth, wHeight);
 }

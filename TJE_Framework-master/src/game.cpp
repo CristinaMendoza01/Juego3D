@@ -53,6 +53,8 @@ Mesh* detectiveMesh = NULL;
 Texture* detectiveTex = NULL;
 Matrix44 detectiveModel;
 Animation* detectiveWalk;
+Animation* detectiveRun;
+Animation* detectiveIdle;
 
 //GUIs
 Matrix44 quadModel;
@@ -166,6 +168,8 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	detectiveMesh = Mesh::Get("data/assets/detective.mesh");
 	detectiveTex = Texture::Get("data/textures/detective.tga");
 	detectiveWalk = Animation::Get("data/animations/detective.skanim");
+	detectiveRun = Animation::Get("data/animations/detective_running.skanim");
+	detectiveIdle = Animation::Get("data/animations/detective_idle.skanim");
 
 	// Levels
 	campingLevel = scene->loadScene("data/scenes/Level1/camping.obj", "data/scenes/Level1/camping.png");
@@ -413,7 +417,16 @@ void Game::render(void)
 	// Detective --> PLAYER
 	detectiveModel.translate(player.pos.x, player.pos.y, player.pos.z);
 	detectiveModel.rotate(player.yaw * DEG2RAD, Vector3(0, 1, 0));
-	RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveWalk, shader, camera, GL_TRIANGLES, time);
+	if (Input::isKeyPressed(SDL_SCANCODE_R)) { // Para correr
+		RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveRun, shader, camera, GL_TRIANGLES, time);
+	}
+	else if(Input::isKeyPressed(SDL_SCANCODE_W)) { // Por defecto caminar
+		RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveWalk, shader, camera, GL_TRIANGLES, time);
+	}
+	else {
+		RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveIdle, shader, camera, GL_TRIANGLES, time);
+	}
+
 
 	for (size_t i = 0; i < entities.size(); i++) { // Para el AddEntityInFront
 		Entity* entity = entities[i];
@@ -470,6 +483,7 @@ void Game::update(double seconds_elapsed)
 	if (Input::wasKeyPressed(SDL_SCANCODE_TAB)) { //CAMBIAR MODO DE LA CAMARA
 		cameraLocked = !cameraLocked;
 	}
+
 
 	if (cameraLocked) //SI ESTAMOS EN 1a PERSONA
 	{

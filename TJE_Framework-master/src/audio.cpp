@@ -19,9 +19,9 @@ HSAMPLE Audio::loadAudio(const char* fileName) {
 	return hSample;
 }
 
-void Audio::PlayAudio(const char* fileName) {
+void Audio::PlayAudio(HSAMPLE hSample) {
 	//Cargamos un sample del disco duro (memoria, filename, offset, length, max, flags)
-	HSAMPLE hSample = loadAudio(fileName);
+	//HSAMPLE hSample = loadAudio(fileName);
 
 	//El handler para un canal
 	HCHANNEL hSampleChannel;

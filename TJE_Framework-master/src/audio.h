@@ -18,7 +18,7 @@ public:
 
 	//HCHANNEL play(float volume); //lanza el audio y retorna el channel donde suena
 
-	HSAMPLE loadAudio(const char* fileName);
+	HSAMPLE loadAudio(const char* fileName, DWORD flags);
 	void PlayAudio(HSAMPLE hSample);
 
 	//static void Stop(HCHANNEL channel); //para parar un audio necesitamos su channel

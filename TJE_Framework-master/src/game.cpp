@@ -75,6 +75,7 @@ sPlayer player;
 // Audio
 HSAMPLE hSample1;
 HSAMPLE hSample2;
+HSAMPLE hSample3;
 Audio* audio;
 
 
@@ -196,8 +197,9 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 		std::cout << "ERROR initializing audio" << std::endl;
 	}
 	
-	hSample1 = audio->loadAudio("data/audio/mistery.wav");
-	hSample2 = audio->loadAudio("data/audio/pasos.wav");
+	hSample1 = audio->loadAudio("data/audio/mistery.wav", BASS_SAMPLE_LOOP);
+	hSample2 = audio->loadAudio("data/audio/pasos.wav", BASS_SAMPLE_LOOP);
+	hSample3 = audio->loadAudio("data/audio/button.wav", 0);
 
 	//scene = new Scene();
 
@@ -302,27 +304,34 @@ void RenderAllGUIs() {
 	// Durante el juego
 	if (RenderButton(gui, gui_shader, 60, 60, 60, 60, sprite_gui[gui_id])) {
 		std::cout << "left one" << std::endl;
+		audio->PlayAudio(hSample3);
 	}
 	if (RenderButton(gui, gui_shader, 120, 60, 60, 60, sprite_gui[2])) {
 		std::cout << "right one" << std::endl;
 		glViewport(0, 0, wWidth, wHeight);
+		audio->PlayAudio(hSample3);
 	}
 	// Al iniciar el juego
 	if (RenderButton(menu_inicial, gui_shader, 400, 300, 200, 100, Vector4(0, 0, 1, 0.5))) {
 		std::cout << "start" << std::endl;
+		audio->PlayAudio(hSample3);
 	}
 	if (RenderButton(menu_inicial, gui_shader, 400, 400, 200, 100, Vector4(0, 0.5, 1, 0.5))) {
 		std::cout << "tutorial" << std::endl;
+		audio->PlayAudio(hSample3);
 	}
 	// Hacer como menu desplegable al clicar el sprite_gui[0]
 	if (RenderButton(menu_game, gui_shader, 60, 200, 100, 70, Vector4(0, 0, 0.5, 0.5))) {
 		std::cout << "play" << std::endl;
+		audio->PlayAudio(hSample3);
 	}
 	if (RenderButton(menu_game, gui_shader, 60, 270, 100, 70, Vector4(0.5, 0, 0.5, 0.5))) {
 		std::cout << "restart" << std::endl;
+		audio->PlayAudio(hSample3);
 	}
 	if (RenderButton(menu_game, gui_shader, 60, 340, 100, 70, Vector4(0, 0.5, 0.5, 0.5))) {
 		std::cout << "quit" << std::endl;
+		audio->PlayAudio(hSample3);
 	}
 	// ----------------------------- BOTONES GUI ---------------------------------------------
 

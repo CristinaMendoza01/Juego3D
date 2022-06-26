@@ -28,13 +28,19 @@ void RenderMesh(Matrix44& model, Mesh* a_mesh, Texture* tex, Shader* a_shader, C
 	a_shader->disable();
 }
 
-void AddEntityInFront(Camera* cam, Mesh* a_mesh, Texture* tex, std::vector<Entity*>& entities) {
-
+Vector3 RayDirection(Camera* cam) {
 	// Para definir punto donde spawnear el objeto
 	Game* g = Game::instance;
 	Vector2 mouse = Input::mouse_position; // Conseguimos la posición del mouse -> Pondremos mesh donde puntero mouse
 	Vector3 dir = cam->getRayDirection(mouse.x, mouse.y, g->window_width, g->window_height); // Sacamos la dirección
+
+	return dir;
+}
+void AddEntityInFront(Camera* cam, Mesh* a_mesh, Texture* tex, std::vector<Entity*>& entities) {
+	
+	Vector3 dir = RayDirection(cam);
 	Vector3 rOrigin = cam->eye;
+
 	Vector3 spawnPos = RayPlaneCollision(Vector3(), Vector3(0, 1, 0), rOrigin, dir);; // Sacar la intersección entre la dirección y el plano
 
 	Matrix44 model;
@@ -51,12 +57,8 @@ void AddEntityInFront(Camera* cam, Mesh* a_mesh, Texture* tex, std::vector<Entit
 
 void CheckCollision(Camera* cam, std::vector<Entity*>& entities) {
 
-	// Para definir punto donde spawnear el objeto
-	Game* g = Game::instance;
-	Vector2 mouse = Input::mouse_position; // Conseguimos la posición del mouse -> Pondremos mesh donde puntero mouse
-	Vector3 dir = cam->getRayDirection(mouse.x, mouse.y, g->window_width, g->window_height); // Sacamos la dirección
+	Vector3 dir = RayDirection(cam);
 	Vector3 rOrigin = cam->eye;
-
 	// Colisiones para los elementos del vector entities --> Cambiarlo a las scenes tmb
 	for (size_t i = 0; i < entities.size(); i++) {
 		Vector3 pos;
@@ -64,6 +66,7 @@ void CheckCollision(Camera* cam, std::vector<Entity*>& entities) {
 		Entity* entity = entities[i];
 		if (entity->mesh->testRayCollision(entity->model, rOrigin, dir, pos, normal)) {
 			std::cout << "Collision" << std::endl;
+			break;
 		}
 	}
 }

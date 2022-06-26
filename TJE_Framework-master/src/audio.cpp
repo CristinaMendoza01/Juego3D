@@ -6,11 +6,11 @@ Audio::Audio() {
 }
 
 
-HSAMPLE Audio::loadAudio(const char* fileName) {
+HSAMPLE Audio::loadAudio(const char* fileName, DWORD flags) {
 	//El handler para un sample
 	HSAMPLE hSample;
 	//use BASS_SAMPLE_LOOP in the last param to have a looped sound
-	hSample = BASS_SampleLoad(false, fileName, 0, 0, 3, BASS_SAMPLE_LOOP);
+	hSample = BASS_SampleLoad(false, fileName, 0, 0, 3, flags);
 	if (hSample == 0)
 	{
 		std::cout << "ERROR loading " << fileName << std::endl;

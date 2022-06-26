@@ -89,6 +89,7 @@ float no_render_dist = 1000.0f; // Para el frustum
 bool cameraLocked = true;
 
 std::vector<Entity*> entities;
+Entity* selectedEntity = NULL;
 std::vector<LightEntity*> lights;
 
 std::pair <Mesh*, Texture*> campingLevel;
@@ -574,7 +575,7 @@ void Game::onKeyDown(SDL_KeyboardEvent event)
 	case SDLK_F1: Shader::ReloadAll(); break;
 	case SDLK_1: AddEntityInFront(camera, maleMesh, maleTex, entities);  break;
 	case SDLK_2: AddEntityInFront(camera, femaleMesh, femaleTex, entities);  break;
-	case SDLK_3: CheckCollision(camera, entities); break;
+	case SDLK_3: CheckCollision(camera, entities, selectedEntity); break;
 	}
 }
 

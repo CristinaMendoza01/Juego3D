@@ -55,7 +55,7 @@ void AddEntityInFront(Camera* cam, Mesh* a_mesh, Texture* tex, std::vector<Entit
 	entities.push_back(entity);
 }
 
-void CheckCollision(Camera* cam, std::vector<Entity*>& entities) {
+void CheckCollision(Camera* cam, std::vector<Entity*>& entities, Entity* sEnt) {
 
 	Vector3 dir = RayDirection(cam);
 	Vector3 rOrigin = cam->eye;
@@ -66,6 +66,7 @@ void CheckCollision(Camera* cam, std::vector<Entity*>& entities) {
 		Entity* entity = entities[i];
 		if (entity->mesh->testRayCollision(entity->model, rOrigin, dir, pos, normal)) {
 			std::cout << "Collision" << std::endl;
+			sEnt = entity;
 			break;
 		}
 	}

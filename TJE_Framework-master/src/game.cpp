@@ -149,7 +149,7 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 
 	// Create our camera
 	camera = new Camera();
-	putCamera(maleModel, camera, cameraLocked, window_width, window_height);
+	putCamera(detectiveModel, camera, cameraLocked, window_width, window_height);
 
 	// Some meshes
 	femaleMesh = Mesh::Get("data/assets/female.mesh");
@@ -222,7 +222,27 @@ void PathFinding() {
 	}
 }
 
-//// No manera más óptima
+// No manera más óptima
+void MiniMapa() {
+	int wWidth = Game::instance->window_width;
+	int wHeight = Game::instance->window_height;
+	glViewport(wWidth - 200, wHeight - 200, 200, 200);
+	glClear(GL_DEPTH_BUFFER_BIT);
+
+	// CÓDIGO PROFE --> NO FUNCIONA
+	Camera cam;
+	cam.setPerspective(60, 1, 0.1f, 1000.f);
+	Vector3 eye = player.pos + Vector3(0, 100, 0);
+	Vector3 center = player.pos;
+	Vector3 up = detectiveModel.rotateVector(Vector3(0, 0, -1));
+	cam.lookAt(eye, center, up);
+	Matrix44 mapModel;
+	mapModel.scale(100, 100, 100);
+	RenderMesh(mapModel, cityLevel.first, cityLevel.second, shader, &cam, GL_TRIANGLES);
+
+	glViewport(0, 0, wWidth, wHeight);
+}
+
 void RenderGUI(Texture* tex, Shader* a_shader, float centerx, float centery, float w, float h, Vector4 tex_range, Vector4 color = Vector4(1,1,1,1), bool flipYV = false) {
 	int wWidth = Game::instance->window_width;
 	int wHeight = Game::instance->window_height;
@@ -289,14 +309,16 @@ void RenderAllGUIs() {
 	};
 
 	// ----------------------------- BOTONES GUI ---------------------------------------------
+	
+	MiniMapa();
+
 	// Durante el juego
 	if (RenderButton(gui, gui_shader, 60, 60, 60, 60, sprite_gui[gui_id])) {
 		std::cout << "left one" << std::endl;
-
-		//glViewport(wWidth - 200, wHeight - 200, 200, 200); //Minimapa
 	}
 	if (RenderButton(gui, gui_shader, 120, 60, 60, 60, sprite_gui[2])) {
 		std::cout << "right one" << std::endl;
+		glViewport(0, 0, wWidth, wHeight);
 	}
 	// Al iniciar el juego
 	if (RenderButton(menu_inicial, gui_shader, 400, 300, 200, 100, Vector4(0, 0, 1, 0.5))) {
@@ -381,14 +403,14 @@ void Game::render(void)
 
 	// Level 2
 	RenderMesh(cityModel, cityLevel.first, cityLevel.second, shader, camera, GL_TRIANGLES);
-	cityModel.setScale(500, 500, 500);
+	cityModel.setScale(100, 100, 100);
 
 	// Level 3
 	//RenderMesh(houseModel, houseLevel.first, houseLevel.second, shader, camera);
 	//houseModel.setScale(100, 100, 100);
 	// ----------------------------- LEVELS ---------------------------------------------
 	
-	// Detective
+	// Detective --> PLAYER
 	detectiveModel.translate(player.pos.x, player.pos.y, player.pos.z);
 	detectiveModel.rotate(player.yaw * DEG2RAD, Vector3(0, 1, 0));
 	RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveWalk, shader, camera, GL_TRIANGLES, time);

@@ -105,9 +105,9 @@ std::pair<Mesh*, Texture*> Scene::loadScene(const char* obj_filename, const char
 }
 
 void putCamera(Matrix44 model, Camera* camera, bool locked, int w, int h) {
-	Vector3 eye = model * Vector3(0.f, 15.f, 1.f);
+	Vector3 eye = model * Vector3(0.f, 150.f, 1.f);
 	Vector3 center = model * Vector3(0.f, 15.f, 10.f);
-	Vector3 up = model.rotateVector(Vector3(0.f, 1.f, 0.f));
+	Vector3 up = model.rotateVector(Vector3(0.f, 150.f, 0.f));
 
 	//Create our camera
 	camera->lookAt(Vector3(0.f, 100.f, 100.f), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera and point to 0,0,0

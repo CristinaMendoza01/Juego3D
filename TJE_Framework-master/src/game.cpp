@@ -19,6 +19,7 @@
 //some globals
 Shader* shader = NULL;
 Shader* gui_shader = NULL;
+Shader* a_shader = NULL;
 
 Mesh* femaleMesh = NULL;
 Texture* femaleTex = NULL;
@@ -34,7 +35,8 @@ Mesh* skyMesh = NULL;
 Texture* skyTex = NULL;
 Matrix44 skyModel;
 
-Mesh* floorMesh = NULL;
+Mesh* floorMesh;
+Texture* floorTex;
 Matrix44 floorModel;
 
 Mesh* campingMesh = NULL;
@@ -171,6 +173,11 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	skyMesh = Mesh::Get("data/assets/cielo.ASE");
 	skyTex = Texture::Get("data/textures/cielo.tga");
 
+	floorMesh = new Mesh();
+	floorMesh->createPlane(1000);
+	//floorMesh = Mesh::Get("data/assets/grass.obj");
+	floorTex = Texture::Get("data/textures/grass.tga");
+
 	detectiveMesh = Mesh::Get("data/assets/detective.mesh");
 	detectiveTex = Texture::Get("data/textures/detective.tga");
 	detectiveWalk = Animation::Get("data/animations/detective.skanim");
@@ -191,6 +198,8 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	// example of shader loading using the shaders manager
 	shader = Shader::Get("data/shaders/basic.vs", "data/shaders/texture.fs");
 	gui_shader = Shader::Get("data/shaders/basic.vs", "data/shaders/gui.fs");
+	a_shader = Shader::Get("data/shaders/skinning.vs", "data/shaders/texture.fs");
+
 
 	// Init bass
 	if (BASS_Init(-1, 44100, 0, 0, NULL) == false) //-1 significa usar el por defecto del sistema operativo
@@ -389,39 +398,47 @@ void Game::render(void)
 	//set the camera as default
 	camera->enable();
 
-	// Sky
-	RenderMesh(skyModel, skyMesh, skyTex, shader, camera, GL_TRIANGLES);
-	skyModel.setScale(100, 100, 100);
+	RenderSky(skyModel, skyMesh, skyTex, shader, camera);
+	//RenderMesh(skyModel, skyMesh, skyTex, shader, camera, GL_TRIANGLES);
+	//skyModel.setScale(100, 100, 100);
+
+	// Floor
+	//glDisable(GL_DEPTH_TEST);
+	//floorModel.rotate(1.5708f, Vector3(1, 0, 0));
+	RenderMesh(Matrix44(), floorMesh, floorTex, shader, camera, GL_TRIANGLES);
+	//floorModel.setRotation(1.5708f, Vector3(1, 0, 0));
+	//floorModel.setScale(100, 100, 100);
+	//glEnable(GL_DEPTH_TEST);
 
 	// ----------------------------- LEVELS ---------------------------------------------
 	// Level 1
-	/*RenderMesh(campingModel, campingLevel.first, campingLevel.second, shader, camera);
-	campingModel.setScale(100, 100, 100);*/
+	//RenderMesh(campingModel, campingLevel.first, campingLevel.second, shader, camera, GL_TRIANGLES);
+	//campingModel.setScale(100, 100, 100);
 
 	// Level 2
-	RenderMesh(cityModel, cityLevel.first, cityLevel.second, shader, camera, GL_TRIANGLES);
-	cityModel.setScale(100, 100, 100);
+	//RenderMesh(cityModel, cityLevel.first, cityLevel.second, shader, camera, GL_TRIANGLES);
+	//cityModel.setScale(100, 100, 100);
 
 	// Level 3
-	//RenderMesh(houseModel, houseLevel.first, houseLevel.second, shader, camera);
-	//houseModel.setScale(100, 100, 100);
+	RenderMesh(houseModel, houseLevel.first, houseLevel.second, shader, camera, GL_TRIANGLES);
+	houseModel.setScale(50, 50, 50);
 	// ----------------------------- LEVELS ---------------------------------------------
 	
 	// Detective --> PLAYER
 	detectiveModel.translate(player.pos.x, player.pos.y, player.pos.z);
 	detectiveModel.rotate(player.yaw * DEG2RAD, Vector3(0, 1, 0));
 	if (Input::isKeyPressed(SDL_SCANCODE_R)) { // Correr
-		RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveRun, shader, camera, GL_TRIANGLES, time);
+		RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveRun, a_shader, camera, GL_TRIANGLES, time);
 	}
 	else if(Input::isKeyPressed(SDL_SCANCODE_W)) { // Caminar
-		RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveWalk, shader, camera, GL_TRIANGLES, time);
+		RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveWalk, a_shader, camera, GL_TRIANGLES, time);
 		audio->PlayAudio(hSample1);
 	}
 	else { // Quieto
-		RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveIdle, shader, camera, GL_TRIANGLES, time);
+		RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveIdle, a_shader, camera, GL_TRIANGLES, time);
 		audio->PlayAudio(hSample2);
 	}
-
+	detectiveModel.setScale(0.2f, 0.2f, 0.2f);
 
 	for (size_t i = 0; i < entities.size(); i++) { // Para el AddEntityInFront
 		Entity* entity = entities[i];
@@ -576,6 +593,7 @@ void Game::onKeyDown(SDL_KeyboardEvent event)
 	case SDLK_1: AddEntityInFront(camera, maleMesh, maleTex, entities);  break;
 	case SDLK_2: AddEntityInFront(camera, femaleMesh, femaleTex, entities);  break;
 	case SDLK_3: CheckCollision(camera, entities, selectedEntity); break;
+	case SDLK_4: CheckSkyCollision(camera, skyModel, skyMesh); break;
 	}
 }
 

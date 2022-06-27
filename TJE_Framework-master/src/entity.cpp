@@ -59,7 +59,7 @@ void CheckCollision(Camera* cam, std::vector<Entity*>& entities, Entity* sEnt) {
 
 	Vector3 dir = RayDirection(cam);
 	Vector3 rOrigin = cam->eye;
-	// Colisiones para los elementos del vector entities --> Cambiarlo a las scenes tmb
+	// Colisiones para los elementos del vector entities --> Cambiarlo a las scenes tmb + sky
 	for (size_t i = 0; i < entities.size(); i++) {
 		Vector3 pos;
 		Vector3 normal;
@@ -69,6 +69,16 @@ void CheckCollision(Camera* cam, std::vector<Entity*>& entities, Entity* sEnt) {
 			sEnt = entity;
 			break;
 		}
+	}
+}
+
+void CheckSkyCollision(Camera* camera, Matrix44 skyModel, Mesh* skyMesh) {
+	Vector3 dir = RayDirection(camera);
+	Vector3 rOrigin = camera->eye;
+	Vector3 pos;
+	Vector3 normal;
+	if (skyMesh->testRayCollision(skyModel, rOrigin, dir, pos, normal)) {
+		std::cout << "Collision" << std::endl;
 	}
 }
 
@@ -119,7 +129,6 @@ void RenderObjects(Mesh* mesh, Texture* tex, Shader* shader, int width, int heig
 }
 
 void RenderMeshWithAnim(Matrix44& model, Mesh* a_mesh, Texture* tex, Animation* anim, Shader* a_shader, Camera* cam, int primitive, float t) {
-	a_shader = Shader::Get("data/shaders/skinning.vs", "data/shaders/texture.fs");
 	if (!a_shader) return;
 	//enable shader
 	a_shader->enable();

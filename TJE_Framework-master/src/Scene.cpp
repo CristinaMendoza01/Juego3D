@@ -139,3 +139,11 @@ void MiniMapa(sPlayer player, Matrix44 model, std::pair <Mesh*, Texture*> cityLe
 
 	glViewport(0, 0, wWidth, wHeight);
 }
+
+void RenderSky(Matrix44 skyModel, Mesh* skyMesh, Texture* skyTex, Shader* shader, Camera* camera) {
+	//skyModel.translate(camera->eye.x, camera->eye.y - 50.0f, camera->eye.z);
+	//glDisable(GL_DEPTH_TEST);
+	RenderMesh(skyModel, skyMesh, skyTex, shader, camera, GL_TRIANGLES);
+	skyModel.setScale(1000, 1000, 1000);
+	//glEnable(GL_DEPTH_TEST);
+}

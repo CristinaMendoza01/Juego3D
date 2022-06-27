@@ -80,7 +80,6 @@ HSAMPLE hSample2;
 HSAMPLE hSample3;
 Audio* audio;
 
-
 Scene* scene;
 
 const int houses_width = 10;
@@ -89,6 +88,7 @@ float padding = 10.0f; // Distancia entre las houses
 float lodDist = 10.0f; // Para los LODs
 float no_render_dist = 1000.0f; // Para el frustum
 bool cameraLocked = true;
+const bool firstP = true;
 
 std::vector<Entity*> entities;
 Entity* selectedEntity = NULL;
@@ -468,6 +468,33 @@ void NextStage() { // Para pasar de stage
 }
 // ----------------------------- STAGES --------------------------------------------------------------
 
+void DetectiveCollisions(sPlayer player, Vector3 nexPos, float elapsed_time) {
+	//calculamos el centro de la esfera de colisión del player elevandola hasta la cintura
+	Vector3 character_center = nexPos + Vector3(0, 4, 0);
+
+	//para cada objecto de la escena...
+
+	Vector3 coll;
+	Vector3 collnorm;
+	for (size_t i = 0; i < entities.size(); i++) {
+		Entity* entity = entities[i];
+		//comprobamos si colisiona el objeto con la esfera (radio 3)
+		if (!entity->mesh->testSphereCollision(entity->model, character_center, 0.5f, coll, collnorm))
+			continue; //si no colisiona, pasamos al siguiente objeto
+		//si la esfera está colisionando muevela a su posicion anterior alejandola del objeto
+		Vector3 push_away = normalize(coll - character_center) * elapsed_time;
+		nexPos = player.pos - push_away; //move to previous pos but a little bit further
+
+		//cuidado con la Y, si nuestro juego es 2D la ponemos a 0
+		nexPos.y = 0;
+
+		//reflejamos el vector velocidad para que de la sensacion de que rebota en la pared
+		//velocity = reflect(velocity, collnorm) * 0.95;
+	}
+	player.pos = nexPos;
+
+}
+
 void Game::update(double seconds_elapsed)
 {
 	float speed = seconds_elapsed * mouse_speed; //the speed is defined by the seconds_elapsed so it goes constant
@@ -508,6 +535,13 @@ void Game::update(double seconds_elapsed)
 
 		float playerSpeed = 50.f * elapsed_time;
 
+		if (firstP) {
+			player.pitch += Input::mouse_delta.y * 10.0f * elapsed_time;
+			player.yaw += Input::mouse_delta.x * 10.0f * elapsed_time;
+			Input::centerMouse();
+			SDL_ShowCursor(false);
+		}
+
 		if (Input::isKeyPressed(SDL_SCANCODE_W)) Player_Move= Vector3(0.f, 0.f, playerSpeed);
 		if (Input::isKeyPressed(SDL_SCANCODE_S)) Player_Move = Vector3(0.f, 0.f, -playerSpeed);
 		if (Input::isKeyPressed(SDL_SCANCODE_A)) Player_Move = Vector3(playerSpeed, 0.f, 0.f);
@@ -546,6 +580,9 @@ void Game::update(double seconds_elapsed)
 		if (Input::isKeyPressed(SDL_SCANCODE_A)) playerVel = playerVel + (right * playerSpeed);
 
 		player.pos = player.pos + playerVel; // Character controller
+		Vector3 nexPos = player.pos + playerVel;
+
+		DetectiveCollisions(player, nexPos, elapsed_time);
 
 		if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) speed *= 10; //move faster with left shift
 		if (Input::isKeyPressed(SDL_SCANCODE_UP)) camera->move(Vector3(0.0f, 0.0f, 1.0f) * speed);

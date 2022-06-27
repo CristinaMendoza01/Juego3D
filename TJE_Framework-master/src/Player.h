@@ -4,6 +4,7 @@
 struct sPlayer {
 	Vector3 pos;
 	float yaw;
+	float pitch;
 };
 
 //class player : public Entity

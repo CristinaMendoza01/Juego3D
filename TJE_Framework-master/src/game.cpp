@@ -527,8 +527,8 @@ void Game::update(double seconds_elapsed)
 	}
 	else { //CAMARA LIBRE
 		mouse_locked = false;
-		float playerSpeed = 12.0f * elapsed_time;
-		float rotSpeed = 120.0f * DEG2RAD * elapsed_time;
+		float playerSpeed = 120.0f * elapsed_time;
+		float rotSpeed = 200.0f * elapsed_time;
 
 		if (Input::isKeyPressed(SDL_SCANCODE_E)) player.yaw += rotSpeed;
 		if (Input::isKeyPressed(SDL_SCANCODE_Q)) player.yaw -= rotSpeed;;

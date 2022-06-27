@@ -120,7 +120,7 @@ void putCamera(Matrix44 model, Camera* camera, bool locked, int w, int h) {
 }
 
 
-void MiniMapa(sPlayer player, Matrix44 model, std::pair <Mesh*, Texture*> cityLevel, Shader* shader) {
+void MiniMapa(sPlayer player, Matrix44 model, std::pair <Mesh*, Texture*> level, Shader* shader) {
 	int wWidth = Game::instance->window_width;
 	int wHeight = Game::instance->window_height;
 	glViewport(wWidth - 200, wHeight - 200, 200, 200);
@@ -135,7 +135,7 @@ void MiniMapa(sPlayer player, Matrix44 model, std::pair <Mesh*, Texture*> cityLe
 	cam.lookAt(eye, center, up);
 	Matrix44 mapModel;
 	mapModel.scale(100, 100, 100);
-	RenderMesh(mapModel, cityLevel.first, cityLevel.second, shader, &cam, GL_TRIANGLES);
+	RenderMesh(mapModel, level.first, level.second, shader, &cam, GL_TRIANGLES);
 
 	glViewport(0, 0, wWidth, wHeight);
 }

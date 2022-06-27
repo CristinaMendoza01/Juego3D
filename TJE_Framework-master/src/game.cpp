@@ -309,8 +309,6 @@ void RenderAllGUIs() {
 
 	// ----------------------------- BOTONES GUI ---------------------------------------------
 	
-	MiniMapa(player, detectiveModel, cityLevel, shader);
-
 	// Durante el juego
 	if (RenderButton(gui, gui_shader, 60, 60, 60, 60, sprite_gui[gui_id])) {
 		std::cout << "left one" << std::endl;
@@ -414,14 +412,19 @@ void Game::render(void)
 	// Level 1
 	//RenderMesh(campingModel, campingLevel.first, campingLevel.second, shader, camera, GL_TRIANGLES);
 	//campingModel.setScale(100, 100, 100);
+	//MiniMapa(player, detectiveModel, houseLevel, shader);
 
 	// Level 2
 	//RenderMesh(cityModel, cityLevel.first, cityLevel.second, shader, camera, GL_TRIANGLES);
 	//cityModel.setScale(100, 100, 100);
+	//MiniMapa(player, detectiveModel, cityLevel, shader);
+
 
 	// Level 3
 	RenderMesh(houseModel, houseLevel.first, houseLevel.second, shader, camera, GL_TRIANGLES);
 	houseModel.setScale(50, 50, 50);
+	//MiniMapa(player, detectiveModel, houseLevel, shader);
+
 	// ----------------------------- LEVELS ---------------------------------------------
 	
 	// Detective --> PLAYER
@@ -563,6 +566,7 @@ void Game::update(double seconds_elapsed)
 		mouse_locked = false;
 		float playerSpeed = 120.0f * elapsed_time;
 		float rotSpeed = 200.0f * elapsed_time;
+		SDL_ShowCursor(true);
 
 		if (Input::isKeyPressed(SDL_SCANCODE_E)) player.yaw += rotSpeed;
 		if (Input::isKeyPressed(SDL_SCANCODE_Q)) player.yaw -= rotSpeed;;

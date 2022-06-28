@@ -173,10 +173,10 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	skyMesh = Mesh::Get("data/assets/cielo.ASE");
 	skyTex = Texture::Get("data/textures/cielo.tga");
 
-	floorMesh = new Mesh();
-	floorMesh->createPlane(1000);
-	//floorMesh = Mesh::Get("data/assets/grass.obj");
-	floorTex = Texture::Get("data/textures/grass.tga");
+	/*floorMesh = new Mesh();
+	floorMesh->createPlane(1000);*/
+	floorMesh = Mesh::Get("data/assets/sand2.obj");
+	floorTex = Texture::Get("data/textures/sand.tga");
 
 	detectiveMesh = Mesh::Get("data/assets/detective.mesh");
 	detectiveTex = Texture::Get("data/textures/detective.tga");
@@ -396,17 +396,12 @@ void Game::render(void)
 	//set the camera as default
 	camera->enable();
 
+	// Sky
 	RenderSky(skyModel, skyMesh, skyTex, shader, camera);
-	//RenderMesh(skyModel, skyMesh, skyTex, shader, camera, GL_TRIANGLES);
-	//skyModel.setScale(100, 100, 100);
 
 	// Floor
-	//glDisable(GL_DEPTH_TEST);
-	//floorModel.rotate(1.5708f, Vector3(1, 0, 0));
-	RenderMesh(Matrix44(), floorMesh, floorTex, shader, camera, GL_TRIANGLES);
-	//floorModel.setRotation(1.5708f, Vector3(1, 0, 0));
-	//floorModel.setScale(100, 100, 100);
-	//glEnable(GL_DEPTH_TEST);
+	RenderMesh(floorModel, floorMesh, floorTex, shader, camera, GL_TRIANGLES);
+	floorModel.setScale(100, 0, 100);
 
 	// ----------------------------- LEVELS ---------------------------------------------
 	// Level 1
@@ -421,8 +416,8 @@ void Game::render(void)
 
 
 	// Level 3
-	RenderMesh(houseModel, houseLevel.first, houseLevel.second, shader, camera, GL_TRIANGLES);
-	houseModel.setScale(50, 50, 50);
+	/*RenderMesh(houseModel, houseLevel.first, houseLevel.second, shader, camera, GL_TRIANGLES);
+	houseModel.setScale(50, 50, 50);*/
 	//MiniMapa(player, detectiveModel, houseLevel, shader);
 
 	// ----------------------------- LEVELS ---------------------------------------------

@@ -75,12 +75,12 @@ Game* Game::instance = NULL;
 sPlayer player;
 
 // Audio
-HSAMPLE hSample1;
-HSAMPLE hSample2;
-HSAMPLE hSample3;
-Audio* audio;
+//HSAMPLE hSample1;
+//HSAMPLE hSample2;
+//HSAMPLE hSample3;
+//Audio* audio;
 
-Scene* scene;
+Scene* scene = new Scene();
 
 const int houses_width = 10;
 const int houses_height = 10;
@@ -180,14 +180,18 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 
 	detectiveMesh = Mesh::Get("data/assets/detective.mesh");
 	detectiveTex = Texture::Get("data/textures/detective.tga");
-	detectiveWalk = Animation::Get("data/animations/detective.skanim");
+	detectiveWalk = Animation::Get("data/animations/detective_walk.skanim");
 	detectiveRun = Animation::Get("data/animations/detective_running.skanim");
 	detectiveIdle = Animation::Get("data/animations/detective_idle.skanim");
 
 	// Levels
-	campingLevel = scene->loadScene("data/scenes/Level1/camping.obj", "data/scenes/Level1/camping.png");
-	cityLevel = scene->loadScene("data/scenes/Level2/city.obj", "data/scenes/Level2/city.png");
-	houseLevel = scene->loadScene("data/scenes/Level3/house.obj", "data/scenes/Level3/house.png");
+	//campingLevel = scene->loadScene("data/scenes/Level1/camping.obj", "data/scenes/Level1/camping.png");
+	//cityLevel = scene->loadScene("data/scenes/Level2/city.obj", "data/scenes/Level2/city.png");
+	//houseLevel = scene->loadScene("data/scenes/Level3/house.obj", "data/scenes/Level3/house.png");
+
+	scene->loadMap("data/scenes/Pueblo/pueblo.scene");
+
+	std::cout << scene->entities[2] << std::endl;
 
 	// GUI
 	pause = Texture::Get("data/gui/pause.png");
@@ -201,15 +205,15 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	a_shader = Shader::Get("data/shaders/skinning.vs", "data/shaders/texture.fs");
 
 
-	// Init bass
-	if (BASS_Init(-1, 44100, 0, 0, NULL) == false) //-1 significa usar el por defecto del sistema operativo
-	{
-		std::cout << "ERROR initializing audio" << std::endl;
-	}
-	
-	hSample1 = audio->loadAudio("data/audio/mistery.wav", BASS_SAMPLE_LOOP);
-	hSample2 = audio->loadAudio("data/audio/pasos.wav", BASS_SAMPLE_LOOP);
-	hSample3 = audio->loadAudio("data/audio/button.wav", 0);
+	//// Init bass
+	//if (BASS_Init(-1, 44100, 0, 0, NULL) == false) //-1 significa usar el por defecto del sistema operativo
+	//{
+	//	std::cout << "ERROR initializing audio" << std::endl;
+	//}
+	//
+	//hSample1 = audio->loadAudio("data/audio/mistery.wav", BASS_SAMPLE_LOOP);
+	//hSample2 = audio->loadAudio("data/audio/pasos.wav", BASS_SAMPLE_LOOP);
+	//hSample3 = audio->loadAudio("data/audio/button.wav", 0);
 
 	//scene = new Scene();
 
@@ -263,7 +267,7 @@ void RenderGUI(Texture* tex, Shader* a_shader, float centerx, float centery, flo
 	if (tex != NULL) {
 		a_shader->setUniform("u_texture", tex, 0);
 	}
-	a_shader->setUniform("u_time", time);
+	a_shader->setUniform("u_time", Game::instance->time);
 	a_shader->setUniform("u_tex_range", tex_range);
 	a_shader->setUniform("u_model", quadModel);
 	quad.render(GL_TRIANGLES);
@@ -309,38 +313,38 @@ void RenderAllGUIs() {
 
 	// ----------------------------- BOTONES GUI ---------------------------------------------
 	
-	// Durante el juego
-	if (RenderButton(gui, gui_shader, 60, 60, 60, 60, sprite_gui[gui_id])) {
-		std::cout << "left one" << std::endl;
-		audio->PlayAudio(hSample3);
-	}
-	if (RenderButton(gui, gui_shader, 120, 60, 60, 60, sprite_gui[2])) {
-		std::cout << "right one" << std::endl;
-		glViewport(0, 0, wWidth, wHeight);
-		audio->PlayAudio(hSample3);
-	}
-	// Al iniciar el juego
-	if (RenderButton(menu_inicial, gui_shader, 400, 300, 200, 100, Vector4(0, 0, 1, 0.5))) {
-		std::cout << "start" << std::endl;
-		audio->PlayAudio(hSample3);
-	}
-	if (RenderButton(menu_inicial, gui_shader, 400, 400, 200, 100, Vector4(0, 0.5, 1, 0.5))) {
-		std::cout << "tutorial" << std::endl;
-		audio->PlayAudio(hSample3);
-	}
-	// Hacer como menu desplegable al clicar el sprite_gui[0]
-	if (RenderButton(menu_game, gui_shader, 60, 200, 100, 70, Vector4(0, 0, 0.5, 0.5))) {
-		std::cout << "play" << std::endl;
-		audio->PlayAudio(hSample3);
-	}
-	if (RenderButton(menu_game, gui_shader, 60, 270, 100, 70, Vector4(0.5, 0, 0.5, 0.5))) {
-		std::cout << "restart" << std::endl;
-		audio->PlayAudio(hSample3);
-	}
-	if (RenderButton(menu_game, gui_shader, 60, 340, 100, 70, Vector4(0, 0.5, 0.5, 0.5))) {
-		std::cout << "quit" << std::endl;
-		audio->PlayAudio(hSample3);
-	}
+	//// Durante el juego
+	//if (RenderButton(gui, gui_shader, 60, 60, 60, 60, sprite_gui[gui_id])) {
+	//	std::cout << "left one" << std::endl;
+	//	audio->PlayAudio(hSample3);
+	//}
+	//if (RenderButton(gui, gui_shader, 120, 60, 60, 60, sprite_gui[2])) {
+	//	std::cout << "right one" << std::endl;
+	//	glViewport(0, 0, wWidth, wHeight);
+	//	audio->PlayAudio(hSample3);
+	//}
+	//// Al iniciar el juego
+	//if (RenderButton(menu_inicial, gui_shader, 400, 300, 200, 100, Vector4(0, 0, 1, 0.5))) {
+	//	std::cout << "start" << std::endl;
+	//	audio->PlayAudio(hSample3);
+	//}
+	//if (RenderButton(menu_inicial, gui_shader, 400, 400, 200, 100, Vector4(0, 0.5, 1, 0.5))) {
+	//	std::cout << "tutorial" << std::endl;
+	//	audio->PlayAudio(hSample3);
+	//}
+	//// Hacer como menu desplegable al clicar el sprite_gui[0]
+	//if (RenderButton(menu_game, gui_shader, 60, 200, 100, 70, Vector4(0, 0, 0.5, 0.5))) {
+	//	std::cout << "play" << std::endl;
+	//	audio->PlayAudio(hSample3);
+	//}
+	//if (RenderButton(menu_game, gui_shader, 60, 270, 100, 70, Vector4(0.5, 0, 0.5, 0.5))) {
+	//	std::cout << "restart" << std::endl;
+	//	audio->PlayAudio(hSample3);
+	//}
+	//if (RenderButton(menu_game, gui_shader, 60, 340, 100, 70, Vector4(0, 0.5, 0.5, 0.5))) {
+	//	std::cout << "quit" << std::endl;
+	//	audio->PlayAudio(hSample3);
+	//}
 	// ----------------------------- BOTONES GUI ---------------------------------------------
 
 	glEnable(GL_DEPTH_TEST); // No necesarias creo
@@ -377,6 +381,25 @@ void RenderStages() {
 
 	// ----------------------------- STAGES --------------------------------------------------------------
 
+}
+
+void RenderScene(Camera* camera, float time)
+{
+	//render entities
+	for (int i = 0; i < scene->entities.size(); ++i)
+	{
+		Entity* ent = scene->entities[i];
+
+		if (ent->entity_type == eEntityType::OBJECT) {
+			RenderMesh(ent->model, ent->mesh, ent->texture, shader, camera, GL_TRIANGLES);
+		}
+		else if (ent->entity_type == eEntityType::PLAYER) {
+			RenderMeshWithAnim(ent->model, ent->mesh, ent->texture, detectiveIdle, a_shader, camera, GL_TRIANGLES, time);
+		}
+		else if (ent->entity_type == eEntityType::PROP) {
+			RenderMesh(ent->model, ent->mesh, ent->texture, shader, camera, GL_TRIANGLES);
+		}
+	}
 }
 
 //what to do when the image has to be draw
@@ -430,18 +453,15 @@ void Game::render(void)
 	}
 	else if(Input::isKeyPressed(SDL_SCANCODE_W)) { // Caminar
 		RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveWalk, a_shader, camera, GL_TRIANGLES, time);
-		audio->PlayAudio(hSample1);
+		//audio->PlayAudio(hSample1);
 	}
 	else { // Quieto
 		RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveIdle, a_shader, camera, GL_TRIANGLES, time);
-		audio->PlayAudio(hSample2);
+		//audio->PlayAudio(hSample2);
 	}
-	detectiveModel.setScale(0.2f, 0.2f, 0.2f);
+	detectiveModel.setScale(1.f, 1.f, 1.f);
 
-	for (size_t i = 0; i < entities.size(); i++) { // Para el AddEntityInFront
-		Entity* entity = entities[i];
-		RenderMesh(entity->model, entity->mesh, entity->texture, shader, camera, GL_TRIANGLES);
-	}
+	RenderScene(camera, time);
 
 	RenderStages();
 
@@ -527,7 +547,7 @@ void Game::update(double seconds_elapsed)
 		mouse_locked = true;
 		Vector3 Player_Move;
 		float rotSpeed = 60.f * DEG2RAD * elapsed_time;
-		maleModel.rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f)); //Rotamos el modelo del jugador y con él, la camara.
+		detectiveModel.rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f)); //Rotamos el modelo del jugador y con él, la camara.
 		camera->rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f));
 		camera->rotate(Input::mouse_delta.y * rotSpeed, camera->getLocalVector(Vector3(-1.0f, 0.0f, 0.0f)));
 
@@ -554,7 +574,7 @@ void Game::update(double seconds_elapsed)
 		camera->center.x -= wpv_player.x;
 		camera->center.z -= wpv_player.z;
 
-		maleModel.translateGlobal(-wpv_player.x, 0.0f, -wpv_player.z);
+		detectiveModel.translateGlobal(-wpv_player.x, 0.0f, -wpv_player.z);
 		
 	}
 	else { //CAMARA LIBRE
@@ -583,7 +603,7 @@ void Game::update(double seconds_elapsed)
 
 		DetectiveCollisions(player, nexPos, elapsed_time);
 
-		if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) speed *= 10; //move faster with left shift
+		if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) speed *= 2; //move faster with left shift
 		if (Input::isKeyPressed(SDL_SCANCODE_UP)) camera->move(Vector3(0.0f, 0.0f, 1.0f) * speed);
 		if (Input::isKeyPressed(SDL_SCANCODE_DOWN)) camera->move(Vector3(0.0f, 0.0f, -1.0f) * speed);
 		if (Input::isKeyPressed(SDL_SCANCODE_LEFT)) camera->move(Vector3(1.0f, 0.0f, 0.0f) * speed);

@@ -222,7 +222,7 @@ int TextParser::countwordfromhere(char *s)
 
 int TextParser::eof()
 {  
-  return (sl>size);
+  return (sl>size-1);
 }
 
 

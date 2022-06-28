@@ -79,9 +79,6 @@
     <ClCompile Include="..\..\src\audio.cpp">
       <Filter>game</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\extra\cJSON.cpp">
-      <Filter>extra</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\stage.cpp">
       <Filter>game</Filter>
     </ClCompile>
@@ -163,9 +160,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\audio.h">
       <Filter>game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\extra\cJSON.h">
-      <Filter>extra</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\stage.h">
       <Filter>game</Filter>

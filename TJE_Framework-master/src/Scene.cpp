@@ -10,29 +10,22 @@ Scene* Scene::instance = NULL;
 Scene::Scene()
 {
 	instance = this;
+	ambient_light = Vector3(255,200,30);
 }
 
 void Scene::clear()
 {
 	for (int i = 0; i < entities.size(); ++i)
 	{
-		Entity* ent = entities[i];
+		Entity* ent = this->entities[i];
 		delete ent;
 	}
 	entities.resize(0);
 }
 
-
-void Scene::addEntity(Entity* entity)
-{
-	entities.push_back(entity); entity->scene = this;
-}
-
-bool Scene::loadMap(const char* filename)
+void Scene::loadMap(const char* filename)
 {
 	TextParser* parser = new TextParser(filename);
-
-	clear();
 
 	while (!parser->eof())
 	{
@@ -40,38 +33,37 @@ bool Scene::loadMap(const char* filename)
 		// entity name
 		int type = parser->getint();
 
-		if (type == 10) { break; }
-
 		//std::cout << ent_name << "\n";
-
+		char* mesh_filename = parser->getword();
 		//mesh file
-		Mesh* mesh = Mesh::Get(parser->getword());
+		Mesh* mesh = Mesh::Get(mesh_filename);
 		// texture file
-		Texture* texture = Texture::Get(parser->getword());
-
+		char* tex_filename = parser->getword();
+		Texture* texture = Texture::Get(tex_filename);
+		
 		// matrix model
-		float pos_x = parser->getfloat();
-		float pos_y = parser->getfloat();
-		float pos_z = parser->getfloat();
+		char* pos = parser->getword();
+		Vector3 position;
+		position.parseFromText(pos, ',');
 
+		char* rot = parser->getword();
+		Vector3 rotation;
+		rotation.parseFromText(rot, ',');
 
-		float rot_x = parser->getfloat();
-		float rot_y = parser->getfloat();
-		float rot_z = parser->getfloat();
+		char* scl = parser->getword();
+		Vector3 scale;
+		scale.parseFromText(scl, ',');
 
-		float scale_x = parser->getfloat();
-		float scale_y = parser->getfloat();
-		float scale_z = parser->getfloat();
-
-		Vector3 position = Vector3(pos_x, pos_y,pos_z);
-		Vector3 rotation = Vector3(rot_x, rot_y, rot_z);
-		Vector3 scale = Vector3(scale_x, scale_y, scale_z);
+		if (!mesh) {
+			mesh = new Mesh();
+			mesh->createCube();
+		}
 
 		//create the entity
 		Entity* ent = createEntity(type, mesh, texture, position, rotation, scale);
 
 		//add the entity to the list
-		addEntity(ent);
+		entities.push_back(ent);
 	}
 	
 	
@@ -84,7 +76,9 @@ Entity* Scene::createEntity(int type, Mesh* mesh, Texture* texture, Vector3 posi
 		ent->mesh = mesh;
 		ent->texture = texture;
 		ent->model.translate(position.x, position.y, position.z);
-		ent->model.rotate(180*DEG2RAD, rotation);
+		ent->model.rotate(DEG2RAD * rotation.x, Vector3(0, 1, 0)); //rotate in x
+		ent->model.rotate(DEG2RAD * rotation.y, Vector3(0, 0, 1)); //rotate in y
+		ent->model.rotate(DEG2RAD * rotation.z, Vector3(1, 0, 0)); //rotate in z
 		ent->model.scale(scale.x, scale.y, scale.z);
 		ent->entity_type = (eEntityType) type;
 
@@ -106,9 +100,9 @@ std::pair<Mesh*, Texture*> Scene::loadScene(const char* obj_filename, const char
 }
 
 void putCamera(Matrix44 model, Camera* camera, bool locked, int w, int h) {
-	Vector3 eye = model * Vector3(0.f, 150.f, 1.f);
-	Vector3 center = model * Vector3(0.f, 15.f, 10.f);
-	Vector3 up = model.rotateVector(Vector3(0.f, 150.f, 0.f));
+	Vector3 eye = model * Vector3(0.f, 32.f, 1.f);
+	Vector3 center = model * Vector3(0.f, 32.f, 10.f);
+	Vector3 up = model.rotateVector(Vector3(0.f, 32.f, 0.f));
 
 	//Create our camera
 	camera->lookAt(Vector3(0.f, 100.f, 100.f), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera and point to 0,0,0

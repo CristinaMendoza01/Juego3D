@@ -1,0 +1,749 @@
+{
+ "name": "house",
+ "camera": [
+  [
+   -1.337881088256836,
+   0.4765276312828064,
+   3.891465902328491
+  ],
+  [
+   -1.3249094486236572,
+   0.566360592842102,
+   3.3530356884002686
+  ]
+ ],
+ "scene": {
+  "ref": 0,
+  "layers": 3,
+  "flags": {
+   "visible": true,
+   "collides": true,
+   "no_transform": true
+  },
+  "children": [
+   {
+    "position": [
+     -0.2776072025299072,
+     0,
+     1.0135564804077148
+    ],
+    "scaling": [
+     0.27079835534095764,
+     0.27079835534095764,
+     0.27079835534095764
+    ],
+    "id": "node39886.72500002384::0.7036963763890318",
+    "ref": 1,
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    },
+    "children": [
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 2,
+      "mesh": "SM_Bld_Double_Preset_02_44.obj",
+      "submesh": 0,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 3,
+      "mesh": "SM_Bld_Double_Preset_02_44.obj",
+      "submesh": 1,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 4,
+      "mesh": "SM_Bld_Double_Preset_02_44.obj",
+      "submesh": 2,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 5,
+      "mesh": "SM_Bld_Double_Preset_02_44.obj",
+      "submesh": 3,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 6,
+      "mesh": "SM_Bld_Double_Preset_02_44.obj",
+      "submesh": 4,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 7,
+      "mesh": "SM_Bld_Double_Preset_02_44.obj",
+      "submesh": 5,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 8,
+      "mesh": "SM_Bld_Double_Preset_02_44.obj",
+      "submesh": 6,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 9,
+      "mesh": "SM_Bld_Double_Preset_02_44.obj",
+      "submesh": 7,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 10,
+      "mesh": "SM_Bld_Double_Preset_02_44.obj",
+      "submesh": 8,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 11,
+      "mesh": "SM_Bld_Double_Preset_02_44.obj",
+      "submesh": 9,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 12,
+      "mesh": "SM_Bld_Double_Preset_02_44.obj",
+      "submesh": 10,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 13,
+      "mesh": "SM_Bld_Double_Preset_02_44.obj",
+      "submesh": 11,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 14,
+      "mesh": "SM_Bld_Double_Preset_02_44.obj",
+      "submesh": 14,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 15,
+      "mesh": "SM_Bld_Double_Preset_02_44.obj",
+      "submesh": 15,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 16,
+      "mesh": "SM_Bld_Double_Preset_02_44.obj",
+      "submesh": 16,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 17,
+      "mesh": "SM_Bld_Double_Preset_02_44.obj",
+      "submesh": 17,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 18,
+      "mesh": "SM_Bld_Double_Preset_02_44.obj",
+      "submesh": 18,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 19,
+      "mesh": "SM_Bld_Double_Preset_02_44.obj",
+      "submesh": 19,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     },
+     {
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "ref": 20,
+      "mesh": "SM_Bld_Double_Preset_02_44.obj",
+      "submesh": 20,
+      "layers": 1,
+      "flags": {
+       "visible": true,
+       "collides": true,
+       "was_rendered": true
+      }
+     }
+    ]
+   },
+   {
+    "position": [
+     -0.6815879344940186,
+     0.8152127265930176,
+     -0.18431586027145386
+    ],
+    "scaling": [
+     0.25653597712516785,
+     0.25653597712516785,
+     0.25653597712516785
+    ],
+    "id": "node116164.56500005722::0.8563999150129222",
+    "ref": 21,
+    "mesh": "SM_Prop_Bed_02_11.obj",
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 2,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     -0.5056691765785217,
+     0.8645763397216797,
+     -0.5602427124977112
+    ],
+    "scaling": [
+     0.2526150345802307,
+     0.2526150345802307,
+     0.2526150345802307
+    ],
+    "id": "node157755.79000008106::0.3289325704875916",
+    "ref": 22,
+    "mesh": "SM_Prop_Bottle_05_89.obj",
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 2,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     0.27503979206085205,
+     0.7880221009254456,
+     -0.17944157123565674
+    ],
+    "rotation": [
+     0,
+     -0.73478102684021,
+     0,
+     0.6783043742179871
+    ],
+    "scaling": [
+     0.31704825162887573,
+     0.31704825162887573,
+     0.31704825162887573
+    ],
+    "id": "node198991.2200000286::0.33323289841482895",
+    "ref": 23,
+    "mesh": "SM_Prop_Chair_01_71.obj",
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 2,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     -0.6144053936004639,
+     0.8045344352722168,
+     -0.5373567938804626
+    ],
+    "scaling": [
+     0.15610094368457794,
+     0.15610094368457794,
+     0.15610094368457794
+    ],
+    "id": "node273353.0349999666::0.43564129450598466",
+    "ref": 24,
+    "mesh": "SM_Prop_Cup_02_61.obj",
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 2,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     -0.7238979935646057,
+     0.7950436472892761,
+     0.5672491192817688
+    ],
+    "rotation": [
+     0,
+     0.7063191533088684,
+     0,
+     0.7078934907913208
+    ],
+    "scaling": [
+     0.25915804505348206,
+     0.25915804505348206,
+     0.25915804505348206
+    ],
+    "id": "node345440.3250000477::0.730132615838915",
+    "ref": 25,
+    "mesh": "SM_Prop_Desk_01_49.obj",
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 2,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     -0.6570593118667603,
+     0.7947511076927185,
+     -1.0318069458007812
+    ],
+    "scaling": [
+     0.27570849657058716,
+     0.27570849657058716,
+     0.27570849657058716
+    ],
+    "id": "node385540.00499999523::0.34180947790340666",
+    "ref": 26,
+    "mesh": "SM_Prop_Dresser_01_51.obj",
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 2,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     0.6912475824356079,
+     0,
+     -0.022792816162109375
+    ],
+    "id": "node464284.3300000429::0.41255163365938796",
+    "ref": 27,
+    "mesh": "SM_Prop_Stick_01_100.obj",
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 2,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     0.7778817415237427,
+     0,
+     -0.8551762104034424
+    ],
+    "scaling": [
+     0.5127079486846924,
+     0.5127079486846924,
+     0.5127079486846924
+    ],
+    "id": "node488906.58500003815::0.9315144892173048",
+    "ref": 28,
+    "mesh": "SM_Prop_Tumbleweed_02_24.obj",
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 2,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     0.7870628237724304,
+     0,
+     0.3669929504394531
+    ],
+    "scaling": [
+     0.2224251925945282,
+     0.2224251925945282,
+     0.2224251925945282
+    ],
+    "id": "node512779.8300000429::0.8700799720937025",
+    "ref": 29,
+    "mesh": "SM_Prop_Wood_Pile_02_125.obj",
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 2,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     0.07236427068710327,
+     0,
+     -0.6013537049293518
+    ],
+    "scaling": [
+     0.31887149810791016,
+     0.31887149810791016,
+     0.31887149810791016
+    ],
+    "id": "node623462.9550000429::0.9206736444104293",
+    "ref": 30,
+    "mesh": "SM_Prop_Table_Small_01_26.obj",
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     0.1315283179283142,
+     0,
+     0.26926928758621216
+    ],
+    "scaling": [
+     0.22530336678028107,
+     0.22530336678028107,
+     0.22530336678028107
+    ],
+    "id": "node717450.3250000477::0.4319938850953464",
+    "ref": 31,
+    "mesh": "SM_Prop_Bed_01_10.obj",
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   },
+   {
+    "position": [
+     0.21146708726882935,
+     0,
+     0.7199279069900513
+    ],
+    "scaling": [
+     0.33049261569976807,
+     0.33049261569976807,
+     0.33049261569976807
+    ],
+    "id": "node736377.7649999857::0.6480328766068666",
+    "ref": 32,
+    "mesh": "SM_Prop_Bottle_Broken_04_84.obj",
+    "extra": {
+     "layer": 0,
+     "bit_flags": 0,
+     "info": ""
+    },
+    "layers": 1,
+    "flags": {
+     "visible": true,
+     "collides": true,
+     "base_object": true,
+     "was_rendered": true
+    }
+   }
+  ]
+ },
+ "objects": [
+  {
+   "type": "MESH",
+   "filename": "SM_Bld_Double_Preset_02_44.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "SM_Prop_Bed_02_11.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "SM_Prop_Bottle_05_89.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "SM_Prop_Chair_01_71.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "SM_Prop_Cup_02_61.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "SM_Prop_Desk_01_49.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "SM_Prop_Dresser_01_51.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "SM_Prop_Stick_01_100.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "SM_Prop_Tumbleweed_02_24.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "SM_Prop_Wood_Pile_02_125.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "SM_Prop_Table_Small_01_26.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "SM_Prop_Bed_01_10.obj"
+  },
+  {
+   "type": "MESH",
+   "filename": "SM_Prop_Bottle_Broken_04_84.obj"
+  }
+ ],
+ "editor": {
+  "active_layer": 0,
+  "scene_mode": false,
+  "group": true,
+  "targets": null
+ }
+}

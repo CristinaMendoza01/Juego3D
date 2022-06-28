@@ -9,16 +9,22 @@ struct sPlayer {
 
 class player : public Entity
 {
-	
+	Matrix44 model;
+	Mesh* mesh;
+	Texture* texture;
+
 	Vector3 pos;
+
+	float yaw;
+
+	float pitch;
+
 	Animation* anim_idle;
 	Animation* anim_walk;
 	Animation* anim_run;
-	float yaw;
 
 	player();
 
-
-	void Update();
+	void RenderPlayer(Mesh* mesh, Texture* textrure, Animation* anim, Shader* shader, Camera* cam, int primitive, float yaw, float pitch, float t);
 
 };

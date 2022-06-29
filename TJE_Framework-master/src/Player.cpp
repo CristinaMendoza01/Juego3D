@@ -2,6 +2,10 @@
 #include "shader.h"
 #include "texture.h"
 
+Player::Player()
+{
+}
+
 Player::Player( Entity* ent)
 {
 	this->mesh = ent->mesh;
@@ -12,6 +16,7 @@ Player::Player( Entity* ent)
 	this->anim_idle = Animation::Get("data/animations/detective_idle.skanim");
 	this->anim_walk = Animation::Get("data/animations/detective_walk.skanim");
 	this->anim_run = Animation::Get("data/animations/detective_running.skanim");
+	this->player_state = IDLE;
 }
 
 void Player::RenderPlayer(Matrix44 model, Mesh* mesh, Texture* tex, Animation* anim, Shader* shader, Camera* cam,int primitive, float yaw, float pitch, float t)
@@ -35,4 +40,9 @@ void Player::RenderPlayer(Matrix44 model, Mesh* mesh, Texture* tex, Animation* a
 
 	//disable shader
 	shader->disable();
+}
+
+void Player::UpdatePlayer()
+{
+
 }

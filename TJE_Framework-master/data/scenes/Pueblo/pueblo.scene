@@ -694,3 +694,9 @@ data\textures\oeste.tga
 0.771,0.420,6.068
 0.000,-88.524,0.000
 1.000,1.000,1.000
+1
+data\assets\detective.mesh
+data\textures\detective.tga
+-9.810,0.000,75.042
+0.000,0.000,0.000
+1.000,1.000,1.000

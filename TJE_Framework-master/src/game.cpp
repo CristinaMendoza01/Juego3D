@@ -51,12 +51,7 @@ Mesh* cityMesh = NULL;
 Texture* cityTex = NULL;
 Matrix44 cityModel;
 
-Mesh* detectiveMesh = NULL;
-Texture* detectiveTex = NULL;
-Matrix44 detectiveModel;
-Animation* detectiveWalk;
-Animation* detectiveRun;
-Animation* detectiveIdle;
+Player detective;
 
 //GUIs
 Matrix44 quadModel;
@@ -72,7 +67,6 @@ FBO* fbo = NULL;
 
 Game* Game::instance = NULL;
 
-sPlayer player;
 
 // Audio
 //HSAMPLE hSample1;
@@ -87,7 +81,7 @@ const int houses_height = 10;
 float padding = 10.0f; // Distancia entre las houses
 float lodDist = 10.0f; // Para los LODs
 float no_render_dist = 1000.0f; // Para el frustum
-bool cameraLocked = true;
+bool cameraLocked = false;
 const bool firstP = true;
 
 Entity* selectedEntity = NULL;
@@ -158,7 +152,7 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 
 	// Create our camera
 	camera = new Camera();
-	putCamera(detectiveModel, camera, cameraLocked, window_width, window_height);
+	
 
 	// Some meshes
 	femaleMesh = Mesh::Get("data/assets/female.mesh");
@@ -177,18 +171,12 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	floorMesh = Mesh::Get("data/assets/sand2.obj");
 	floorTex = Texture::Get("data/textures/sand.tga");
 
-	detectiveMesh = Mesh::Get("data/assets/detective.mesh");
-	detectiveTex = Texture::Get("data/textures/detective.tga");
-	detectiveWalk = Animation::Get("data/animations/detective_walk.skanim");
-	detectiveRun = Animation::Get("data/animations/detective_running.skanim");
-	detectiveIdle = Animation::Get("data/animations/detective_idle.skanim");
-
 	// Levels
 	//campingLevel = scene->loadScene("data/scenes/Level1/camping.obj", "data/scenes/Level1/camping.png");
 	//cityLevel = scene->loadScene("data/scenes/Level2/city.obj", "data/scenes/Level2/city.png");
 	//houseLevel = scene->loadScene("data/scenes/Level3/house.obj", "data/scenes/Level3/house.png");
 
-	scene->loadMap("data/scenes/House/house.scene");
+	scene->loadMap("data/scenes/Pueblo/pueblo.scene");
 
 	std::cout << scene->entities[2] << std::endl;
 
@@ -216,6 +204,7 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	//hSample3 = audio->loadAudio("data/audio/button.wav", 0);
 
 	//scene = new Scene();
+	putCamera(Matrix44(), camera, cameraLocked, window_width, window_height);
 
 	//hide the cursor
 	SDL_ShowCursor(!mouse_locked); //hide or show the mouse
@@ -394,14 +383,20 @@ void RenderScene(Camera* camera, float time)
 			RenderMesh(ent->model, ent->mesh, ent->texture, shader, camera, GL_TRIANGLES);
 		}
 		else if (ent->entity_type == eEntityType::PLAYER) {
-			Player detective = new Player(ent);
-			RenderMeshWithAnim(detective.model, detective.mesh, detective.texture, detective.anim_idle, a_shader, camera, GL_TRIANGLES, time);
-		}
-		else if (ent->entity_type == eEntityType::PROP) {
-			RenderMesh(ent->model, ent->mesh, ent->texture, shader, camera, GL_TRIANGLES);
+			scene->player = new Player(ent);
+			scene->player->model.setScale(0.01f, 0.01f, 0.01f);
+			if(scene->player->player_state == ePlayerState::IDLE)
+				RenderMeshWithAnim(scene->player->model, scene->player->mesh, scene->player->texture, scene->player->anim_idle, a_shader, camera, GL_TRIANGLES, time);
+			if (scene->player->player_state == ePlayerState::WALK)
+				RenderMeshWithAnim(scene->player->model, scene->player->mesh, scene->player->texture, scene->player->anim_walk, a_shader, camera, GL_TRIANGLES, time);
+			if (scene->player->player_state == ePlayerState::RUN)
+				RenderMeshWithAnim(scene->player->model, scene->player->mesh, scene->player->texture, scene->player->anim_run, a_shader, camera, GL_TRIANGLES, time);
 		}
 	}
 }
+
+
+
 
 //what to do when the image has to be draw
 void Game::render(void)
@@ -427,6 +422,11 @@ void Game::render(void)
 	RenderMesh(floorModel, floorMesh, floorTex, shader, camera, GL_TRIANGLES);
 	floorModel.setScale(100, 0, 100);
 
+	//Render Level
+	RenderScene(camera, time);
+
+	
+
 	// ----------------------------- LEVELS ---------------------------------------------
 	// Level 1
 	//RenderMesh(campingModel, campingLevel.first, campingLevel.second, shader, camera, GL_TRIANGLES);
@@ -447,23 +447,8 @@ void Game::render(void)
 	// ----------------------------- LEVELS ---------------------------------------------
 	
 	// Detective --> PLAYER
-	detectiveModel.translate(player.pos.x, player.pos.y, player.pos.z);
-	detectiveModel.rotate(player.yaw * DEG2RAD, Vector3(0, 1, 0));
+	
 
-	if (Input::isKeyPressed(SDL_SCANCODE_R)) { // Correr
-		RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveRun, a_shader, camera, GL_TRIANGLES, time);
-	}
-	else if(Input::isKeyPressed(SDL_SCANCODE_W)) { // Caminar
-		RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveWalk, a_shader, camera, GL_TRIANGLES, time);
-		//audio->PlayAudio(hSample1);
-	}
-	else { // Quieto
-		RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveIdle, a_shader, camera, GL_TRIANGLES, time);
-		//audio->PlayAudio(hSample2);
-	}
-	detectiveModel.setScale(0.01f, 0.01f, 0.01f);
-
-	RenderScene(camera, time);
 
 	// Render Stages
 	GetStage(currentStage, stages)->Render();
@@ -489,7 +474,7 @@ void NextStage() { // Para pasar de stage
 }
 // ----------------------------- STAGES --------------------------------------------------------------
 
-void DetectiveCollisions(sPlayer player, Vector3 nexPos, float elapsed_time) {
+void DetectiveCollisions(Player* player, Vector3 nexPos, float elapsed_time) {
 	//calculamos el centro de la esfera de colisión del player elevandola hasta la cintura
 	Vector3 character_center = nexPos + Vector3(0, 4, 0);
 
@@ -504,7 +489,7 @@ void DetectiveCollisions(sPlayer player, Vector3 nexPos, float elapsed_time) {
 			continue; //si no colisiona, pasamos al siguiente objeto
 		//si la esfera está colisionando muevela a su posicion anterior alejandola del objeto
 		Vector3 push_away = normalize(coll - character_center) * elapsed_time;
-		nexPos = player.pos - push_away; //move to previous pos but a little bit further
+		nexPos = player->model.getTranslation() - push_away; //move to previous pos but a little bit further
 
 		//cuidado con la Y, si nuestro juego es 2D la ponemos a 0
 		nexPos.y = 0;
@@ -512,7 +497,7 @@ void DetectiveCollisions(sPlayer player, Vector3 nexPos, float elapsed_time) {
 		//reflejamos el vector velocidad para que de la sensacion de que rebota en la pared
 		//velocity = reflect(velocity, collnorm) * 0.95;
 	}
-	player.pos = nexPos;
+	player->model.translate(nexPos.x, nexPos.y, nexPos.z);
 
 }
 
@@ -539,15 +524,15 @@ void Game::update(double seconds_elapsed)
 		mouse_locked = true;
 		Vector3 Player_Move;
 		float rotSpeed = 60.f * DEG2RAD * elapsed_time;
-		detectiveModel.rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f)); //Rotamos el modelo del jugador y con él, la camara.
+		scene->player->model.rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f)); //Rotamos el modelo del jugador y con él, la camara.
 		camera->rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f));
 		camera->rotate(Input::mouse_delta.y * rotSpeed, camera->getLocalVector(Vector3(-1.0f, 0.0f, 0.0f)));
 
 		float playerSpeed = 50.f * elapsed_time;
 
 		if (firstP) {
-			player.pitch += Input::mouse_delta.y * 10.0f * elapsed_time;
-			player.yaw += Input::mouse_delta.x * 10.0f * elapsed_time;
+			scene->player->pitch += Input::mouse_delta.y * 10.0f * elapsed_time;
+			scene->player->yaw += Input::mouse_delta.x * 10.0f * elapsed_time;
 			Input::centerMouse();
 			SDL_ShowCursor(false);
 		}
@@ -570,7 +555,7 @@ void Game::update(double seconds_elapsed)
 		camera->center.x -= wpv_player.x;
 		camera->center.z -= wpv_player.z;
 
-		detectiveModel.translateGlobal(-wpv_player.x, 0.0f, -wpv_player.z);
+		scene->player->model.translateGlobal(-wpv_player.x, 0.0f, -wpv_player.z);
 		
 	}
 	else { //CAMARA LIBRE
@@ -579,25 +564,35 @@ void Game::update(double seconds_elapsed)
 		float rotSpeed = 200.0f * elapsed_time;
 		SDL_ShowCursor(true);
 
-		if (Input::isKeyPressed(SDL_SCANCODE_E)) player.yaw += rotSpeed;
-		if (Input::isKeyPressed(SDL_SCANCODE_Q)) player.yaw -= rotSpeed;;
+		if (Input::isKeyPressed(SDL_SCANCODE_E)) scene->player->yaw += rotSpeed;
+		if (Input::isKeyPressed(SDL_SCANCODE_Q)) scene->player->yaw -= rotSpeed;;
 
 		Matrix44 playerRotate;
-		playerRotate.rotate(player.yaw * DEG2RAD, Vector3(0, 1, 0));
+		playerRotate.rotate(scene->player->yaw * DEG2RAD, Vector3(0, 1, 0));
 		Vector3 forward = playerRotate.rotateVector(Vector3(0, 0, -1));
 		Vector3 right = playerRotate.rotateVector(Vector3(1, 0, 0));
 
 		Vector3 playerVel;
 
 		if (Input::isKeyPressed(SDL_SCANCODE_S)) playerVel = playerVel + (forward * playerSpeed);
-		if (Input::isKeyPressed(SDL_SCANCODE_W)) playerVel = playerVel - (forward * playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_W)) {
+			playerVel = playerVel - (forward * playerSpeed);
+			scene->player->player_state = ePlayerState::WALK;
+		}
 		if (Input::isKeyPressed(SDL_SCANCODE_D)) playerVel = playerVel - (right * playerSpeed);
 		if (Input::isKeyPressed(SDL_SCANCODE_A)) playerVel = playerVel + (right * playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_W) && Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) {
+			playerVel = playerVel - (forward * playerSpeed * 2);
+			scene->player->player_state = ePlayerState::RUN;
+		}
 
-		player.pos = player.pos + playerVel; // Character controller
-		Vector3 nexPos = player.pos + playerVel;
+		scene->player->model.translateGlobal(playerVel.x, playerVel.y, playerVel.z); // Character controller
+		Vector3 nexPos = scene->player->model.getTranslation() + playerVel;
 
-		DetectiveCollisions(player, nexPos, elapsed_time);
+		if (playerVel.x == 0.f || playerVel.y == 0.f || playerVel.z == 0.f)
+			scene->player->player_state = ePlayerState::IDLE;
+
+		DetectiveCollisions(scene->player, nexPos, elapsed_time);
 
 		if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) speed *= 2; //move faster with left shift
 		if (Input::isKeyPressed(SDL_SCANCODE_UP)) camera->move(Vector3(0.0f, 0.0f, 1.0f) * speed);

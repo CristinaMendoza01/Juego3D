@@ -8,9 +8,7 @@
 #include "animation.h"
 
 enum eEntityType {
-	NONE = 0,
-	PROP = 1,
-	PLAYER = 2,
+	PLAYER = 1,
 	OBJECT = 3,
 };
 

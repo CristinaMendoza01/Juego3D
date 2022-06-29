@@ -87,9 +87,9 @@ Entity* Scene::createEntity(int type, Mesh* mesh, Texture* texture, Vector3 posi
 }
 
 void putCamera(Matrix44 model, Camera* camera, bool locked, int w, int h) {
-	Vector3 eye = model * Vector3(0.f, 32.f, 1.f);
-	Vector3 center = model * Vector3(0.f, 32.f, 10.f);
-	Vector3 up = model.rotateVector(Vector3(0.f, 32.f, 0.f));
+	Vector3 eye = model * Vector3(0.f, 1.f, 1.f);
+	Vector3 center = model * Vector3(0.f, 1.f, 1.f);
+	Vector3 up = model.rotateVector(Vector3(0.f, 1.f, 0.f));
 
 	//Create our camera
 	camera->lookAt(Vector3(0.f, 100.f, 100.f), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera and point to 0,0,0
@@ -101,7 +101,7 @@ void putCamera(Matrix44 model, Camera* camera, bool locked, int w, int h) {
 }
 
 
-void MiniMapa(sPlayer player, Matrix44 model, std::pair <Mesh*, Texture*> level, Shader* shader) {
+void MiniMapa(Player player, Matrix44 model, std::pair <Mesh*, Texture*> level, Shader* shader) {
 	int wWidth = Game::instance->window_width;
 	int wHeight = Game::instance->window_height;
 	glViewport(wWidth - 200, wHeight - 200, 200, 200);
@@ -110,8 +110,8 @@ void MiniMapa(sPlayer player, Matrix44 model, std::pair <Mesh*, Texture*> level,
 	// CÓDIGO PROFE --> NO FUNCIONA
 	Camera cam;
 	cam.setPerspective(60, 1, 0.1f, 1000.f);
-	Vector3 eye = player.pos + Vector3(0, 100, 0);
-	Vector3 center = player.pos;
+	Vector3 eye = player.model.getTranslation() + Vector3(0, 100, 0);
+	Vector3 center = player.model.getTranslation();
 	Vector3 up = model.rotateVector(Vector3(0, 0, -1));
 	cam.lookAt(eye, center, up);
 	Matrix44 mapModel;

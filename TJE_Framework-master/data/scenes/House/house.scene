@@ -1,17 +1,97 @@
-#TYPE MESH POSITION EULER SCALE LAYER BITS INFO
-MESH SM_Bld_Single_Preset_02_56.obj 0.000,0.000,0.000 0.000,0.000,0.000 1.000,1.000,1.000 0 0 
-MESH SM_Prop_Basket_01_90.obj 1.862,0.000,-7.415 0.000,0.000,0.000 1.000,1.000,1.000 0 0 
-MESH SM_Prop_Bed_02_11.obj -1.766,0.000,-4.922 0.000,0.000,0.000 1.000,1.000,1.000 0 0 
-MESH SM_Prop_Bone_Cracked_01_6.obj 2.042,0.000,-2.284 0.000,0.000,0.000 1.000,1.000,1.000 0 0 
-MESH SM_Prop_Bone_Cracked_02_8.obj 1.974,0.000,-2.713 0.000,0.000,0.000 1.000,1.000,1.000 0 0 
-MESH SM_Prop_Bottle_Broken_01_88.obj -0.510,0.046,0.144 -55.676,85.612,55.598 1.000,1.000,1.000 0 0 
-MESH SM_Prop_Bottle_Broken_02_82.obj -0.211,0.000,0.158 0.000,0.000,0.000 1.000,1.000,1.000 0 0 
-MESH SM_Prop_Bush_01_79.obj 1.723,0.000,3.013 0.000,0.000,0.000 1.000,1.000,1.000 0 0 
-MESH SM_Prop_Bush_01_79.obj -1.549,0.000,2.963 0.000,0.000,0.000 1.000,1.000,1.000 0 0 
-MESH SM_Prop_Church_Cross_01_70.obj -2.339,0.000,2.944 178.829,0.000,0.000 0.358,0.358,0.358 0 0 
-MESH SM_Prop_Bush_01_79.obj -2.760,0.000,2.890 0.000,0.000,0.000 1.000,1.000,1.000 0 0 
-MESH SM_Prop_Cup_01_62.obj -2.203,0.000,-3.791 0.000,0.000,0.000 1.000,1.000,1.000 0 0 
-MESH SM_Prop_Desk_01_49.obj -0.052,0.000,-7.352 0.000,0.000,0.000 1.000,1.000,1.000 0 0 
-MESH SM_Prop_Chair_01_71.obj -0.160,0.000,-6.578 156.106,0.000,0.000 1.000,1.000,1.000 0 0 
-MESH SM_Prop_RoadSign_01_114.obj -0.257,0.000,8.173 0.000,0.000,0.000 1.000,1.000,1.000 0 0 
-MESH SM_Prop_Tumbleweed_02_24.obj 1.256,0.242,0.633 0.000,0.000,0.000 1.000,1.000,1.000 0 0 
+#TYPE MESH POSITION EULER SCALE
+3
+data\meshes\WesternPack\Buildings\SM_Bld_Single_Preset_02_56.obj
+data\textures\oeste.tga  
+0.000,0.000,0.000 
+0.000,0.000,0.000 
+1.000,1.000,1.000
+3
+data\meshes\WesternPack\Props\SM_Prop_Basket_01_90.obj
+data\textures\oeste.tga 
+1.862,0.000,-7.415 
+0.000,0.000,0.000 
+1.000,1.000,1.000 
+3
+data\meshes\WesternPack\Props\SM_Prop_Bed_02_11.obj
+data\textures\oeste.tga  
+-1.766,0.000,-4.922 
+0.000,0.000,0.000 
+1.000,1.000,1.000
+3
+data\meshes\WesternPack\Props\SM_Prop_Bone_Cracked_01_6.obj
+data\textures\oeste.tga   
+2.042,0.000,-2.284 
+0.000,0.000,0.000 
+1.000,1.000,1.000
+3
+data\meshes\WesternPack\Props\SM_Prop_Bone_Cracked_02_8.obj
+data\textures\oeste.tga  
+1.974,0.000,-2.713 
+0.000,0.000,0.000 
+1.000,1.000,1.000
+3
+data\meshes\WesternPack\Props\SM_Prop_Bottle_Broken_01_88.obj
+data\textures\oeste.tga 
+-0.510,0.046,0.144 
+-55.676,85.612,55.598 
+1.000,1.000,1.000
+3
+data\meshes\WesternPack\Props\SM_Prop_Bottle_Broken_02_82.obj
+data\textures\oeste.tga  
+-0.211,0.000,0.158 
+0.000,0.000,0.000 
+1.000,1.000,1.000
+3
+data\meshes\WesternPack\Props\SM_Prop_Bush_01_79.obj
+data\textures\oeste.tga  
+1.723,0.000,3.013 
+0.000,0.000,0.000 
+1.000,1.000,1.000
+3
+data\meshes\WesternPack\Props\SM_Prop_Bush_01_79.obj
+data\textures\oeste.tga  
+-1.549,0.000,2.963 
+0.000,0.000,0.000 
+1.000,1.000,1.000
+3
+data\meshes\WesternPack\Props\SM_Prop_Church_Cross_01_70.obj
+data\textures\oeste.tga  ´
+-2.339,0.000,2.944 
+178.829,0.000,0.000 
+0.358,0.358,0.358
+3
+data\meshes\WesternPack\Props\SM_Prop_Bush_01_79.obj
+data\textures\oeste.tga  
+-2.760,0.000,2.890 
+0.000,0.000,0.000 
+1.000,1.000,1.000
+3
+data\meshes\WesternPack\Props\SM_Prop_Cup_01_62.obj
+data\textures\oeste.tga 
+-2.203,0.000,-3.791 
+0.000,0.000,0.000 
+1.000,1.000,1.000
+3
+data\meshes\WesternPack\Props\SM_Prop_Desk_01_49.obj
+data\textures\oeste.tga   
+-0.052,0.000,-7.352 
+0.000,0.000,0.000 
+1.000,1.000,1.000
+3
+data\meshes\WesternPack\Props\SM_Prop_Chair_01_71.obj
+data\textures\oeste.tga    
+-0.160,0.000,-6.578 
+156.106,0.000,0.000 
+1.000,1.000,1.000
+3
+data\meshes\WesternPack\Props\SM_Prop_RoadSign_01_114.obj
+data\textures\oeste.tga   
+-0.257,0.000,8.173 
+0.000,0.000,0.000 
+1.000,1.000,1.000
+3
+data\meshes\WesternPack\Props\SM_Prop_Tumbleweed_02_24.obj
+data\textures\oeste.tga    
+1.256,0.242,0.633 
+0.000,0.000,0.000 
+1.000,1.000,1.000

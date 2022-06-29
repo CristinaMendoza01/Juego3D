@@ -106,6 +106,7 @@ float tileSizeX, tileSizeY;
 // ----------------------------- STAGES --------------------------------------------------------------
 std::vector<Stage*> stages; // Vector stages
 STAGE_ID currentStage = STAGE_ID::INTRO; //Índice que nos dice en que stage estamos, inicializamos con la INTRO
+ePlayerState currentAnim = ePlayerState::IDLE; // Índice que nos dice qué animación tiene el detective, inicializamos con IDLE
 
 void InitStages() {
     stages.reserve(7); //Reserva 7 elementos (hace un malloc de 7 porque tenemos 7 stages)
@@ -341,37 +342,6 @@ void RenderAllGUIs() {
 	glDisable(GL_BLEND);
 }
 
-void RenderStages() {
-	// ----------------------------- STAGES --------------------------------------------------------------
-
-	//GetStage(currentStage, stages)->Render();
-
-	//if (GetStage(currentStage, stages) == GetStage(STAGE_ID::INTRO, stages)) {
-
-	//}
-	//if (GetStage(currentStage, stages) == GetStage(STAGE_ID::INFO, stages)) {
-
-	//}
-	//if (GetStage(currentStage, stages) == GetStage(STAGE_ID::TUTORIAL, stages)) {
-
-	//}
-	//if (GetStage(currentStage, stages) == GetStage(STAGE_ID::LEVEL1, stages)) {
-
-	//}
-	//if (GetStage(currentStage, stages) == GetStage(STAGE_ID::LEVEL2, stages)) {
-
-	//}
-	//if (GetStage(currentStage, stages) == GetStage(STAGE_ID::LEVEL3, stages)) {
-
-	//}
-	//if (GetStage(currentStage, stages) == GetStage(STAGE_ID::END, stages)) {
-
-	//}
-
-	// ----------------------------- STAGES --------------------------------------------------------------
-
-}
-
 void RenderScene(Camera* camera, float time)
 {
 	//render entities
@@ -385,14 +355,16 @@ void RenderScene(Camera* camera, float time)
 		else if (ent->entity_type == eEntityType::PLAYER) {
 			scene->player = new Player(ent);
 			scene->player->model.setScale(0.01f, 0.01f, 0.01f);
-			if(scene->player->player_state == ePlayerState::IDLE)
+			if(currentAnim == ePlayerState::IDLE)
 				RenderMeshWithAnim(scene->player->model, scene->player->mesh, scene->player->texture, scene->player->anim_idle, a_shader, camera, GL_TRIANGLES, time);
-			if (scene->player->player_state == ePlayerState::WALK)
+			if (currentAnim == ePlayerState::WALK)
 				RenderMeshWithAnim(scene->player->model, scene->player->mesh, scene->player->texture, scene->player->anim_walk, a_shader, camera, GL_TRIANGLES, time);
-			if (scene->player->player_state == ePlayerState::RUN)
+			if (currentAnim == ePlayerState::RUN)
 				RenderMeshWithAnim(scene->player->model, scene->player->mesh, scene->player->texture, scene->player->anim_run, a_shader, camera, GL_TRIANGLES, time);
 		}
 	}
+
+
 }
 
 
@@ -423,6 +395,9 @@ void Game::render(void)
 	floorModel.setScale(100, 0, 100);
 
 	//Render Level
+	scene->player->model.translate(scene->player->pos.x, scene->player->pos.y, scene->player->pos.z);
+	scene->player->model.rotate(scene->player->yaw * DEG2RAD, Vector3(0, 1, 0));
+
 	RenderScene(camera, time);
 
 	
@@ -575,23 +550,24 @@ void Game::update(double seconds_elapsed)
 		Vector3 playerVel;
 
 		if (Input::isKeyPressed(SDL_SCANCODE_S)) playerVel = playerVel + (forward * playerSpeed);
-		if (Input::isKeyPressed(SDL_SCANCODE_W)) {
-			playerVel = playerVel - (forward * playerSpeed);
-			scene->player->player_state = ePlayerState::WALK;
-		}
 		if (Input::isKeyPressed(SDL_SCANCODE_D)) playerVel = playerVel - (right * playerSpeed);
 		if (Input::isKeyPressed(SDL_SCANCODE_A)) playerVel = playerVel + (right * playerSpeed);
 		if (Input::isKeyPressed(SDL_SCANCODE_W) && Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) {
 			playerVel = playerVel - (forward * playerSpeed * 2);
-			scene->player->player_state = ePlayerState::RUN;
+			currentAnim = ePlayerState::RUN;
+		} else if(Input::isKeyPressed(SDL_SCANCODE_W)) {
+			playerVel = playerVel - (forward * playerSpeed);
+			currentAnim = ePlayerState::WALK;
 		}
+		else {
+			currentAnim = ePlayerState::IDLE;
+		}
+		scene->player->UpdatePlayer(currentAnim);
 
-		scene->player->model.translateGlobal(playerVel.x, playerVel.y, playerVel.z); // Character controller
-		Vector3 nexPos = scene->player->model.getTranslation() + playerVel;
-
-		if (playerVel.x == 0.f || playerVel.y == 0.f || playerVel.z == 0.f)
-			scene->player->player_state = ePlayerState::IDLE;
-
+		//scene->player->model.translateGlobal(playerVel.x, playerVel.y, playerVel.z); // Character controller
+		scene->player->pos = scene->player->pos + playerVel;
+		//Vector3 nexPos = scene->player->model.getTranslation() + playerVel;
+		Vector3 nexPos = scene->player->pos + playerVel;
 		DetectiveCollisions(scene->player, nexPos, elapsed_time);
 
 		if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) speed *= 2; //move faster with left shift

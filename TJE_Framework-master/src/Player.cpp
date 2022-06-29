@@ -42,7 +42,13 @@ void Player::RenderPlayer(Matrix44 model, Mesh* mesh, Texture* tex, Animation* a
 	shader->disable();
 }
 
-void Player::UpdatePlayer()
+void Player::UpdatePlayer(ePlayerState currentAnim)
 {
-
+	Animation* anim;
+	if (currentAnim == ePlayerState::WALK) {
+		anim = Player::anim_walk;
+	}
+	else if (currentAnim == ePlayerState::RUN) {
+		anim = Player::anim_run;
+	}
 }

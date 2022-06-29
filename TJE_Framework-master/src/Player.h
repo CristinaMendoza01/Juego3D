@@ -15,7 +15,7 @@ public:
 	Texture* texture;
 
 	float yaw;
-
+	Vector3 pos;
 	float pitch;
 
 	ePlayerState player_state;
@@ -28,6 +28,6 @@ public:
 	Player(Entity* ent);
 
 	void RenderPlayer(Matrix44 model, Mesh* mesh, Texture* textrure, Animation* anim, Shader* shader, Camera* cam, int primitive, float yaw, float pitch, float t);
-	void UpdatePlayer();
+	void UpdatePlayer(ePlayerState currentAnim);
 
 };

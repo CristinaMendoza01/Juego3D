@@ -13,8 +13,6 @@ class player : public Entity
 	Mesh* mesh;
 	Texture* texture;
 
-	Vector3 pos;
-
 	float yaw;
 
 	float pitch;
@@ -25,6 +23,6 @@ class player : public Entity
 
 	player();
 
-	void RenderPlayer(Mesh* mesh, Texture* textrure, Animation* anim, Shader* shader, Camera* cam, int primitive, float yaw, float pitch, float t);
+	void RenderPlayer(Matrix44 model, Mesh* mesh, Texture* textrure, Animation* anim, Shader* shader, Camera* cam, int primitive, float yaw, float pitch, float t);
 
 };

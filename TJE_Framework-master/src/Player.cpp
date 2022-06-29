@@ -2,7 +2,7 @@
 #include "shader.h"
 #include "texture.h"
 
-void player::RenderPlayer(Mesh* mesh, Texture* tex, Animation* anim, Shader* shader, Camera* cam,int primitive, float yaw, float pitch, float t)
+void player::RenderPlayer(Matrix44 model, Mesh* mesh, Texture* tex, Animation* anim, Shader* shader, Camera* cam,int primitive, float yaw, float pitch, float t)
 {
 	if (!shader) return;
 	//enable shader

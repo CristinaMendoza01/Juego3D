@@ -29,7 +29,7 @@ public:
 		return STAGE_ID::INTRO;
 	};
 	void Render(void) {
-		drawText(2, 2, "PRESS SPACE TO START", Vector3(Game::instance->window_width / 2.0, 1.0, Game::instance->window_height / 2.0), 2);
+		drawText(50, 100, "PRESS SPACE TO START", Vector3(Game::instance->window_width / 2.0, 1.0, Game::instance->window_height / 2.0), 2);
 	}
 	void Update(float seconds_elapsed) {}
 };

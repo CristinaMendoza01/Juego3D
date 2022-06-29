@@ -62,11 +62,10 @@ Texture* menu_game = NULL;
 
 Animation* anim = NULL;
 float angle = 0;
-float mouse_speed = 100.0f;
+float mouse_speed = 50.0f;
 FBO* fbo = NULL;
 
 Game* Game::instance = NULL;
-
 
 // Audio
 //HSAMPLE hSample1;
@@ -86,10 +85,6 @@ const bool firstP = true;
 
 Entity* selectedEntity = NULL;
 std::vector<LightEntity*> lights;
-
-std::pair <Mesh*, Texture*> campingLevel;
-std::pair <Mesh*, Texture*> cityLevel;
-std::pair <Mesh*, Texture*> houseLevel;
 
 // ----------------------------- PROFE: YO LO PONDRIA EN EL INPUT --------------------------------------------------------------
 bool wasLeftMousePressed = false;
@@ -154,15 +149,6 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	// Create our camera
 	camera = new Camera();
 	
-
-	// Some meshes
-	femaleMesh = Mesh::Get("data/assets/female.mesh");
-	femaleTex = Texture::Get("data/textures/female.tga");
-	walkingf = Animation::Get("data/animations/walking_female.skanim");
-
-	maleMesh = Mesh::Get("data/assets/male.mesh");
-	maleTex = Texture::Get("data/textures/male.tga");
-
 	// Meshes principales
 	skyMesh = Mesh::Get("data/assets/cielo.ASE");
 	skyTex = Texture::Get("data/textures/cielo.tga");
@@ -173,11 +159,9 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	floorTex = Texture::Get("data/textures/sand.tga");
 
 	// Levels
-	//campingLevel = scene->loadScene("data/scenes/Level1/camping.obj", "data/scenes/Level1/camping.png");
-	//cityLevel = scene->loadScene("data/scenes/Level2/city.obj", "data/scenes/Level2/city.png");
-	//houseLevel = scene->loadScene("data/scenes/Level3/house.obj", "data/scenes/Level3/house.png");
-
 	scene->loadMap("data/scenes/Pueblo/pueblo.scene");
+	/*scene->loadMap("data/scenes/House/house.scene");
+	scene->loadMap("data/scenes/TrainStation/train_station.scene");*/
 
 	std::cout << scene->entities[2] << std::endl;
 
@@ -363,12 +347,7 @@ void RenderScene(Camera* camera, float time)
 				RenderMeshWithAnim(scene->player->model, scene->player->mesh, scene->player->texture, scene->player->anim_run, a_shader, camera, GL_TRIANGLES, time);
 		}
 	}
-
-
 }
-
-
-
 
 //what to do when the image has to be draw
 void Game::render(void)
@@ -394,36 +373,14 @@ void Game::render(void)
 	RenderMesh(floorModel, floorMesh, floorTex, shader, camera, GL_TRIANGLES);
 	floorModel.setScale(100, 0, 100);
 
-	//Render Level
-	scene->player->model.translate(scene->player->pos.x, scene->player->pos.y, scene->player->pos.z);
-	scene->player->model.rotate(scene->player->yaw * DEG2RAD, Vector3(0, 1, 0));
+	//Render Levels
+	/*scene->player->model.translate(scene->player->pos.x, scene->player->pos.y, scene->player->pos.z);
+	scene->player->model.rotate(scene->player->yaw * DEG2RAD, Vector3(0, 1, 0));*/
 
 	RenderScene(camera, time);
 
-	
-
-	// ----------------------------- LEVELS ---------------------------------------------
-	// Level 1
-	//RenderMesh(campingModel, campingLevel.first, campingLevel.second, shader, camera, GL_TRIANGLES);
-	//campingModel.setScale(100, 100, 100);
-	//MiniMapa(player, detectiveModel, houseLevel, shader);
-
-	// Level 2
-	//RenderMesh(cityModel, cityLevel.first, cityLevel.second, shader, camera, GL_TRIANGLES);
-	//cityModel.setScale(100, 100, 100);
-	//MiniMapa(player, detectiveModel, cityLevel, shader);
-
-
-	// Level 3
-	/*RenderMesh(houseModel, houseLevel.first, houseLevel.second, shader, camera, GL_TRIANGLES);
-	houseModel.setScale(50, 50, 50);*/
-	//MiniMapa(player, detectiveModel, houseLevel, shader);
-
-	// ----------------------------- LEVELS ---------------------------------------------
-	
 	// Detective --> PLAYER
 	
-
 
 	// Render Stages
 	GetStage(currentStage, stages)->Render();
@@ -564,10 +521,9 @@ void Game::update(double seconds_elapsed)
 		}
 		scene->player->UpdatePlayer(currentAnim);
 
-		//scene->player->model.translateGlobal(playerVel.x, playerVel.y, playerVel.z); // Character controller
-		scene->player->pos = scene->player->pos + playerVel;
-		//Vector3 nexPos = scene->player->model.getTranslation() + playerVel;
-		Vector3 nexPos = scene->player->pos + playerVel;
+		scene->player->model.translateGlobal(playerVel.x, playerVel.y, playerVel.z); // Character controller
+		Vector3 nexPos = scene->player->model.getTranslation() + playerVel;
+
 		DetectiveCollisions(scene->player, nexPos, elapsed_time);
 
 		if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) speed *= 2; //move faster with left shift
@@ -582,7 +538,7 @@ void Game::update(double seconds_elapsed)
 	// ----------------------------- STAGES --------------------------------------------------------------
 	GetStage(currentStage, stages)->Update(seconds_elapsed); // Actualiza la stage que toca
 	// ----------------------------- STAGES --------------------------------------------------------------
-
+	
 
 	////Read the keyboard state, to see all the keycodes: https://wiki.libsdl.org/SDL_Keycode
 	if (Input::wasKeyPressed(SDL_SCANCODE_SPACE)) { //SPACE para pasar de Info a Tutorial a Level1

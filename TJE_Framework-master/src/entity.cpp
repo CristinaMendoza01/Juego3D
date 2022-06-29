@@ -141,7 +141,7 @@ void RenderMeshWithAnim(Matrix44& model, Mesh* a_mesh, Texture* tex, Animation* 
 	if (tex != NULL) {
 		a_shader->setUniform("u_texture", tex, 0);
 	}
-	a_shader->setUniform("u_time", time);
+	a_shader->setUniform("u_time", Game::instance->time);
 	a_shader->setUniform("u_tex_tiling", 1.0f);
 	a_shader->setUniform("u_model", model);
 	a_mesh->renderAnimated(primitive, &anim->skeleton);

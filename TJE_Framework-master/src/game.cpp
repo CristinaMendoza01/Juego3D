@@ -90,7 +90,6 @@ float no_render_dist = 1000.0f; // Para el frustum
 bool cameraLocked = true;
 const bool firstP = true;
 
-std::vector<Entity*> entities;
 Entity* selectedEntity = NULL;
 std::vector<LightEntity*> lights;
 
@@ -189,7 +188,7 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	//cityLevel = scene->loadScene("data/scenes/Level2/city.obj", "data/scenes/Level2/city.png");
 	//houseLevel = scene->loadScene("data/scenes/Level3/house.obj", "data/scenes/Level3/house.png");
 
-	scene->loadMap("data/scenes/Pueblo/pueblo.scene");
+	scene->loadMap("data/scenes/House/house.scene");
 
 	std::cout << scene->entities[2] << std::endl;
 
@@ -395,7 +394,8 @@ void RenderScene(Camera* camera, float time)
 			RenderMesh(ent->model, ent->mesh, ent->texture, shader, camera, GL_TRIANGLES);
 		}
 		else if (ent->entity_type == eEntityType::PLAYER) {
-			RenderMeshWithAnim(ent->model, ent->mesh, ent->texture, detectiveIdle, a_shader, camera, GL_TRIANGLES, time);
+			Player detective = new Player(ent);
+			RenderMeshWithAnim(detective.model, detective.mesh, detective.texture, detective.anim_idle, a_shader, camera, GL_TRIANGLES, time);
 		}
 		else if (ent->entity_type == eEntityType::PROP) {
 			RenderMesh(ent->model, ent->mesh, ent->texture, shader, camera, GL_TRIANGLES);
@@ -449,6 +449,7 @@ void Game::render(void)
 	// Detective --> PLAYER
 	detectiveModel.translate(player.pos.x, player.pos.y, player.pos.z);
 	detectiveModel.rotate(player.yaw * DEG2RAD, Vector3(0, 1, 0));
+
 	if (Input::isKeyPressed(SDL_SCANCODE_R)) { // Correr
 		RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveRun, a_shader, camera, GL_TRIANGLES, time);
 	}
@@ -496,8 +497,8 @@ void DetectiveCollisions(sPlayer player, Vector3 nexPos, float elapsed_time) {
 
 	Vector3 coll;
 	Vector3 collnorm;
-	for (size_t i = 0; i < entities.size(); i++) {
-		Entity* entity = entities[i];
+	for (size_t i = 0; i < scene->entities.size(); i++) {
+		Entity* entity = scene->entities[i];
 		//comprobamos si colisiona el objeto con la esfera (radio 3)
 		if (!entity->mesh->testSphereCollision(entity->model, character_center, 0.5f, coll, collnorm))
 			continue; //si no colisiona, pasamos al siguiente objeto
@@ -603,7 +604,9 @@ void Game::update(double seconds_elapsed)
 		if (Input::isKeyPressed(SDL_SCANCODE_DOWN)) camera->move(Vector3(0.0f, 0.0f, -1.0f) * speed);
 		if (Input::isKeyPressed(SDL_SCANCODE_LEFT)) camera->move(Vector3(1.0f, 0.0f, 0.0f) * speed);
 		if (Input::isKeyPressed(SDL_SCANCODE_RIGHT)) camera->move(Vector3(-1.0f, 0.0f, 0.0f) * speed);
+
 	}
+	
 
 	// ----------------------------- STAGES --------------------------------------------------------------
 	GetStage(currentStage, stages)->Update(seconds_elapsed); // Actualiza la stage que toca
@@ -634,9 +637,9 @@ void Game::onKeyDown(SDL_KeyboardEvent event)
 	{
 	case SDLK_ESCAPE: must_exit = true; break; //ESC key, kill the app
 	case SDLK_F1: Shader::ReloadAll(); break;
-	case SDLK_1: AddEntityInFront(camera, maleMesh, maleTex, entities);  break;
-	case SDLK_2: AddEntityInFront(camera, femaleMesh, femaleTex, entities);  break;
-	case SDLK_3: CheckCollision(camera, entities, selectedEntity); break;
+	case SDLK_1: AddEntityInFront(camera, maleMesh, maleTex, scene->entities);  break;
+	case SDLK_2: AddEntityInFront(camera, femaleMesh, femaleTex, scene->entities);  break;
+	case SDLK_3: CheckCollision(camera, scene->entities, selectedEntity); break;
 	case SDLK_4: CheckSkyCollision(camera, skyModel, skyMesh); break;
 	}
 }

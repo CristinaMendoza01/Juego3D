@@ -86,19 +86,6 @@ Entity* Scene::createEntity(int type, Mesh* mesh, Texture* texture, Vector3 posi
 	
 }
 
-std::pair<Mesh*, Texture*> Scene::loadScene(const char* obj_filename, const char* tex_filename)
-{
-	Mesh* mesh = Mesh::Get(obj_filename);
-	Texture* tex = Texture::Get(tex_filename);
-
-	std::pair<Mesh*, Texture*> sol;
-
-	sol.first = mesh;
-	sol.second = tex;
-
-	return sol;
-}
-
 void putCamera(Matrix44 model, Camera* camera, bool locked, int w, int h) {
 	Vector3 eye = model * Vector3(0.f, 32.f, 1.f);
 	Vector3 center = model * Vector3(0.f, 32.f, 10.f);

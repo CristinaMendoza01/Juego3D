@@ -7,8 +7,9 @@ struct sPlayer {
 	float pitch;
 };
 
-class player : public Entity
+class Player : public Entity
 {
+public:
 	Matrix44 model;
 	Mesh* mesh;
 	Texture* texture;
@@ -21,8 +22,9 @@ class player : public Entity
 	Animation* anim_walk;
 	Animation* anim_run;
 
-	player();
+	Player(Entity* ent);
 
 	void RenderPlayer(Matrix44 model, Mesh* mesh, Texture* textrure, Animation* anim, Shader* shader, Camera* cam, int primitive, float yaw, float pitch, float t);
+	void UpdatePlayer();
 
 };

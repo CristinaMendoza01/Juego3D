@@ -459,7 +459,7 @@ void Game::render(void)
 		RenderMeshWithAnim(detectiveModel, detectiveMesh, detectiveTex, detectiveIdle, a_shader, camera, GL_TRIANGLES, time);
 		//audio->PlayAudio(hSample2);
 	}
-	detectiveModel.setScale(1.f, 1.f, 1.f);
+	detectiveModel.setScale(0.01f, 0.01f, 0.01f);
 
 	RenderScene(camera, time);
 
@@ -564,6 +564,10 @@ void Game::update(double seconds_elapsed)
 		if (Input::isKeyPressed(SDL_SCANCODE_S)) Player_Move = Vector3(0.f, 0.f, -playerSpeed);
 		if (Input::isKeyPressed(SDL_SCANCODE_A)) Player_Move = Vector3(playerSpeed, 0.f, 0.f);
 		if (Input::isKeyPressed(SDL_SCANCODE_D)) Player_Move = Vector3(-playerSpeed, 0.f, 0.f);
+		if (Input::isKeyPressed(SDL_SCANCODE_W) && Input::isKeyPressed(SDL_SCANCODE_A)) Player_Move = Vector3(playerSpeed, 0.f, playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_S) && Input::isKeyPressed(SDL_SCANCODE_A)) Player_Move = Vector3(playerSpeed, 0.f, -playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_W) && Input::isKeyPressed(SDL_SCANCODE_D)) Player_Move = Vector3(-playerSpeed, 0.f, playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_S) && Input::isKeyPressed(SDL_SCANCODE_D)) Player_Move = Vector3(-playerSpeed, 0.f, -playerSpeed);
 		if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) playerSpeed *= 10; //move faster with left shift
 
 		Vector3 wpv_player = camera->getLocalVector(Player_Move);

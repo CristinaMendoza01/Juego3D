@@ -76,9 +76,9 @@ Entity* Scene::createEntity(int type, Mesh* mesh, Texture* texture, Vector3 posi
 		ent->mesh = mesh;
 		ent->texture = texture;
 		ent->model.translate(position.x, position.y, position.z);
-		ent->model.rotate(DEG2RAD * rotation.x, Vector3(0, 1, 0)); //rotate in x
-		ent->model.rotate(DEG2RAD * rotation.y, Vector3(0, 0, 1)); //rotate in y
-		ent->model.rotate(DEG2RAD * rotation.z, Vector3(1, 0, 0)); //rotate in z
+		ent->model.rotate(DEG2RAD * rotation.x, Vector3(0, -1, 0)); //rotate in x
+		ent->model.rotate(DEG2RAD * rotation.y, Vector3(0, 0, -1)); //rotate in y
+		ent->model.rotate(DEG2RAD * rotation.z, Vector3(-1, 0, 0)); //rotate in z
 		ent->model.scale(scale.x, scale.y, scale.z);
 		ent->entity_type = (eEntityType) type;
 

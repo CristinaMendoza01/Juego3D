@@ -204,6 +204,7 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	gui_shader = Shader::Get("data/shaders/basic.vs", "data/shaders/gui.fs");
 	a_shader = Shader::Get("data/shaders/skinning.vs", "data/shaders/texture.fs");
 
+	InitStages();
 
 	//// Init bass
 	//if (BASS_Init(-1, 44100, 0, 0, NULL) == false) //-1 significa usar el por defecto del sistema operativo
@@ -463,7 +464,8 @@ void Game::render(void)
 
 	RenderScene(camera, time);
 
-	RenderStages();
+	// Render Stages
+	GetStage(currentStage, stages)->Render();
 
 	//Draw the floor grid
 	//drawGrid();
@@ -527,20 +529,9 @@ void Game::update(double seconds_elapsed)
 		camera->rotate(Input::mouse_delta.y * 0.005f, camera->getLocalVector(Vector3(-1.0f, 0.0f, 0.0f)));
 	}
 
-	//async input to move the camera around
-	/*if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) speed *= 10; //move faster with left shift
-	if (Input::isKeyPressed(SDL_SCANCODE_W) || Input::isKeyPressed(SDL_SCANCODE_UP)) camera->move(Vector3(0.0f, 0.0f, 1.0f) * speed);
-	if (Input::isKeyPressed(SDL_SCANCODE_S) || Input::isKeyPressed(SDL_SCANCODE_DOWN)) camera->move(Vector3(0.0f, 0.0f, -1.0f) * speed);
-	if (Input::isKeyPressed(SDL_SCANCODE_A) || Input::isKeyPressed(SDL_SCANCODE_LEFT)) camera->move(Vector3(1.0f, 0.0f, 0.0f) * speed);
-	if (Input::isKeyPressed(SDL_SCANCODE_D) || Input::isKeyPressed(SDL_SCANCODE_RIGHT)) camera->move(Vector3(-1.0f, 0.0f, 0.0f) * speed);*/
-	// Esto reemplaza a lo de abajo
-
-	// ----------------------------- ARNAU --------------------------------------------------------------
-
 	if (Input::wasKeyPressed(SDL_SCANCODE_TAB)) { //CAMBIAR MODO DE LA CAMARA
 		cameraLocked = !cameraLocked;
 	}
-
 
 	if (cameraLocked) //SI ESTAMOS EN 1a PERSONA
 	{
@@ -612,29 +603,22 @@ void Game::update(double seconds_elapsed)
 		if (Input::isKeyPressed(SDL_SCANCODE_DOWN)) camera->move(Vector3(0.0f, 0.0f, -1.0f) * speed);
 		if (Input::isKeyPressed(SDL_SCANCODE_LEFT)) camera->move(Vector3(1.0f, 0.0f, 0.0f) * speed);
 		if (Input::isKeyPressed(SDL_SCANCODE_RIGHT)) camera->move(Vector3(-1.0f, 0.0f, 0.0f) * speed);
-
-		////async input to move the camera around
-		//if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) speed *= 10; //move faster with left shift
-		//if (Input::isKeyPressed(SDL_SCANCODE_W) || Input::isKeyPressed(SDL_SCANCODE_UP)) camera->move(Vector3(0.0f, 0.0f, 1.0f) * speed);
-		//if (Input::isKeyPressed(SDL_SCANCODE_S) || Input::isKeyPressed(SDL_SCANCODE_DOWN)) camera->move(Vector3(0.0f, 0.0f, -1.0f) * speed);
-		//if (Input::isKeyPressed(SDL_SCANCODE_A) || Input::isKeyPressed(SDL_SCANCODE_LEFT)) camera->move(Vector3(1.0f, 0.0f, 0.0f) * speed);
-		//if (Input::isKeyPressed(SDL_SCANCODE_D) || Input::isKeyPressed(SDL_SCANCODE_RIGHT)) camera->move(Vector3(-1.0f, 0.0f, 0.0f) * speed);
-
 	}
 
 	// ----------------------------- STAGES --------------------------------------------------------------
-	//GetStage(currentStage, stages)->Update(seconds_elapsed); // Actualiza la stage que toca
+	GetStage(currentStage, stages)->Update(seconds_elapsed); // Actualiza la stage que toca
+	// ----------------------------- STAGES --------------------------------------------------------------
 
-	//if (GetStage(currentStage, stages) == GetStage(STAGE_ID::LEVEL1, stages)) {
-	//	
-	//}
 
 	////Read the keyboard state, to see all the keycodes: https://wiki.libsdl.org/SDL_Keycode
-	//if (Input::wasKeyPressed(SDL_SCANCODE_S)) { //S para pasar de Info a Tutorial a Level1
-	//	if (currentStage == 0 || currentStage == 1 || currentStage == 2) {
-	//		NextStage();
-	//	}
-	//}
+	if (Input::wasKeyPressed(SDL_SCANCODE_SPACE)) { //SPACE para pasar de Info a Tutorial a Level1
+		if (currentStage < STAGE_ID::LEVEL1) {
+			NextStage();
+		}
+		if (currentStage == STAGE_ID::END) {
+			must_exit = true;
+		}
+	}
 	// ----------------------------- STAGES --------------------------------------------------------------
 
 

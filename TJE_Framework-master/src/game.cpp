@@ -84,6 +84,7 @@ float no_render_dist = 1000.0f; // Para el frustum
 bool cameraLocked = false;
 const bool firstP = true;
 int cameracontroller = 0;
+int level = 1;
 
 Entity* selectedEntity = NULL;
 std::vector<LightEntity*> lights;
@@ -162,9 +163,9 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	floorTex = Texture::Get("data/textures/sand.tga");
 
 	// Levels
+	scene->loadMap("data/scenes/TrainStation/train_station.scene");
+	scene->loadMap("data/scenes/Pueblo/pueblo.scene");
 	scene->loadMap("data/scenes/House/house.scene");
-	/*scene->loadMap("data/scenes/House/house.scene");
-	scene->loadMap("data/scenes/TrainStation/train_station.scene");*/
 
 	std::cout << scene->entities[2] << std::endl;
 
@@ -331,10 +332,11 @@ void RenderAllGUIs() {
 	glDisable(GL_BLEND);
 }
 
-void RenderScene(Camera* camera, float time)
+void RenderScene(Camera* camera, float time, int s, int f)
 {
 	//render entities
-	for (int i = 0; i < scene->entities.size(); ++i)
+	//std::cout << scene->entities.size() << std::endl;
+	for (int i = s; i < f; ++i)
 	{
 		Entity* ent = scene->entities[i];
 
@@ -383,13 +385,13 @@ void Game::render(void)
 	//Render Levels
 	/*scene->player->model.translate(scene->player->pos.x, scene->player->pos.y, scene->player->pos.z);
 	scene->player->model.rotate(scene->player->yaw * DEG2RAD, Vector3(0, 1, 0));*/
-
-	RenderScene(camera, time);
-
-
-
+	if(level==1)
+		RenderScene(camera, time, 0, 71);
+	else if(level==2)
+		RenderScene(camera, time, 71, 188);
+	else if (level == 3)
+		RenderScene(camera, time, 188, scene->entities.size());
 	// Detective --> PLAYER
-	
 
 	// Render Stages
 	GetStage(currentStage, stages)->Render();
@@ -415,31 +417,6 @@ void NextStage() { // Para pasar de stage
 }
 // ----------------------------- STAGES --------------------------------------------------------------
 
-Vector3 DetectiveCollisions(Player* player, Vector3 nexPos, float elapsed_time) {
-	//calculamos el centro de la esfera de colisión del player elevandola hasta la cintura
-	Vector3 character_center = nexPos + Vector3(0, 4, 0);
-
-	//para cada objecto de la escena...
-
-	Vector3 coll;
-	Vector3 collnorm;
-	for (size_t i = 0; i < scene->entities.size(); i++) {
-		Entity* entity = scene->entities[i];
-		//comprobamos si colisiona el objeto con la esfera (radio 3)
-		if (!entity->mesh->testSphereCollision(entity->model, character_center, 0.5f, coll, collnorm))
-			continue; //si no colisiona, pasamos al siguiente objeto
-		//si la esfera está colisionando muevela a su posicion anterior alejandola del objeto
-		Vector3 push_away = normalize(coll - character_center) * elapsed_time;
-		nexPos = player->model.getTranslation() - push_away; //move to previous pos but a little bit further
-
-		//cuidado con la Y, si nuestro juego es 2D la ponemos a 0
-		nexPos.y = 0;
-
-		//reflejamos el vector velocidad para que de la sensacion de que rebota en la pared
-		//velocity = reflect(velocity, collnorm) * 0.95;
-	}
-	return nexPos;
-}
 
 void Game::update(double seconds_elapsed)
 {
@@ -457,6 +434,12 @@ void Game::update(double seconds_elapsed)
 
 	if (Input::wasKeyPressed(SDL_SCANCODE_TAB)) { //CAMBIAR MODO DE LA CAMARA
 		cameraLocked = !cameraLocked;
+	}
+	if (Input::wasKeyPressed(SDL_SCANCODE_P)) { //CAMBIAR MODO DE LA CAMARA
+		if (level > 2)
+			level = 1;
+		else
+			level++;
 	}
 
 	if (cameraLocked) //SI ESTAMOS EN 1a PERSONA
@@ -501,18 +484,15 @@ void Game::update(double seconds_elapsed)
 			anim = scene->player->anim_run;
 		}
 
-		Vector3 nexPos = scene->player->model.getTranslation() + playerVel;
+		playerVel = scene->player->PlayerCollisions(scene, camera, playerVel, elapsed_time);
 
-		nexPos = DetectiveCollisions(scene->player, nexPos, elapsed_time);
-
-		scene->player->model.translateGlobal(nexPos.x, nexPos.y, nexPos.z); // Character controller
+		scene->player->model.translateGlobal(playerVel.x, playerVel.y, playerVel.z); // Character controller
 
 		if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) speed *= 2; //move faster with left shift
 		if (Input::isKeyPressed(SDL_SCANCODE_UP)) camera->move(Vector3(0.0f, 0.0f, 1.0f) * (speed/2));
 		if (Input::isKeyPressed(SDL_SCANCODE_DOWN)) camera->move(Vector3(0.0f, 0.0f, -1.0f) * (speed / 2));
 		if (Input::isKeyPressed(SDL_SCANCODE_LEFT)) camera->move(Vector3(1.0f, 0.0f, 0.0f) * (speed / 2));
 		if (Input::isKeyPressed(SDL_SCANCODE_RIGHT)) camera->move(Vector3(-1.0f, 0.0f, 0.0f) * (speed / 2));
-
 	}
 	
 	//scene->player->UpdatePlayer(elapsed_time, cameraLocked, camera, currentAnim);
@@ -595,176 +575,3 @@ void Game::onResize(int width, int height)
 	window_width = width;
 	window_height = height;
 }
-
-/*void RenderScene(Scene* scene, Camera* camera) {
-
-	//set the clear color (the background color)
-	glClearColor(scene->background_color.x, scene->background_color.y, scene->background_color.z, 1.0);
-
-	// Clear the color and the depth buffer
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	checkGLErrors();
-
-	render_calls.clear();
-	lights.clear();
-	//render entities
-	for (int i = 0; i < scene->entities.size(); ++i)
-	{
-		Entity* ent = scene->entities[i];
-
-		if (ent->entity_type == eEntityType::LIGHT) {
-			LightEntity* lent = (LightEntity*)ent;
-			lights.push_back(lent);
-		}
-		
-	}
-}
-
-//renders a mesh given its transform and material
-void Game::MultiPassRender(const Matrix44 model, Mesh* mesh, std::vector<LightEntity*> l, Camera* camera)
-{
-	//in case there is nothing to do
-	if (!mesh || !mesh->getNumVertices() || !material)
-		return;
-	assert(glGetError() == GL_NO_ERROR);
-
-	//define locals to simplify coding
-	Shader* shader = NULL;
-	Texture* color_texture = NULL;
-	Texture* emissive_texture = NULL;
-	Texture* occlusion_texture = NULL;
-	Texture* normalmap_texture = NULL;
-	Texture* metallic_roughness_texture = NULL;
-	Scene* scene = Scene::instance;
-
-	int num_lights = l.size();
-	if (!num_lights)
-		return;
-
-	color_texture = material->color_texture.texture;
-	emissive_texture = material->emissive_texture.texture;
-	metallic_roughness_texture = material->metallic_roughness_texture.texture;
-	occlusion_texture = material->occlusion_texture.texture;
-	normalmap_texture = material->normal_texture.texture;
-	if (color_texture == NULL)
-		color_texture = Texture::getWhiteTexture(); //a 1x1 white texture
-	if (emissive_texture == NULL)
-		emissive_texture = Texture::getBlackTexture(); //a 1x1 white texture
-	if (occlusion_texture == NULL)
-		occlusion_texture = Texture::getWhiteTexture(); //a 1x1 white texture
-	if (metallic_roughness_texture == NULL)
-		metallic_roughness_texture = Texture::getWhiteTexture(); //a 1x1 white texture
-	if (normalmap_texture == NULL) int N_ip = 1; else int N_ip = 0;
-
-	//Vector3 emissive_factor = material->emissive_factor;
-	//select the blending
-	//if (material->alpha_mode == GTR::eAlphaMode::BLEND)
-		//return;
-
-
-	//select if render both sides of the triangles
-	if (material->two_sided)
-		glDisable(GL_CULL_FACE);
-	else
-		glEnable(GL_CULL_FACE);
-	assert(glGetError() == GL_NO_ERROR);
-
-	//chose a shader
-	shader = Shader::Get("data/shaders/basic.vs", "data/shaders/light.fs");
-
-	assert(glGetError() == GL_NO_ERROR);
-
-	//no shader? then nothing to render
-	if (!shader)
-		return;
-	shader->enable();
-
-	//upload uniforms
-	shader->setUniform("u_viewprojection", camera->viewprojection_matrix);
-	shader->setUniform("u_camera_position", camera->eye);
-	shader->setUniform("u_model", model);
-	float t = getTime();
-	shader->setUniform("u_time", t);
-
-	shader->setUniform("u_color", material->color);
-	if (color_texture)
-		shader->setUniform("u_color_texture", color_texture, 0);
-	if (emissive_texture)
-		shader->setUniform("u_emissive_texture", emissive_texture, 1);
-	if (occlusion_texture)
-		shader->setUniform("u_occlusion_texture", occlusion_texture, 2);
-	if (normalmap_texture)
-		shader->setUniform("u_normalmap_texture", normalmap_texture, 3);
-	if (metallic_roughness_texture)
-		shader->setUniform("u_metallic_roughness_texture", metallic_roughness_texture, 4);
-
-	shader->setUniform("u_ambient_light", scene->ambient_light);
-
-	glDepthFunc(GL_LEQUAL);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-
-	for (int i = 0; i < l.size(); i++)
-	{
-		if (i == 0) {
-			if (material->alpha_mode == eAlphaMode::BLEND)
-			{
-				glEnable(GL_BLEND);
-				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			}
-			else
-				glDisable(GL_BLEND);
-		}
-		else {
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-		}
-
-		LightEntity* light = lights[i];
-
-
-		shader->setUniform("u_lcolor", light->color * light->intensity);
-		shader->setUniform("u_lpos", light->model * Vector3());
-		shader->setUniform("u_lmaxdist", light->max_distance);
-		shader->setUniform("u_ltype", (int)light->light_type);
-
-		if (/*light->shadowmap && light->cast_shadows) {
-			shader->setUniform("u_lshadowcast", 1);
-			//shader->setUniform("u_lshadowmap", light->shadowmap, 8);
-			shader->setUniform("u_lshadowmap_vp", light->light_camera->viewprojection_matrix);
-			shader->setUniform("u_lshadowbias", light->shadow_bias);
-		}
-		else {
-			shader->setUniform("u_lshadowcast", 0);
-
-		}
-
-		//SPOT
-		shader->setUniform("u_coslcone_angle", (float)cos(light->cone_angle * DEG2RAD)); //we calculate the cos and covert the angle into radiands.
-		shader->setUniform("u_lcone_exp", light->cone_exp);
-		shader->setUniform("u_ldir", light->model.rotateVector(Vector3(0, 0, -1)));
-
-		//DIRECTIONAL
-		shader->setUniform("u_lareasize", light->area_size);
-
-		shader->setUniform("u_lastlight", 0);
-
-		if (lights.size() - 1 == i) {
-			shader->setUniform("u_lastlight", 1);
-		}
-
-		mesh->render(GL_TRIANGLES);
-		shader->setUniform("u_ambient_light", Vector3());
-	}
-
-	//glDisable(GL_BLEND);
-	//do the draw call that renders the mesh into the screen
-	//mesh->render(GL_TRIANGLES);
-
-	//disable shader
-	shader->disable();
-
-	//set the render state as it was before to avoid problems with future renders
-
-	glDepthFunc(GL_LESS);
-	glDisable(GL_BLEND);
-}*/

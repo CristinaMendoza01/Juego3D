@@ -56,7 +56,6 @@ void AddEntityInFront(Camera* cam, Mesh* a_mesh, Texture* tex, std::vector<Entit
 }
 
 void CheckCollision(Camera* cam, std::vector<Entity*>& entities, Entity* sEnt) {
-
 	Vector3 dir = RayDirection(cam);
 	Vector3 rOrigin = cam->eye;
 	// Colisiones para los elementos del vector entities --> Cambiarlo a las scenes tmb + sky

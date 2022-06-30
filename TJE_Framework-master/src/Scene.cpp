@@ -87,9 +87,9 @@ Entity* Scene::createEntity(int type, Mesh* mesh, Texture* texture, Vector3 posi
 }
 
 void putCamera(Matrix44 model, Camera* camera, bool locked, int w, int h, int cameracontroller) {
-	Vector3 eye = model * Vector3(0.f, 200.f, -20.f);
-	Vector3 center = model * Vector3(0.f, 200.f, -10.f);
-	Vector3 up = model.rotateVector(Vector3(0.f, 200.f, 0.f));
+	Vector3 eye = model * Vector3(0.f, 1.f, -20.f);
+	Vector3 center = model * Vector3(0.f, 1.f, -10.f);
+	Vector3 up = model.rotateVector(Vector3(0.f, 1.f, 0.f));
 
 	//Create our camera
 	//camera->lookAt(Vector3(0.f, 100.f, 100.f), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera and point to 0,0,0

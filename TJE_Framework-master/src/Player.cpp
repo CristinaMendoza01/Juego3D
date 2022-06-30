@@ -30,31 +30,40 @@ Camera* Player::InitPlayerCamera()
 	return camera;
 }
 
-Vector3 Player::PlayerCollisions(Scene* scene, Vector3 nexPos, float elapsed_time) {
+Vector3 Player::PlayerCollisions(Scene* scene, Camera* camera, Vector3 playerVel, float elapsed_time) {
 	//calculamos el centro de la esfera de colisión del player elevandola hasta la cintura
-	Vector3 character_center = nexPos + Vector3(0, 4, 0);
-	//para cada objecto de la escena...
+	
 
-	Vector3 coll;
-	Vector3 collnorm;
+	Vector3 playerPos = this->model.getTranslation();
+	//para cada objecto de la escena...
+	Vector3 localDelta = camera->getLocalVector(playerVel);
+	localDelta.y = 0;
+	Vector3 nextPos = playerPos - localDelta;
+	Vector3 character_center = nextPos + Vector3(0, 4, 0);
+
 	for (size_t i = 0; i < scene->entities.size(); i++) {
 		Entity* entity = scene->entities[i];
+
+		Vector3 coll;
+		Vector3 collnorm;
+		
 		if (entity->entity_type == eEntityType::PLAYER)
 			continue;
 		//comprobamos si colisiona el objeto con la esfera (radio 3)
-		if (!entity->mesh->testSphereCollision(entity->model, character_center, 0.5f, coll, collnorm))
+		if (!entity->mesh->testSphereCollision(entity->model, character_center, 0.6f, coll, collnorm))
 			continue; //si no colisiona, pasamos al siguiente objeto
 		//si la esfera está colisionando muevela a su posicion anterior alejandola del objeto
-		Vector3 push_away = normalize(coll - character_center) * elapsed_time;
-		nexPos = this->model.getTranslation() - push_away; //move to previous pos but a little bit further
+		Vector3 push_away = normalize(coll - character_center) * elapsed_time * 10.0f;
+		nextPos = this->model.getTranslation() - push_away; //move to previous pos but a little bit further
 
 		//cuidado con la Y, si nuestro juego es 2D la ponemos a 0
-		nexPos.y = 0;
+		nextPos.y = 0;
 
 		//reflejamos el vector velocidad para que de la sensacion de que rebota en la pared
 		//velocity = reflect(velocity, collnorm) * 0.95;
 	}
-	Vector3 movement = nexPos - this->model.getTranslation();
+
+	Vector3 movement = nextPos - playerPos;
 	Vector3 modelCoordinates = Vector3(movement.x, 0.0f, movement.z);
 
 	return modelCoordinates;
@@ -86,11 +95,14 @@ void Player::RenderPlayer(Matrix44 model, Mesh* mesh, Texture* tex, Animation* a
 void Player::UpdatePlayer(float elapsed_time, Camera* camera)
 {
 	ePlayerState currentAnim;
+	//float speed = elapsed_time * 50.f;
 	Scene* scene = Scene::instance;
-	float speed = elapsed_time * 50.f;
-	//Scene* scene = Scene::instance;
 	Vector3 Player_Move;
-	float rotSpeed = this->yaw * elapsed_time;
+	float rotSpeed = 50.f * DEG2RAD * elapsed_time;
+	this->pitch += Input::mouse_delta.y * 10.0f * elapsed_time;
+	this->yaw += Input::mouse_delta.x * 10.0f * elapsed_time;
+	Input::centerMouse();
+	SDL_ShowCursor(false);
 
 	this->model.rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f)); //Rotamos el modelo del jugador y con él, la camara.
 	camera->rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f));
@@ -99,45 +111,42 @@ void Player::UpdatePlayer(float elapsed_time, Camera* camera)
 	float playerSpeed = 10.f * elapsed_time;
 
 		
-	/*this->pitch += Input::mouse_delta.y * 10.0f * elapsed_time;
-	this->yaw += Input::mouse_delta.x * 10.0f * elapsed_time;*/
-	Input::centerMouse();
-	SDL_ShowCursor(false);
+	
 
-	if (Input::isKeyPressed(SDL_SCANCODE_S)) Player_Move = Player_Move + Vector3(0.f, 0.f, -playerSpeed);
-	if (Input::isKeyPressed(SDL_SCANCODE_D)) Player_Move = Player_Move + Vector3(-playerSpeed, 0.f, 0.f);
-	if (Input::isKeyPressed(SDL_SCANCODE_A)) Player_Move = Player_Move + Vector3(playerSpeed, 0.f, 0.f);
+	if (Input::isKeyPressed(SDL_SCANCODE_S)) Player_Move = Player_Move + Vector3(0.f, 0.f, playerSpeed);
+	if (Input::isKeyPressed(SDL_SCANCODE_D)) Player_Move = Player_Move + Vector3(playerSpeed, 0.f, 0.f);
+	if (Input::isKeyPressed(SDL_SCANCODE_A)) Player_Move = Player_Move + Vector3(-playerSpeed, 0.f, 0.f);
 
 	if (Input::isKeyPressed(SDL_SCANCODE_W) && Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) {
-		Player_Move = Player_Move + (Vector3(0.f, 0.f, playerSpeed)*2);
+		Player_Move = Player_Move + (Vector3(0.f, 0.f, -playerSpeed)*2);
 		currentAnim = ePlayerState::RUN;
 	}
 	else if (Input::isKeyPressed(SDL_SCANCODE_W)) {
-		Player_Move = Player_Move + Vector3(0.f, 0.f, playerSpeed);
+		Player_Move = Player_Move + Vector3(0.f, 0.f, -playerSpeed);
 		currentAnim = ePlayerState::WALK;
 	}
 	else {
 		currentAnim = ePlayerState::IDLE;
 	}
 
-	if (Input::isKeyPressed(SDL_SCANCODE_W) && Input::isKeyPressed(SDL_SCANCODE_A)) Player_Move = Player_Move + Vector3(playerSpeed, 0.f, playerSpeed);
-	if (Input::isKeyPressed(SDL_SCANCODE_S) && Input::isKeyPressed(SDL_SCANCODE_A)) Player_Move = Player_Move + Vector3(playerSpeed, 0.f, -playerSpeed);
-	if (Input::isKeyPressed(SDL_SCANCODE_W) && Input::isKeyPressed(SDL_SCANCODE_D)) Player_Move = Player_Move + Vector3(-playerSpeed, 0.f, playerSpeed);
-	if (Input::isKeyPressed(SDL_SCANCODE_S) && Input::isKeyPressed(SDL_SCANCODE_D)) Player_Move = Player_Move + Vector3(-playerSpeed, 0.f, -playerSpeed);
+	if (Input::isKeyPressed(SDL_SCANCODE_W) && Input::isKeyPressed(SDL_SCANCODE_A)) Player_Move = Player_Move + Vector3(playerSpeed, 0.f, -playerSpeed);
+	if (Input::isKeyPressed(SDL_SCANCODE_S) && Input::isKeyPressed(SDL_SCANCODE_A)) Player_Move = Player_Move + Vector3(playerSpeed, 0.f, playerSpeed);
+	if (Input::isKeyPressed(SDL_SCANCODE_W) && Input::isKeyPressed(SDL_SCANCODE_D)) Player_Move = Player_Move + Vector3(-playerSpeed, 0.f, -playerSpeed);
+	if (Input::isKeyPressed(SDL_SCANCODE_S) && Input::isKeyPressed(SDL_SCANCODE_D)) Player_Move = Player_Move + Vector3(-playerSpeed, 0.f, playerSpeed);
 
-	Vector3 wp_vector_player = camera->getLocalVector(Player_Move);
+	//Vector3 wp_vector_player = camera->getLocalVector(Player_Move);
 
-	wp_vector_player = PlayerCollisions(Scene::instance, wp_vector_player, elapsed_time);
+	Player_Move = PlayerCollisions(scene, camera, Player_Move, elapsed_time);
 
-	this->model.translateGlobal(-wp_vector_player.x, 0.0f, -wp_vector_player.z);
+	this->model.translateGlobal(-Player_Move.x, 0.0f, -Player_Move.z);
 
-	camera->updateViewMatrix();
+	//camera->updateViewMatrix();
 
-	camera->eye.x -= wp_vector_player.x;
-	camera->eye.z -= wp_vector_player.z;
+	camera->eye.x -= Player_Move.x;
+	camera->eye.z -= Player_Move.z;
 
-	camera->center.x -= wp_vector_player.x;
-	camera->center.z -= wp_vector_player.z;
+	camera->center.x -= Player_Move.x;
+	camera->center.z -= Player_Move.z;
 
 	Animation* anim;
 	if (currentAnim == ePlayerState::WALK) {

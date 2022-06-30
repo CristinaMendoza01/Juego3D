@@ -1,4 +1,4 @@
-#include "animation.h"
+ï»¿#include "animation.h"
 #include "audio.h"
 #include "entity.h"
 #include "fbo.h"
@@ -16,17 +16,7 @@
 #include <bass.h>
 #include <cmath>
 
-//some globals
-Mesh* femaleMesh = NULL;
-Texture* femaleTex = NULL;
-Matrix44 femaleModel;
-Animation* walkingf;
-
-Mesh* maleMesh = NULL;
-Texture* maleTex = NULL;
-Matrix44 maleModel;
-
-// IMPORTANTES
+// Some globals
 Mesh* skyMesh = NULL;
 Texture* skyTex = NULL;
 Matrix44 skyModel;
@@ -35,22 +25,7 @@ Mesh* floorMesh;
 Texture* floorTex;
 Matrix44 floorModel;
 
-Mesh* campingMesh = NULL;
-Texture* campingTex = NULL;
-Matrix44 campingModel;
-
-Mesh* houseMesh = NULL;
-Texture* houseTex = NULL;
-Matrix44 houseModel;
-
-Mesh* cityMesh = NULL;
-Texture* cityTex = NULL;
-Matrix44 cityModel;
-
-Player detective;
 Matrix44 viewmodel;
-
-
 
 Animation* anim = NULL;
 float angle = 0;
@@ -58,12 +33,6 @@ float mouse_speed = 50.0f;
 FBO* fbo = NULL;
 
 Game* Game::instance = NULL;
-
-// Audio
-//HSAMPLE hSample1;
-//HSAMPLE hSample2;
-//HSAMPLE hSample3;
-//Audio* audio;
 
 Scene* scene = new Scene();
 
@@ -74,15 +43,14 @@ float lodDist = 10.0f; // Para los LODs
 float no_render_dist = 1000.0f; // Para el frustum
 bool cameraLocked = false;
 const bool firstP = true;
+int objectType = 0;
 int cameracontroller = 0;
-int level = 1;
+
 
 Entity* selectedEntity = NULL;
 std::vector<LightEntity*> lights;
 
-// ----------------------------- PROFE: YO LO PONDRIA EN EL INPUT --------------------------------------------------------------
 bool wasLeftMousePressed = false;
-// ----------------------------- PROFE: YO LO PONDRIA EN EL INPUT --------------------------------------------------------------
 
 // ----------------------------- IA -> PATHFINDERS --------------------------------------------------------------
 int startx, starty, targetx, targety;
@@ -94,19 +62,20 @@ float tileSizeX, tileSizeY;
 
 // ----------------------------- STAGES --------------------------------------------------------------
 std::vector<Stage*> stages; // Vector stages
-STAGE_ID currentStage = STAGE_ID::INTRO; //Índice que nos dice en que stage estamos, inicializamos con la INTRO
-ePlayerState currentAnim = ePlayerState::IDLE; // Índice que nos dice qué animación tiene el detective, inicializamos con IDLE
+STAGE_ID currentStage = STAGE_ID::INTRO; //Ãndice que nos dice en que stage estamos, inicializamos con la INTRO
+ePlayerState currentAnim = ePlayerState::IDLE; // Ãndice que nos dice quÃ© animaciÃ³n tiene el detective, inicializamos con IDLE
 
 
 void InitStages() {
-    stages.reserve(7); //Reserva 7 elementos (hace un malloc de 7 porque tenemos 7 stages)
-    stages.push_back(new IntroStage()); //Para añadir elementos a un std vector = pushback
+    stages.reserve(8); //Reserva 7 elementos (hace un malloc de 7 porque tenemos 7 stages)
+    stages.push_back(new IntroStage()); //Para aÃ±adir elementos a un std vector = pushback
     stages.push_back(new InfoStage());
     stages.push_back(new TutorialStage());
     stages.push_back(new Level1Stage());
 	stages.push_back(new Level2Stage());
 	stages.push_back(new Level3Stage());
 	stages.push_back(new EndStage());
+	stages.push_back(new ExitStage());
 }
 // ----------------------------- STAGES --------------------------------------------------------------
 
@@ -148,8 +117,6 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	skyMesh = Mesh::Get("data/assets/cielo.ASE");
 	skyTex = Texture::Get("data/textures/cielo.tga");
 
-	/*floorMesh = new Mesh();
-	floorMesh->createPlane(1000);*/
 	floorMesh = Mesh::Get("data/assets/sand2.obj");
 	floorTex = Texture::Get("data/textures/sand.tga");
 
@@ -161,32 +128,28 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	std::cout << scene->entities[2] << std::endl;
 
 	// GUI
-	pause = Texture::Get("data/gui/pause.png");
-	gui = Texture::Get("data/gui/gui.png");
-	menu_inicial = Texture::Get("data/gui/menu_inicial.png");
-	menu_game = Texture::Get("data/gui/menu_game.png");
+	menu_inicial = Texture::Get("data/gui/intro.png");
+	menu = Texture::Get("data/gui/menu.png");
+	menu1 = Texture::Get("data/gui/menu1.png");
 
-	// example of shader loading using the shaders manager
+	// Shaders
 	shader = Shader::Get("data/shaders/basic.vs", "data/shaders/texture.fs");
 	gui_shader = Shader::Get("data/shaders/basic.vs", "data/shaders/gui.fs");
 	a_shader = Shader::Get("data/shaders/skinning.vs", "data/shaders/texture.fs");
 
-
-
+	// Inicializar Stages
 	InitStages();
+	level = 0;
+	numPistas = 0;
 
-	//// Init bass
-	//if (BASS_Init(-1, 44100, 0, 0, NULL) == false) //-1 significa usar el por defecto del sistema operativo
-	//{
-	//	std::cout << "ERROR initializing audio" << std::endl;
-	//}
+	// Init bass --> Para el audio
+	if (BASS_Init(-1, 44100, 0, 0, NULL) == false) //-1 significa usar el por defecto del sistema operativo
+	{
+		std::cout << "ERROR initializing audio" << std::endl;
+	}
 	//
-	//hSample1 = audio->loadAudio("data/audio/mistery.wav", BASS_SAMPLE_LOOP);
-	//hSample2 = audio->loadAudio("data/audio/pasos.wav", BASS_SAMPLE_LOOP);
-	//hSample3 = audio->loadAudio("data/audio/button.wav", 0);
-
-	//scene = new Scene();
-	//camera = scene->player->InitPlayerCamera();
+	hSample1 = audio->loadAudio("data/audio/intro.wav", BASS_SAMPLE_LOOP);
+	hSample2 = audio->loadAudio("data/audio/button.wav", 0);
 
 	putCamera(viewmodel, camera, cameraLocked, window_width, window_height, cameracontroller);
 
@@ -263,6 +226,7 @@ bool Game::RenderButton(Texture* tex, Shader* a_shader, float centerx, float cen
 	Vector4 buttonColor = hover ? Vector4(1, 1, 1, 1) : Vector4(1, 1, 1, 0.4f); // Para cuando pasas encima del icono se "ilumina"
 
 	RenderGUI(tex, a_shader, centerx, centery, w, h, tex_range, buttonColor, flipYV);
+
 	return wasLeftMousePressed && hover;
 }
 
@@ -275,7 +239,7 @@ void Game::RenderAllGUIs() {
 	int wWidth = Game::instance->window_width;
 	int wHeight = Game::instance->window_height;
 
-	int gui_id = 0; // Hacer que si apretas un botón, cambie el gui_id y el usuario pueda ver el otro icono
+	int gui_id = 0; // Hacer que si apretas un botÃ³n, cambie el gui_id y el usuario pueda ver el otro icono
 	Vector4 sprite_gui[] =
 	{
 		(Vector4(0, 0, 0.25, 0.5)),
@@ -283,46 +247,58 @@ void Game::RenderAllGUIs() {
 		(Vector4(0.5, 0, 0.25, 0.5)),
 		(Vector4(0.75, 0, 0.25, 0.5))
 	};
+}
 
-	// ----------------------------- BOTONES GUI ---------------------------------------------
-	
-	//// Durante el juego
-	if (RenderButton(gui, gui_shader, 60, 60, 60, 60, sprite_gui[gui_id])) {
-		std::cout << "left one" << std::endl;
-		//audio->PlayAudio(hSample3);
-	}
-	//if (RenderButton(gui, gui_shader, 120, 60, 60, 60, sprite_gui[2])) {
-	//	std::cout << "right one" << std::endl;
-	//	glViewport(0, 0, wWidth, wHeight);
-	//	audio->PlayAudio(hSample3);
-	//}
+void Game::IntroGUI() {
 	//// Al iniciar el juego
-	//if (RenderButton(menu_inicial, gui_shader, 400, 300, 200, 100, Vector4(0, 0, 1, 0.5))) {
-	//	std::cout << "start" << std::endl;
-	//	audio->PlayAudio(hSample3);
-	//}
-	//if (RenderButton(menu_inicial, gui_shader, 400, 400, 200, 100, Vector4(0, 0.5, 1, 0.5))) {
-	//	std::cout << "tutorial" << std::endl;
-	//	audio->PlayAudio(hSample3);
-	//}
-	//// Hacer como menu desplegable al clicar el sprite_gui[0]
-	//if (RenderButton(menu_game, gui_shader, 60, 200, 100, 70, Vector4(0, 0, 0.5, 0.5))) {
-	//	std::cout << "play" << std::endl;
-	//	audio->PlayAudio(hSample3);
-	//}
-	//if (RenderButton(menu_game, gui_shader, 60, 270, 100, 70, Vector4(0.5, 0, 0.5, 0.5))) {
-	//	std::cout << "restart" << std::endl;
-	//	audio->PlayAudio(hSample3);
-	//}
-	//if (RenderButton(menu_game, gui_shader, 60, 340, 100, 70, Vector4(0, 0.5, 0.5, 0.5))) {
-	//	std::cout << "quit" << std::endl;
-	//	audio->PlayAudio(hSample3);
-	//}
-	// ----------------------------- BOTONES GUI ---------------------------------------------
+	audio->PlayAudio(hSample1);
+	if (RenderButton(menu_inicial, gui_shader, 400, 300, 200, 100, Vector4(0, 0, 1, 0.5))) {
+		std::cout << "start" << std::endl;
+		audio->PlayAudio(hSample2);
+		// Cambiar al Info
+		currentStage = STAGE_ID::INFO;
+		level = 0;
+	}
+	if (RenderButton(menu_inicial, gui_shader, 400, 400, 200, 100, Vector4(0, 0.5, 1, 0.5))) {
+		std::cout << "tutorial" << std::endl;
+		audio->PlayAudio(hSample2);
+		// Cambiar al Tutorial
+		currentStage = STAGE_ID::TUTORIAL;
+		level = 0;
+	}
+}
 
-	glEnable(GL_DEPTH_TEST); // No necesarias creo
-	glEnable(GL_CULL_FACE);
-	glDisable(GL_BLEND);
+void Game::LevelsGUI() {
+
+	if (RenderButton(menu, gui_shader, 40, 60, 60, 60, Vector4(0, 0.05, 0.5, 1))) {
+		audio->PlayAudio(hSample2);
+		std::cout << "restart" << std::endl;
+		// Cambiar a Intro
+		currentStage = STAGE_ID::INTRO;
+		level = 0;
+	}
+	if (RenderButton(menu, gui_shader, 97, 60, 60, 60, Vector4(0.5, 0.03, 0.5, 1))) {
+		audio->PlayAudio(hSample2);
+		std::cout << "quit" << std::endl;
+		// Cambiar a End
+		currentStage = STAGE_ID::END;
+		level = 0;
+	}
+}
+
+void Game::InfoGUI() {
+	if (RenderButton(menu1, gui_shader, 400, 350, 200, 100, Vector4(0, 0, 0.5, 0.5))) {
+		audio->PlayAudio(hSample2);
+		std::cout << "play" << std::endl;
+		// Cambiar a Intro
+		currentStage = STAGE_ID::LEVEL1;
+	}
+	if (RenderButton(menu_inicial, gui_shader, 400, 450, 200, 100, Vector4(0, 0.5, 1, 0.5))) {
+		audio->PlayAudio(hSample2);
+		std::cout << "tutorial" << std::endl;
+		// Cambiar a End
+		currentStage = STAGE_ID::TUTORIAL;
+	}
 }
 
 void RenderScene(Camera* camera, Shader* shader, Shader* anim_shader, float time, int s, int f)
@@ -338,15 +314,10 @@ void RenderScene(Camera* camera, Shader* shader, Shader* anim_shader, float time
 		}
 		else if (ent->entity_type == eEntityType::PLAYER) {
 			scene->player = new Player(ent);
-			scene->player->model.setScale(0.01f, 0.01f, 0.01f);
 			Vector3 pos = scene->player->model.getTranslation();
-			scene->player->model.translate(pos.x * 10, pos.y * 10, pos.z * 10);
-			if(currentAnim == ePlayerState::IDLE)
-				ent->RenderMeshWithAnim(scene->player->model, scene->player->mesh, scene->player->texture, scene->player->anim_idle, anim_shader, camera, GL_TRIANGLES, time);
-			if (currentAnim == ePlayerState::WALK)
-				ent->RenderMeshWithAnim(scene->player->model, scene->player->mesh, scene->player->texture, scene->player->anim_walk, anim_shader, camera, GL_TRIANGLES, time);
-			if (currentAnim == ePlayerState::RUN)
-				ent->RenderMeshWithAnim(scene->player->model, scene->player->mesh, scene->player->texture, scene->player->anim_run, anim_shader, camera, GL_TRIANGLES, time);
+			scene->player->model.translate(pos.x, pos.y, pos.z);
+			scene->player->model.rotate(scene->player->yaw, Vector3(0.f, 1.f, 0.f));
+			camera = scene->player->camera;
 		}
 	}
 }
@@ -376,18 +347,19 @@ void Game::render(void)
 	floorModel.setScale(100, 0, 100);
 
 	//Render Levels
-	/*scene->player->model.translate(scene->player->pos.x, scene->player->pos.y, scene->player->pos.z);
-	scene->player->model.rotate(scene->player->yaw * DEG2RAD, Vector3(0, 1, 0));*/
 	if(level==1)
 		RenderScene(camera, shader, a_shader,time, 0, 71);
 	else if(level==2)
 		RenderScene(camera, shader, a_shader, time, 71, 188);
 	else if (level == 3)
 		RenderScene(camera, shader, a_shader, time, 188, scene->entities.size());
-	// Detective --> PLAYER
 
 	// Render Stages
 	GetStage(currentStage, stages)->Render();
+
+	//if (currentStage == STAGE_ID::LEVEL1 || currentStage == STAGE_ID::LEVEL2 || currentStage == STAGE_ID::LEVEL3) {
+	//	objectType = scene->player->CheckCollision(camera, scene->entities, selectedEntity);
+	//}
 
 	//Draw the floor grid
 	//drawGrid();
@@ -428,84 +400,76 @@ void Game::update(double seconds_elapsed)
 	if (Input::wasKeyPressed(SDL_SCANCODE_TAB)) { //CAMBIAR MODO DE LA CAMARA
 		cameraLocked = !cameraLocked;
 	}
-	if (Input::wasKeyPressed(SDL_SCANCODE_P)) { //CAMBIAR MODO DE LA CAMARA
-		if (level > 2)
-			level = 1;
-		else
-			level++;
-	}
-
-	if (cameraLocked) //SI ESTAMOS EN 1a PERSONA
-	{
-		mouse_locked = true;
-		scene->player->UpdatePlayer(elapsed_time, camera);
-	}
-	else { //CAMARA LIBRE
-		mouse_locked = false;
-		float playerSpeed = 120.0f * elapsed_time;
-		float rotSpeed = 200.0f * elapsed_time;
-		SDL_ShowCursor(true);
-
-		if (Input::isKeyPressed(SDL_SCANCODE_E)) scene->player->yaw += rotSpeed;
-		if (Input::isKeyPressed(SDL_SCANCODE_Q)) scene->player->yaw -= rotSpeed;;
-
-		Matrix44 playerRotate;
-		playerRotate.rotate(scene->player->yaw * DEG2RAD, Vector3(0, 1, 0));
-		Vector3 forward = playerRotate.rotateVector(Vector3(0, 0, -1));
-		Vector3 right = playerRotate.rotateVector(Vector3(1, 0, 0));
-
-		Vector3 playerVel;
-
-		if (Input::isKeyPressed(SDL_SCANCODE_S)) playerVel = playerVel + (forward * playerSpeed);
-		if (Input::isKeyPressed(SDL_SCANCODE_D)) playerVel = playerVel - (right * playerSpeed);
-		if (Input::isKeyPressed(SDL_SCANCODE_A)) playerVel = playerVel + (right * playerSpeed);
-		if (Input::isKeyPressed(SDL_SCANCODE_W) && Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) {
-			playerVel = playerVel - (forward * playerSpeed * 2);
-			currentAnim = ePlayerState::RUN;
-		} else if(Input::isKeyPressed(SDL_SCANCODE_W)) {
-			playerVel = playerVel - (forward * playerSpeed);
-			currentAnim = ePlayerState::WALK;
-		}
-		else {
-			currentAnim = ePlayerState::IDLE;
-		}
-
-		if (currentAnim == ePlayerState::WALK) {
-			anim = scene->player->anim_walk;
-		}
-		else if (currentAnim == ePlayerState::RUN) {
-			anim = scene->player->anim_run;
-		}
-
-		playerVel = scene->player->PlayerCollisions(scene, camera, playerVel, elapsed_time);
-
-		scene->player->model.translateGlobal(playerVel.x, playerVel.y, playerVel.z); // Character controller
-
-		if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) speed *= 2; //move faster with left shift
-		if (Input::isKeyPressed(SDL_SCANCODE_UP)) camera->move(Vector3(0.0f, 0.0f, 1.0f) * (speed/2));
-		if (Input::isKeyPressed(SDL_SCANCODE_DOWN)) camera->move(Vector3(0.0f, 0.0f, -1.0f) * (speed / 2));
-		if (Input::isKeyPressed(SDL_SCANCODE_LEFT)) camera->move(Vector3(1.0f, 0.0f, 0.0f) * (speed / 2));
-		if (Input::isKeyPressed(SDL_SCANCODE_RIGHT)) camera->move(Vector3(-1.0f, 0.0f, 0.0f) * (speed / 2));
-	}
 	
-	//scene->player->UpdatePlayer(elapsed_time, cameraLocked, camera, currentAnim);
 	// ----------------------------- STAGES --------------------------------------------------------------
 	GetStage(currentStage, stages)->Update(seconds_elapsed); // Actualiza la stage que toca
 	// ----------------------------- STAGES --------------------------------------------------------------
 	
+	if (currentStage == STAGE_ID::LEVEL1 || currentStage == STAGE_ID::LEVEL2 || currentStage == STAGE_ID::LEVEL3) {
+		//1a PERSONA
+		Vector3 Player_Move;
+		float rotSpeed = 10.f * DEG2RAD * elapsed_time;
+		scene->player->model.rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f)); //Rotamos el modelo del jugador y con ï¿½l, la camara.
+		camera->rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f));
+		camera->rotate(Input::mouse_delta.y * rotSpeed, camera->getLocalVector(Vector3(-1.0f, 0.0f, 0.0f)));
+
+		float playerSpeed = 3.f * elapsed_time;
+
+		if (firstP) {
+			scene->player->pitch += Input::mouse_delta.y * 10.0f * elapsed_time;
+			scene->player->yaw += Input::mouse_delta.x * 10.0f * elapsed_time;
+			Input::centerMouse();
+			SDL_ShowCursor(false);
+		}
+
+		if (Input::isKeyPressed(SDL_SCANCODE_W)) Player_Move = Vector3(0.f, 0.f, playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_S)) Player_Move = Vector3(0.f, 0.f, -playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_A)) Player_Move = Vector3(playerSpeed, 0.f, 0.f);
+		if (Input::isKeyPressed(SDL_SCANCODE_D)) Player_Move = Vector3(-playerSpeed, 0.f, 0.f);
+		if (Input::isKeyPressed(SDL_SCANCODE_W) && Input::isKeyPressed(SDL_SCANCODE_A)) Player_Move = Vector3(playerSpeed, 0.f, playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_S) && Input::isKeyPressed(SDL_SCANCODE_A)) Player_Move = Vector3(playerSpeed, 0.f, -playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_W) && Input::isKeyPressed(SDL_SCANCODE_D)) Player_Move = Vector3(-playerSpeed, 0.f, playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_S) && Input::isKeyPressed(SDL_SCANCODE_D)) Player_Move = Vector3(-playerSpeed, 0.f, -playerSpeed);
+		if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT) && Input::isKeyPressed(SDL_SCANCODE_W)) Player_Move = Vector3(0.f, 0.f, playerSpeed * 2); //move faster with left shift
+
+		Vector3 wpv_player = camera->getLocalVector(Player_Move);
+
+		camera->eye.x -= wpv_player.x;
+		camera->eye.z -= wpv_player.z;
+
+		camera->center.x -= wpv_player.x;
+		camera->center.z -= wpv_player.z;
+
+		scene->player->model.translateGlobal(-wpv_player.x, 0.0f, -wpv_player.z);
+
+
+		if (scene->player->DetectHint(camera, scene->entities, selectedEntity)) {
+			//MOSTRAMOS POR PANTALLA "F PARA INVESTIGAR PISTA"
+			if (Input::wasKeyPressed(SDL_SCANCODE_F)) { // Update Pistas
+				numPistas++;
+			}
+		}
+		if (numPistas == 3 && level == 1) {
+			level = 2;
+		}
+		else if (numPistas == 5 && level == 2) {
+			level = 3;
+		}
+		else if (numPistas == 10) {
+			currentStage = STAGE_ID::END;
+		}
+	}
 
 	////Read the keyboard state, to see all the keycodes: https://wiki.libsdl.org/SDL_Keycode
 	if (Input::wasKeyPressed(SDL_SCANCODE_SPACE)) { //SPACE para pasar de Info a Tutorial a Level1
-		if (currentStage < STAGE_ID::LEVEL1) {
+		if (currentStage < STAGE_ID::EXIT) {
 			NextStage();
 		}
-		if (currentStage == STAGE_ID::END) {
+		if (currentStage == STAGE_ID::EXIT) {
 			must_exit = true;
 		}
 	}
-	// ----------------------------- STAGES --------------------------------------------------------------
-
-
+	
 	//to navigate with the mouse fixed in the middle
 	if (mouse_locked)
 		Input::centerMouse();

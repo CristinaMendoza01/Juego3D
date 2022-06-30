@@ -10,7 +10,8 @@ enum STAGE_ID {
 	LEVEL1 = 3,
 	LEVEL2 = 4,
 	LEVEL3 = 5,
-	END = 6
+	END = 6,
+	EXIT = 7
 }; //Para indexar las diferentes stages
 
 class Stage {
@@ -37,7 +38,7 @@ public:
 	STAGE_ID GetID() {
 		return STAGE_ID::INFO;
 	};
-	void Render(void) {}
+	void Render(void);
 	void Update(float seconds_elapsed) {}
 };
 
@@ -46,7 +47,7 @@ public:
 	STAGE_ID TutorialStage::GetID() {
 		return STAGE_ID::TUTORIAL;
 	};
-	void Render(void) {}
+	void Render(void);
 	void Update(float seconds_elapsed) {}
 };
 
@@ -55,7 +56,7 @@ public:
 	STAGE_ID Level1Stage::GetID() {
 		return STAGE_ID::LEVEL1;
 	};
-	void Render(void) {}
+	void Render(void);
 	void Update(float seconds_elapsed) {}
 };
 
@@ -64,7 +65,7 @@ public:
 	STAGE_ID Level2Stage::GetID() {
 		return STAGE_ID::LEVEL2;
 	};
-	void Render(void) {}
+	void Render(void);
 	void Update(float seconds_elapsed) {}
 };
 
@@ -73,7 +74,7 @@ public:
 	STAGE_ID Level3Stage::GetID() {
 		return STAGE_ID::LEVEL3;
 	};
-	void Render(void) {}
+	void Render(void);
 	void Update(float seconds_elapsed) {}
 };
 
@@ -82,7 +83,16 @@ public:
 	STAGE_ID EndStage::GetID() {
 		return STAGE_ID::END;
 	};
-	void Render(void) {}
+	void Render(void);
+	void Update(float seconds_elapsed) {}
+};
+
+class ExitStage : public Stage {
+public:
+	STAGE_ID ExitStage::GetID() {
+		return STAGE_ID::EXIT;
+	};
+	void Render(void) {};
 	void Update(float seconds_elapsed) {}
 };
 

@@ -51,4 +51,6 @@ public:
 void RenderMesh(Matrix44& model, Mesh* a_mesh, Texture* tex, Shader* a_shader, Camera* cam, int primitive);
 void CheckCollision(Camera* cam, std::vector<Entity*>& entities, Entity* sEnt);
 void CheckSkyCollision(Camera* camera, Matrix44 skyModel, Mesh* skyMesh);
+Vector3 RayDirection(Camera* cam);
+
 #endif

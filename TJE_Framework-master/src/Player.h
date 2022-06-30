@@ -2,38 +2,42 @@
 #include "entity.h"
 
 enum ePlayerState {
-	IDLE,
-	WALK,
-	RUN
+    IDLE,
+    WALK,
+    RUN
 };
 
 class Player : public Entity
 {
 public:
-	Matrix44 model;
-	Mesh* mesh;
-	Texture* texture;
+    Matrix44 model;
+    Mesh* mesh;
+    Texture* texture;
 
-	float yaw;
-	Vector3 pos;
-	float pitch;
+    float yaw;
+    Vector3 pos;
+    float pitch;
 
-	ePlayerState player_state;
+    Camera* camera;
 
-	Animation* anim_idle;
-	Animation* anim_walk;
-	Animation* anim_run;
+    ePlayerState player_state;
 
-	Player();
-	Player(Entity* ent);
+    Animation* anim_idle;
+    Animation* anim_walk;
+    Animation* anim_run;
+    Animation* current_anim;
 
-	Camera* InitPlayerCamera();
+    Player();
+    Player(Entity* ent);
 
-	Vector3 PlayerCollisions(Scene* scene, Camera* camera, Vector3 playerVel, float elapsed_time);
+    Camera* InitPlayerCamera();
 
-	bool DetectHint();
+    Vector3 PlayerCollisions(Scene* scene, Camera* camera, Vector3 playerVel, float elapsed_time);
 
-	void RenderPlayer(Matrix44 model, Mesh* mesh, Texture* textrure, Animation* anim, Shader* shader, Camera* cam, int primitive, float yaw, float pitch, float t);
-	void UpdatePlayer(float elapsed_time, Camera* camera);
+    int CheckCollision(Camera* cam, std::vector<Entity*>& entities, Entity* sEnt);
+
+    bool DetectHint(Camera* cam, std::vector<Entity*>& entities, Entity* sEnt);
+
+    void RenderPlayer(Matrix44 model, Mesh* mesh, Texture* textrure, Animation* anim, Shader* shader, Camera* cam, int primitive, float yaw, float pitch, float t);
 
 };

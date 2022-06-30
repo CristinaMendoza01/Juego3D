@@ -52,6 +52,7 @@ Texture* cityTex = NULL;
 Matrix44 cityModel;
 
 Player detective;
+Matrix44 viewmodel;
 
 //GUIs
 Matrix44 quadModel;
@@ -82,6 +83,7 @@ float lodDist = 10.0f; // Para los LODs
 float no_render_dist = 1000.0f; // Para el frustum
 bool cameraLocked = false;
 const bool firstP = true;
+int cameracontroller = 0;
 
 Entity* selectedEntity = NULL;
 std::vector<LightEntity*> lights;
@@ -102,6 +104,7 @@ float tileSizeX, tileSizeY;
 std::vector<Stage*> stages; // Vector stages
 STAGE_ID currentStage = STAGE_ID::INTRO; //Índice que nos dice en que stage estamos, inicializamos con la INTRO
 ePlayerState currentAnim = ePlayerState::IDLE; // Índice que nos dice qué animación tiene el detective, inicializamos con IDLE
+
 
 void InitStages() {
     stages.reserve(7); //Reserva 7 elementos (hace un malloc de 7 porque tenemos 7 stages)
@@ -159,7 +162,7 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	floorTex = Texture::Get("data/textures/sand.tga");
 
 	// Levels
-	scene->loadMap("data/scenes/Pueblo/pueblo.scene");
+	scene->loadMap("data/scenes/House/house.scene");
 	/*scene->loadMap("data/scenes/House/house.scene");
 	scene->loadMap("data/scenes/TrainStation/train_station.scene");*/
 
@@ -189,7 +192,9 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	//hSample3 = audio->loadAudio("data/audio/button.wav", 0);
 
 	//scene = new Scene();
-	putCamera(Matrix44(), camera, cameraLocked, window_width, window_height);
+	//camera = scene->player->InitPlayerCamera();
+
+	putCamera(viewmodel, camera, cameraLocked, window_width, window_height, cameracontroller);
 
 	//hide the cursor
 	SDL_ShowCursor(!mouse_locked); //hide or show the mouse
@@ -333,12 +338,14 @@ void RenderScene(Camera* camera, float time)
 	{
 		Entity* ent = scene->entities[i];
 
-		if (ent->entity_type == eEntityType::OBJECT) {
+		if (ent->entity_type == eEntityType::OBJECT || ent->entity_type == eEntityType::HINT) {
 			RenderMesh(ent->model, ent->mesh, ent->texture, shader, camera, GL_TRIANGLES);
 		}
 		else if (ent->entity_type == eEntityType::PLAYER) {
 			scene->player = new Player(ent);
 			scene->player->model.setScale(0.01f, 0.01f, 0.01f);
+			Vector3 pos = scene->player->model.getTranslation();
+			scene->player->model.translate(pos.x * 10, pos.y * 10, pos.z * 10);
 			if(currentAnim == ePlayerState::IDLE)
 				RenderMeshWithAnim(scene->player->model, scene->player->mesh, scene->player->texture, scene->player->anim_idle, a_shader, camera, GL_TRIANGLES, time);
 			if (currentAnim == ePlayerState::WALK)
@@ -379,6 +386,8 @@ void Game::render(void)
 
 	RenderScene(camera, time);
 
+
+
 	// Detective --> PLAYER
 	
 
@@ -406,7 +415,7 @@ void NextStage() { // Para pasar de stage
 }
 // ----------------------------- STAGES --------------------------------------------------------------
 
-void DetectiveCollisions(Player* player, Vector3 nexPos, float elapsed_time) {
+Vector3 DetectiveCollisions(Player* player, Vector3 nexPos, float elapsed_time) {
 	//calculamos el centro de la esfera de colisión del player elevandola hasta la cintura
 	Vector3 character_center = nexPos + Vector3(0, 4, 0);
 
@@ -429,8 +438,7 @@ void DetectiveCollisions(Player* player, Vector3 nexPos, float elapsed_time) {
 		//reflejamos el vector velocidad para que de la sensacion de que rebota en la pared
 		//velocity = reflect(velocity, collnorm) * 0.95;
 	}
-	player->model.translate(nexPos.x, nexPos.y, nexPos.z);
-
+	return nexPos;
 }
 
 void Game::update(double seconds_elapsed)
@@ -454,41 +462,7 @@ void Game::update(double seconds_elapsed)
 	if (cameraLocked) //SI ESTAMOS EN 1a PERSONA
 	{
 		mouse_locked = true;
-		Vector3 Player_Move;
-		float rotSpeed = 60.f * DEG2RAD * elapsed_time;
-		scene->player->model.rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f)); //Rotamos el modelo del jugador y con él, la camara.
-		camera->rotate(Input::mouse_delta.x * rotSpeed, Vector3(0.0f, -1.0f, 0.0f));
-		camera->rotate(Input::mouse_delta.y * rotSpeed, camera->getLocalVector(Vector3(-1.0f, 0.0f, 0.0f)));
-
-		float playerSpeed = 50.f * elapsed_time;
-
-		if (firstP) {
-			scene->player->pitch += Input::mouse_delta.y * 10.0f * elapsed_time;
-			scene->player->yaw += Input::mouse_delta.x * 10.0f * elapsed_time;
-			Input::centerMouse();
-			SDL_ShowCursor(false);
-		}
-
-		if (Input::isKeyPressed(SDL_SCANCODE_W)) Player_Move= Vector3(0.f, 0.f, playerSpeed);
-		if (Input::isKeyPressed(SDL_SCANCODE_S)) Player_Move = Vector3(0.f, 0.f, -playerSpeed);
-		if (Input::isKeyPressed(SDL_SCANCODE_A)) Player_Move = Vector3(playerSpeed, 0.f, 0.f);
-		if (Input::isKeyPressed(SDL_SCANCODE_D)) Player_Move = Vector3(-playerSpeed, 0.f, 0.f);
-		if (Input::isKeyPressed(SDL_SCANCODE_W) && Input::isKeyPressed(SDL_SCANCODE_A)) Player_Move = Vector3(playerSpeed, 0.f, playerSpeed);
-		if (Input::isKeyPressed(SDL_SCANCODE_S) && Input::isKeyPressed(SDL_SCANCODE_A)) Player_Move = Vector3(playerSpeed, 0.f, -playerSpeed);
-		if (Input::isKeyPressed(SDL_SCANCODE_W) && Input::isKeyPressed(SDL_SCANCODE_D)) Player_Move = Vector3(-playerSpeed, 0.f, playerSpeed);
-		if (Input::isKeyPressed(SDL_SCANCODE_S) && Input::isKeyPressed(SDL_SCANCODE_D)) Player_Move = Vector3(-playerSpeed, 0.f, -playerSpeed);
-		if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) playerSpeed *= 10; //move faster with left shift
-
-		Vector3 wpv_player = camera->getLocalVector(Player_Move);
-
-		camera->eye.x -= wpv_player.x;
-		camera->eye.z -= wpv_player.z;
-
-		camera->center.x -= wpv_player.x;
-		camera->center.z -= wpv_player.z;
-
-		scene->player->model.translateGlobal(-wpv_player.x, 0.0f, -wpv_player.z);
-		
+		scene->player->UpdatePlayer(elapsed_time, camera);
 	}
 	else { //CAMARA LIBRE
 		mouse_locked = false;
@@ -519,22 +493,29 @@ void Game::update(double seconds_elapsed)
 		else {
 			currentAnim = ePlayerState::IDLE;
 		}
-		scene->player->UpdatePlayer(currentAnim);
 
-		scene->player->model.translateGlobal(playerVel.x, playerVel.y, playerVel.z); // Character controller
+		if (currentAnim == ePlayerState::WALK) {
+			anim = scene->player->anim_walk;
+		}
+		else if (currentAnim == ePlayerState::RUN) {
+			anim = scene->player->anim_run;
+		}
+
 		Vector3 nexPos = scene->player->model.getTranslation() + playerVel;
 
-		DetectiveCollisions(scene->player, nexPos, elapsed_time);
+		nexPos = DetectiveCollisions(scene->player, nexPos, elapsed_time);
+
+		scene->player->model.translateGlobal(nexPos.x, nexPos.y, nexPos.z); // Character controller
 
 		if (Input::isKeyPressed(SDL_SCANCODE_LSHIFT)) speed *= 2; //move faster with left shift
-		if (Input::isKeyPressed(SDL_SCANCODE_UP)) camera->move(Vector3(0.0f, 0.0f, 1.0f) * speed);
-		if (Input::isKeyPressed(SDL_SCANCODE_DOWN)) camera->move(Vector3(0.0f, 0.0f, -1.0f) * speed);
-		if (Input::isKeyPressed(SDL_SCANCODE_LEFT)) camera->move(Vector3(1.0f, 0.0f, 0.0f) * speed);
-		if (Input::isKeyPressed(SDL_SCANCODE_RIGHT)) camera->move(Vector3(-1.0f, 0.0f, 0.0f) * speed);
+		if (Input::isKeyPressed(SDL_SCANCODE_UP)) camera->move(Vector3(0.0f, 0.0f, 1.0f) * (speed/2));
+		if (Input::isKeyPressed(SDL_SCANCODE_DOWN)) camera->move(Vector3(0.0f, 0.0f, -1.0f) * (speed / 2));
+		if (Input::isKeyPressed(SDL_SCANCODE_LEFT)) camera->move(Vector3(1.0f, 0.0f, 0.0f) * (speed / 2));
+		if (Input::isKeyPressed(SDL_SCANCODE_RIGHT)) camera->move(Vector3(-1.0f, 0.0f, 0.0f) * (speed / 2));
 
 	}
 	
-
+	//scene->player->UpdatePlayer(elapsed_time, cameraLocked, camera, currentAnim);
 	// ----------------------------- STAGES --------------------------------------------------------------
 	GetStage(currentStage, stages)->Update(seconds_elapsed); // Actualiza la stage que toca
 	// ----------------------------- STAGES --------------------------------------------------------------
@@ -564,8 +545,6 @@ void Game::onKeyDown(SDL_KeyboardEvent event)
 	{
 	case SDLK_ESCAPE: must_exit = true; break; //ESC key, kill the app
 	case SDLK_F1: Shader::ReloadAll(); break;
-	case SDLK_1: AddEntityInFront(camera, maleMesh, maleTex, scene->entities);  break;
-	case SDLK_2: AddEntityInFront(camera, femaleMesh, femaleTex, scene->entities);  break;
 	case SDLK_3: CheckCollision(camera, scene->entities, selectedEntity); break;
 	case SDLK_4: CheckSkyCollision(camera, skyModel, skyMesh); break;
 	}

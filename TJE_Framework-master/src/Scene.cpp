@@ -86,16 +86,22 @@ Entity* Scene::createEntity(int type, Mesh* mesh, Texture* texture, Vector3 posi
 	
 }
 
-void putCamera(Matrix44 model, Camera* camera, bool locked, int w, int h) {
-	Vector3 eye = model * Vector3(0.f, 1.f, 1.f);
-	Vector3 center = model * Vector3(0.f, 1.f, 1.f);
-	Vector3 up = model.rotateVector(Vector3(0.f, 1.f, 0.f));
+void putCamera(Matrix44 model, Camera* camera, bool locked, int w, int h, int cameracontroller) {
+	Vector3 eye = model * Vector3(0.f, 200.f, -20.f);
+	Vector3 center = model * Vector3(0.f, 200.f, -10.f);
+	Vector3 up = model.rotateVector(Vector3(0.f, 200.f, 0.f));
 
 	//Create our camera
-	camera->lookAt(Vector3(0.f, 100.f, 100.f), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera and point to 0,0,0
-
-	if (locked) //Entramos en modo 1a Persona.
+	//camera->lookAt(Vector3(0.f, 100.f, 100.f), Vector3(0.f, 0.f, 0.f), Vector3(0.f, 1.f, 0.f)); //position the camera and point to 0,0,0
+	camera->enable();
+	
+	if (locked || cameracontroller != 1) {//Entramos en modo 1a Persona.
 		camera->lookAt(eye, center, up);
+		cameracontroller = 1;
+	}
+	else {
+		cameracontroller = 0;
+	}
 	camera->setPerspective(70.f, w / (float)h, 0.1f, 1000000.f); //set the projection, we want to be perspective
 	// Si añadimos unos ceros más en el último param -> Vemos más lejos
 }

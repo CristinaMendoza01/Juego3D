@@ -65,7 +65,10 @@ void CheckCollision(Camera* cam, std::vector<Entity*>& entities, Entity* sEnt) {
 		Vector3 normal;
 		Entity* entity = entities[i];
 		if (entity->mesh->testRayCollision(entity->model, rOrigin, dir, pos, normal)) {
-			std::cout << "Collision" << std::endl;
+			if (entity->entity_type == eEntityType::HINT) {
+				std::cout << "HINT" << std::endl;
+			}else
+				std::cout << "Collision" << std::endl;
 			sEnt = entity;
 			break;
 		}

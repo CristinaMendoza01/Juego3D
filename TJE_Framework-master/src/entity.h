@@ -9,6 +9,7 @@
 
 enum eEntityType {
 	PLAYER = 1,
+	HINT = 2,
 	OBJECT = 3,
 };
 

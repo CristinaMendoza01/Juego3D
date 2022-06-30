@@ -27,7 +27,11 @@ public:
 	Player();
 	Player(Entity* ent);
 
+	Camera* InitPlayerCamera();
+
+	Vector3 PlayerCollisions(Scene* scene, Vector3 nexPos, float elapsed_time);
+	bool DetectHint();
 	void RenderPlayer(Matrix44 model, Mesh* mesh, Texture* textrure, Animation* anim, Shader* shader, Camera* cam, int primitive, float yaw, float pitch, float t);
-	void UpdatePlayer(ePlayerState currentAnim);
+	void UpdatePlayer(float elapsed_time, Camera* camera);
 
 };

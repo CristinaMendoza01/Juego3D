@@ -1,7 +1,7 @@
 2
 data\meshes\WesternPack\Props\SM_Prop_CartWheel_01_74.obj
 data\textures\oeste.tga
--11.574,0.200,-10.103
+-10.774,0.200,-10.403
 -119.639,38.972,-32.653
 1.000,1.000,1.000
 2
@@ -699,4 +699,4 @@ data\assets\detective.mesh
 data\textures\detective.tga
 -9.810,0.000,75.042
 0.000,0.000,0.000
-1.000,1.000,1.000
+0.100,0.100,0.100

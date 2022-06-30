@@ -17,7 +17,7 @@ data\textures\oeste.tga
 -44.162,-55.809,-3.746
 1.000,1.000,1.000
 3
-data\meshes\WesternPack\Buildings\SM_Bld_TrainStation_01_36.obj 
+data\meshes\WesternPack\Buildings\SM_Bld_TrainStation_01_26.obj
 data\textures\oeste.tga
 0.000,0.000,0.000 
 0.000,0.000,0.000 
@@ -173,7 +173,7 @@ data\textures\oeste.tga
 -50.496,0.000,0.000 
 1.000,1.000,1.000
 3
-data\meshes\WesternPack\Vehicles\SM_Veh_Train_01_1.obj
+data\meshes\WesternPack\Vehicles\SM_Veh_Train_Freight_01_5.obj
 data\textures\oeste.tga  
 -12.099,0.000,-75.986 
 89.854,0.000,0.000 

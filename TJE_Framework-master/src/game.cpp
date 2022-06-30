@@ -253,14 +253,12 @@ void Game::IntroGUI() {
 	//// Al iniciar el juego
 	audio->PlayAudio(hSample1);
 	if (RenderButton(menu_inicial, gui_shader, 400, 300, 200, 100, Vector4(0, 0, 1, 0.5))) {
-		std::cout << "start" << std::endl;
 		audio->PlayAudio(hSample2);
 		// Cambiar al Info
 		currentStage = STAGE_ID::INFO;
 		level = 0;
 	}
 	if (RenderButton(menu_inicial, gui_shader, 400, 400, 200, 100, Vector4(0, 0.5, 1, 0.5))) {
-		std::cout << "tutorial" << std::endl;
 		audio->PlayAudio(hSample2);
 		// Cambiar al Tutorial
 		currentStage = STAGE_ID::TUTORIAL;
@@ -272,14 +270,12 @@ void Game::LevelsGUI() {
 
 	if (RenderButton(menu, gui_shader, 40, 60, 60, 60, Vector4(0, 0.05, 0.5, 1))) {
 		audio->PlayAudio(hSample2);
-		std::cout << "restart" << std::endl;
 		// Cambiar a Intro
 		currentStage = STAGE_ID::INTRO;
 		level = 0;
 	}
 	if (RenderButton(menu, gui_shader, 97, 60, 60, 60, Vector4(0.5, 0.03, 0.5, 1))) {
 		audio->PlayAudio(hSample2);
-		std::cout << "quit" << std::endl;
 		// Cambiar a End
 		currentStage = STAGE_ID::END;
 		level = 0;
@@ -289,13 +285,11 @@ void Game::LevelsGUI() {
 void Game::InfoGUI() {
 	if (RenderButton(menu1, gui_shader, 400, 350, 200, 100, Vector4(0, 0, 0.5, 0.5))) {
 		audio->PlayAudio(hSample2);
-		std::cout << "play" << std::endl;
 		// Cambiar a Intro
 		currentStage = STAGE_ID::LEVEL1;
 	}
 	if (RenderButton(menu_inicial, gui_shader, 400, 450, 200, 100, Vector4(0, 0.5, 1, 0.5))) {
 		audio->PlayAudio(hSample2);
-		std::cout << "tutorial" << std::endl;
 		// Cambiar a End
 		currentStage = STAGE_ID::TUTORIAL;
 	}
@@ -373,6 +367,7 @@ void Game::render(void)
 
 	//swap between front buffer and back buffer
 	SDL_GL_SwapWindow(this->window);
+
 }
 
 // ----------------------------- STAGES --------------------------------------------------------------
@@ -419,7 +414,7 @@ void Game::update(double seconds_elapsed)
 			scene->player->pitch += Input::mouse_delta.y * 10.0f * elapsed_time;
 			scene->player->yaw += Input::mouse_delta.x * 10.0f * elapsed_time;
 			Input::centerMouse();
-			SDL_ShowCursor(false);
+			SDL_ShowCursor(true);
 		}
 
 		if (Input::isKeyPressed(SDL_SCANCODE_W)) Player_Move = Vector3(0.f, 0.f, playerSpeed);
@@ -451,9 +446,13 @@ void Game::update(double seconds_elapsed)
 		}
 		if (numPistas == 3 && level == 1) {
 			level = 2;
+			NextStage();
+
 		}
 		else if (numPistas == 5 && level == 2) {
 			level = 3;
+			NextStage();
+
 		}
 		else if (numPistas == 10) {
 			currentStage = STAGE_ID::END;

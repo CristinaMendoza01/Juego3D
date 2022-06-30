@@ -8,6 +8,8 @@
 #include "includes.h"
 #include "camera.h"
 #include "utils.h"
+#include "shader.h"
+#include "texture.h"
 
 class Game
 {
@@ -25,12 +27,25 @@ public:
 	float elapsed_time;
 	int fps;
 	bool must_exit;
+	
+	//shaders
+	Shader* shader;
+	Shader* gui_shader;
+	Shader* a_shader;
+
+	//GUIs
+	Matrix44 quadModel;
+	Texture* pause;
+	Texture* gui;
+	Texture* menu_inicial;
+	Texture* menu_game;
 
 	//some vars
 	Camera* camera; //our global camera
 	bool mouse_locked; //tells if the mouse is locked (not seen)
 
 	Game( int window_width, int window_height, SDL_Window* window );
+
 
 	//main functions
 	void render( void );
@@ -46,7 +61,10 @@ public:
 	void onGamepadButtonUp(SDL_JoyButtonEvent event);
 	void onResize(int width, int height);
 	//void MultiPassRender(const Matrix44 model, Mesh* mesh, std::vector<LightEntity*> l, Camera* camera);
+	void RenderGUI(Texture* tex, Shader* a_shader, float centerx, float centery, float w, float h, Vector4 tex_range, Vector4 color, bool flipYV);
 
+	bool RenderButton(Texture* tex, Shader* a_shader, float centerx, float centery, float w, float h, Vector4 tex_range, Vector4 color, bool flipYV);
+	void RenderAllGUIs();
 };
 
 

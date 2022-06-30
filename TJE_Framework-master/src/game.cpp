@@ -17,10 +17,6 @@
 #include <cmath>
 
 //some globals
-Shader* shader = NULL;
-Shader* gui_shader = NULL;
-Shader* a_shader = NULL;
-
 Mesh* femaleMesh = NULL;
 Texture* femaleTex = NULL;
 Matrix44 femaleModel;
@@ -54,12 +50,7 @@ Matrix44 cityModel;
 Player detective;
 Matrix44 viewmodel;
 
-//GUIs
-Matrix44 quadModel;
-Texture* pause = NULL;
-Texture* gui = NULL;
-Texture* menu_inicial = NULL;
-Texture* menu_game = NULL;
+
 
 Animation* anim = NULL;
 float angle = 0;
@@ -180,6 +171,8 @@ Game::Game(int window_width, int window_height, SDL_Window* window)
 	gui_shader = Shader::Get("data/shaders/basic.vs", "data/shaders/gui.fs");
 	a_shader = Shader::Get("data/shaders/skinning.vs", "data/shaders/texture.fs");
 
+
+
 	InitStages();
 
 	//// Init bass
@@ -226,7 +219,7 @@ void PathFinding() {
 	}
 }
 
-void RenderGUI(Texture* tex, Shader* a_shader, float centerx, float centery, float w, float h, Vector4 tex_range, Vector4 color = Vector4(1,1,1,1), bool flipYV = false) {
+void Game::RenderGUI(Texture* tex, Shader* a_shader, float centerx, float centery, float w, float h, Vector4 tex_range, Vector4 color = Vector4(1,1,1,1), bool flipYV = false) {
 	int wWidth = Game::instance->window_width;
 	int wHeight = Game::instance->window_height;
 
@@ -256,7 +249,7 @@ void RenderGUI(Texture* tex, Shader* a_shader, float centerx, float centery, flo
 	a_shader->disable();
 }
 
-bool RenderButton(Texture* tex, Shader* a_shader, float centerx, float centery, float w, float h, Vector4 tex_range, Vector4 color = Vector4(1, 1, 1, 1), bool flipYV = false) {
+bool Game::RenderButton(Texture* tex, Shader* a_shader, float centerx, float centery, float w, float h, Vector4 tex_range, Vector4 color = Vector4(1, 1, 1, 1), bool flipYV = false) {
 	
 	Vector2 mouse = Input::mouse_position;
 	float halfWidth = w * 0.5;
@@ -267,13 +260,13 @@ bool RenderButton(Texture* tex, Shader* a_shader, float centerx, float centery, 
 	float max_y = centery + halfHeight;
 
 	bool hover = (mouse.x >= min_x) && (mouse.x <= max_x) && (mouse.y >= min_y) && (mouse.y <= max_y);
-	Vector4 buttonColor = hover ? Vector4(1, 1, 1, 1) : Vector4(1, 1, 1, 0.7f); // Para cuando pasas encima del icono se "ilumina"
+	Vector4 buttonColor = hover ? Vector4(1, 1, 1, 1) : Vector4(1, 1, 1, 0.4f); // Para cuando pasas encima del icono se "ilumina"
 
 	RenderGUI(tex, a_shader, centerx, centery, w, h, tex_range, buttonColor, flipYV);
 	return wasLeftMousePressed && hover;
 }
 
-void RenderAllGUIs() {
+void Game::RenderAllGUIs() {
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
@@ -294,10 +287,10 @@ void RenderAllGUIs() {
 	// ----------------------------- BOTONES GUI ---------------------------------------------
 	
 	//// Durante el juego
-	//if (RenderButton(gui, gui_shader, 60, 60, 60, 60, sprite_gui[gui_id])) {
-	//	std::cout << "left one" << std::endl;
-	//	audio->PlayAudio(hSample3);
-	//}
+	if (RenderButton(gui, gui_shader, 60, 60, 60, 60, sprite_gui[gui_id])) {
+		std::cout << "left one" << std::endl;
+		//audio->PlayAudio(hSample3);
+	}
 	//if (RenderButton(gui, gui_shader, 120, 60, 60, 60, sprite_gui[2])) {
 	//	std::cout << "right one" << std::endl;
 	//	glViewport(0, 0, wWidth, wHeight);
@@ -332,7 +325,7 @@ void RenderAllGUIs() {
 	glDisable(GL_BLEND);
 }
 
-void RenderScene(Camera* camera, float time, int s, int f)
+void RenderScene(Camera* camera, Shader* shader, Shader* anim_shader, float time, int s, int f)
 {
 	//render entities
 	//std::cout << scene->entities.size() << std::endl;
@@ -349,11 +342,11 @@ void RenderScene(Camera* camera, float time, int s, int f)
 			Vector3 pos = scene->player->model.getTranslation();
 			scene->player->model.translate(pos.x * 10, pos.y * 10, pos.z * 10);
 			if(currentAnim == ePlayerState::IDLE)
-				RenderMeshWithAnim(scene->player->model, scene->player->mesh, scene->player->texture, scene->player->anim_idle, a_shader, camera, GL_TRIANGLES, time);
+				ent->RenderMeshWithAnim(scene->player->model, scene->player->mesh, scene->player->texture, scene->player->anim_idle, anim_shader, camera, GL_TRIANGLES, time);
 			if (currentAnim == ePlayerState::WALK)
-				RenderMeshWithAnim(scene->player->model, scene->player->mesh, scene->player->texture, scene->player->anim_walk, a_shader, camera, GL_TRIANGLES, time);
+				ent->RenderMeshWithAnim(scene->player->model, scene->player->mesh, scene->player->texture, scene->player->anim_walk, anim_shader, camera, GL_TRIANGLES, time);
 			if (currentAnim == ePlayerState::RUN)
-				RenderMeshWithAnim(scene->player->model, scene->player->mesh, scene->player->texture, scene->player->anim_run, a_shader, camera, GL_TRIANGLES, time);
+				ent->RenderMeshWithAnim(scene->player->model, scene->player->mesh, scene->player->texture, scene->player->anim_run, anim_shader, camera, GL_TRIANGLES, time);
 		}
 	}
 }
@@ -386,11 +379,11 @@ void Game::render(void)
 	/*scene->player->model.translate(scene->player->pos.x, scene->player->pos.y, scene->player->pos.z);
 	scene->player->model.rotate(scene->player->yaw * DEG2RAD, Vector3(0, 1, 0));*/
 	if(level==1)
-		RenderScene(camera, time, 0, 71);
+		RenderScene(camera, shader, a_shader,time, 0, 71);
 	else if(level==2)
-		RenderScene(camera, time, 71, 188);
+		RenderScene(camera, shader, a_shader, time, 71, 188);
 	else if (level == 3)
-		RenderScene(camera, time, 188, scene->entities.size());
+		RenderScene(camera, shader, a_shader, time, 188, scene->entities.size());
 	// Detective --> PLAYER
 
 	// Render Stages

@@ -36,7 +36,7 @@ Vector3 RayDirection(Camera* cam) {
 
 	return dir;
 }
-void AddEntityInFront(Camera* cam, Mesh* a_mesh, Texture* tex, std::vector<Entity*>& entities) {
+void Entity::AddEntityInFront(Camera* cam, Mesh* a_mesh, Texture* tex, std::vector<Entity*>& entities) {
 	
 	Vector3 dir = RayDirection(cam);
 	Vector3 rOrigin = cam->eye;
@@ -54,6 +54,7 @@ void AddEntityInFront(Camera* cam, Mesh* a_mesh, Texture* tex, std::vector<Entit
 	entity->texture = tex;
 	entities.push_back(entity);
 }
+
 
 void CheckCollision(Camera* cam, std::vector<Entity*>& entities, Entity* sEnt) {
 	Vector3 dir = RayDirection(cam);
@@ -84,8 +85,7 @@ void CheckSkyCollision(Camera* camera, Matrix44 skyModel, Mesh* skyMesh) {
 	}
 }
 
-
-void RenderObjects(Mesh* mesh, Texture* tex, Shader* shader, int width, int height, float padding, float no_render_dist) {
+void Entity::RenderObjects(Mesh* mesh, Texture* tex, Shader* shader, int width, int height, float padding, float no_render_dist) {
 
 	if (shader)
 	{
@@ -130,7 +130,7 @@ void RenderObjects(Mesh* mesh, Texture* tex, Shader* shader, int width, int heig
 	}
 }
 
-void RenderMeshWithAnim(Matrix44& model, Mesh* a_mesh, Texture* tex, Animation* anim, Shader* a_shader, Camera* cam, int primitive, float t) {
+void Entity::RenderMeshWithAnim(Matrix44& model, Mesh* a_mesh, Texture* tex, Animation* anim, Shader* a_shader, Camera* cam, int primitive, float t) {
 	if (!a_shader) return;
 	//enable shader
 	a_shader->enable();

@@ -99,8 +99,8 @@ void Player::UpdatePlayer(float elapsed_time, Camera* camera)
 	Scene* scene = Scene::instance;
 	Vector3 Player_Move;
 	float rotSpeed = 50.f * DEG2RAD * elapsed_time;
-	this->pitch += Input::mouse_delta.y * 10.0f * elapsed_time;
-	this->yaw += Input::mouse_delta.x * 10.0f * elapsed_time;
+	pitch += Input::mouse_delta.y * 10.0f * elapsed_time;
+	yaw += Input::mouse_delta.x * 10.0f * elapsed_time;
 	Input::centerMouse();
 	SDL_ShowCursor(false);
 
@@ -138,7 +138,7 @@ void Player::UpdatePlayer(float elapsed_time, Camera* camera)
 
 	Player_Move = PlayerCollisions(scene, camera, Player_Move, elapsed_time);
 
-	this->model.translateGlobal(-Player_Move.x, 0.0f, -Player_Move.z);
+	model.translateGlobal(-Player_Move.x, 0.0f, -Player_Move.z);
 
 	//camera->updateViewMatrix();
 
@@ -150,9 +150,9 @@ void Player::UpdatePlayer(float elapsed_time, Camera* camera)
 
 	Animation* anim;
 	if (currentAnim == ePlayerState::WALK) {
-		anim = this->anim_walk;
+		anim = anim_walk;
 	}
 	else if (currentAnim == ePlayerState::RUN) {
-		anim = this->anim_run;
+		anim = anim_run;
 	}
 }
